@@ -7,7 +7,6 @@ public class ArrayOfObj {
 //		main starting
 		
 		
-		
 //		creating array of objects 
 		Student[] a = {new Student("Mahesh",71,24),new Student("Pandu",72,22),new Student("Ganesh",73,23)};
 		
@@ -33,6 +32,8 @@ public class ArrayOfObj {
 			System.out.println(b.author);
 			
 		}
+	
+		
 		
 		
 		
