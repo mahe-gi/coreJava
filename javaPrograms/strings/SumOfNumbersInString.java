@@ -13,11 +13,9 @@ public class SumOfNumbersInString {
 				sum+=val.charAt(i)-48;
 			}
 			
-			
 		}
 		
 		System.out.println(sum);
-		
 		
 		
 	}
