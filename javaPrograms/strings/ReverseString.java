@@ -19,6 +19,7 @@ public class ReverseString {
 	
 	
 //	Palindrome number 
+		
 	if(s1.equals(s)) {
 		System.out.println("palandrome");
 	}else {
