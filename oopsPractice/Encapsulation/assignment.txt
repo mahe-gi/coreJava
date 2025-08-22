@@ -1,0 +1,60 @@
+1.Class: Person ✅
+Variables: private String name, private int age, private String country
+Methods: public String getName(), public void setName(String), public int getAge(), public void setAge(int), public String getCountry(), public void setCountry(String)
+main: Create a Person object, set all three fields, then print them.
+
+2.Class: BankAccount✅
+Variables: private String accountNumber, private double balance
+Methods: public String getAccountNumber(), public void setAccountNumber(String), public double getBalance(), public void deposit(double), public void withdraw(double) (check sufficient balance)
+main: Create account, deposit 1000, withdraw 200, display balance.
+
+3.Class: Student✅
+Variables: private String studentId, private String name, private double gpa
+Methods: getters/setters, public void updateGpa(double), public boolean isOnHonorRoll() (returns gpa ≥ 3.5)
+main: Instantiate, set GPA, update, check honor roll status.
+
+4.Class: Book✅
+Variables: private String title, private String author, private int yearPublished
+Methods: getters/setters, public void updateAuthor(String), public String getSummary() (returns Title by Author, published Year)
+main: Create Book, update author, print summary.
+
+5.Class: Rectangle✅
+Variables: private double length, private double width
+Methods: getters/setters, public double calculateArea(), public double calculatePerimeter()
+main: Create rectangle, set dimensions, compute and print area and perimeter.
+
+6.Class: Employee✅
+Variables: private String id, private String name, private double salary
+Methods: getters/setters, public void raiseSalary(double percent) (increase salary), public String displayDetails()
+main: Instantiate, give raise, print details.
+
+7.Classes: Animal (base), Dog (subclass)✅
+Animal: protected String name; public void eat(), public void sleep()
+Dog: inherits base; adds public void bark()
+main: Create Dog, set name, call eat, sleep, bark.
+
+8.Classes: Vehicle → Car → ElectricCar (multilevel)✅
+Vehicle: public void start()
+Car: inherits, adds public void drive()
+ElectricCar: inherits, adds public void chargeBattery()
+main: Create ElectricCar, call start, drive, charge.
+
+9.Superclass: Employee; Subclasses: Manager, Developer (hierarchical)
+Employee: protected String name; public void work()
+Manager: override work() (println “Managing team”)
+Developer: override work() (println “Writing code”)
+main: Create both, call work().
+
+10.Interface: Shape with public void draw(); Implementations: Circle, Square
+Circle implements draw (println “Drawing circle”); Square, similarly.
+main: Create Shape[] array assigned with new Circle() and new Square(), loop and invoke draw() on each (polymorphism interface style).
+
+11.Abstract Class: EmployeeBase with abstract void calculatePay(), plus public void work()
+Subclasses: HourlyEmployee (override calculatePay to compute hourly × rate), SalariedEmployee (fixed pay)
+main: Create both, call work() and calculatePay().
+
+12.Interface-based multiple inheritance:
+interface Flyer with fly(),
+interface Swimmer with swim();
+Class: Duck implements both, with both methods.
+main: Create Duck, call fly() and swim().

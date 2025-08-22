@@ -1,0 +1,16 @@
+Method overloading
+------------------
+same method with different argument list.
+
+to achieve method overloading:
+===============================
+1. We have to have multiple methods with the same method name but with a different list of arguments.
+2. Modifiers can be different in method overloading process.
+3. Return type of a method can be different type in method overloading process provided list of arguments are different.
+4.Both static and non static methods can be overloaded.
+5.Main method also can be overloaded.
+
+Advantages of method overloading:
+1.we can perform the same operation with different arguments.
+2.improve flexibility in coding.
+3. Easier maintenance of the code.
