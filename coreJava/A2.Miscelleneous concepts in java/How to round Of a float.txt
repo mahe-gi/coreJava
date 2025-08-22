@@ -1,0 +1,14 @@
+import java.text.DecimalFormat;
+class Main {
+    public static void main(String[] args) 
+    {
+        //System.out.printf("Hello %.2f World",3.45678);
+        
+        /*
+        double x = (Math.round(3.95678*100));
+        x = x/100;
+        System.out.println(x);*/
+        
+        DecimalFormat df = new DecimalFormat("#.###");
+        System.out.println(df.format(3.45678));
+    }

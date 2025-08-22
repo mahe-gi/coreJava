@@ -1,0 +1,50 @@
+In Java, tokens are the smallest individual units or elements of a program that are meaningful 
+to the Java compiler. A Java program is essentially a sequence of these tokens, along with 
+comments and whitespace. 
+
+K I L O S C white-space
+There are five main types of tokens in Java:
+Keywords:
+=========
+These are reserved words in Java with predefined meanings to the compiler. 
+Examples include public, class, static, int, if, else, for, while, etc.
+
+Identifiers:
+============
+These are names chosen by the programmer for various program elements 
+like variables, methods, classes, and packages. They must follow specific rules 
+(e.g., cannot start with a digit, cannot be a keyword). Examples include myVariable, 
+calculateSum(), MyClass.
+
+
+Literals (or Constants):
+========================
+These represent constant values directly in the code. They can be of various types:
+Integer literals: 10, 100, -5
+Floating-point literals: 3.14, 2.5f
+Character literals: 'a', 'B', '\n'
+String literals: "Hello World", "Java"
+Boolean literals: true, false
+Null literal: null
+
+Operators:
+==========
+These are symbols that perform specific operations on operands (variables or literals). 
+Examples include arithmetic operators (+, -, *, /), 
+relational operators (==, !=, <, >), 
+logical operators (&&, ||, !), 
+assignment operators (=, +=), etc.
+
+
+Separators (or Delimiters):
+===========================
+These are symbols used to define the structure and organization of the code, separating 
+different parts of a statement or block. Examples include parentheses (), curly braces {}, 
+square brackets [], semicolons ;, commas ,, and periods ..
+
+
+Comments
+========
+while present in the code, are generally treated as whitespace by the compiler during the 
+tokenization process and are not considered tokens themselves.
+

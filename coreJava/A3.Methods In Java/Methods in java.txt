@@ -1,0 +1,218 @@
+Methods/functions
+=================
+it is a block of code used to perform a specific task or operation.
+
+syntax of a method
+------------------
+access-specifier   access-modifier   return-type    method-name(parameters/arguments)//METHOD SIGNATURE
+{
+
+		---------------------------
+		---------------------------
+		       operations
+		---------------------------
+		---------------------------
+}//METHOD IMPLEMENTATION
+
+
+importent points : 
+1. class--> collection of methods and variables.
+2. there can be any number of methods in a class.
+3. you cannot write a method inside a method.
+4.even though there is no arguments for a method, () is compulsory.
+5.No duplicate methods in a class.
+6.method names follow camel casing.
+7.JVM is designed to execute only main method by default.
+8. in-order to execute other methods(excluding main method) developer has to perform 
+method calling process.
+
+What is method calling process?
+loading a perticular method in to the stack for execution.(JVM will execute the loaded methods)
+Last In first Out concept.
+
+syntax : method calling.
+------------------------
+methodName();
+
+
+9. a method can be called any number of times.
+
+
+types of methods based on arguments and return-type
+===================================================
+1.method without arguments and without return-type.
+
+example : class  MethodExample1
+{
+	//method-1 : main method
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+		walk();
+		walk();
+		run();
+		System.out.println("Bye");
+	}
+	
+	//method-2 : walk method
+	public static void walk()
+	{
+		System.out.println("Walk daily for good health");
+	}
+	
+	//method-3 : run method
+	public static void run()
+	{
+		System.out.println("Show is running successfully");
+	}
+}
+
+2.method with arguments and without return-type.
+================================================
+note points 
+-----------
+1.What are arguments?
+arguments are the part of method signature where we only declare variables within the
+paranthsys in method signature.
+
+2.The arguments which are declared in the method signature(called argument list) are initialised during
+method calling process and these variables are called actual arguments.
+
+3.variables which are declared in the arguments list in method signature, are called formal arguments.
+
+4.formal and actual arguments must match in length and datatypes.
+
+
+class MethodWithArgumentsWithoutReturnType 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+		getCircleArea(10);
+		getRectangleArea(10, 20);
+		fullNameOfUser("Mahendra", "Kumar");
+		studentDetails("Rahul", 23);
+	}
+	
+	public static void getCircleArea(double r)
+	{
+		System.out.println("Area of circle is : "+3.14*r*r);
+	}
+	
+	public static void getRectangleArea(double l, double b) 
+	{
+		System.out.println("Area of rectangle is : "+l*b);
+	}
+	
+	public static void fullNameOfUser(String firstName, String lastName)
+	{
+		System.out.println("Your full name is : "+firstName+" "+lastName);
+	}
+	
+	public static void studentDetails(String name, int age)
+	{
+		
+		System.out.println("Name : "+name);
+		System.out.println("Age : "+age);
+	}
+}
+
+
+3.method without arguments and with return-type.
+=================================================
+1. return is a keyword used to return a value from a method.
+2. a method can return a single value.
+3. returned value can be stored in a variable, can be directly printed or can be used directly 
+in the conditions.
+4. return statement should the last statement in the method implementation.
+class MethodWitoutArgumentsWithReturnType 
+{
+	public static double getPiValue()
+	{
+		return 3.14;
+	}
+	
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+		//you can store the returned value in a variable
+		double ans = getPiValue();
+		System.out.println(ans);
+		
+		//you can directly print the returning value
+		System.out.println(getPiValue());
+		
+		//you can directly use returned value in conditions
+		if (getPiValue()==3.14)
+		{
+			System.out.println("Happy");
+		}
+	}
+}
+
+
+
+4.method with arguments and with return-type.
+============================================
+Example-1 : 
+//WAPT reverse 234, 567, 862 and 362.
+class ReversingNumbers 
+{
+	public static int reverse(int num)
+	{
+		int rev = 0;
+		while (num!=0)
+		{
+			int ld = num%10;
+			rev = rev*10+ld;
+			num = num/10;
+		}
+		
+		return rev;
+	}
+	public static void main(String[] args) 
+	{
+		int num1 = 234;
+		int num2 = 567;
+		int num3 = 862;
+		int num4 = 362;
+		System.out.println("Reverse of first number is : "+reverse(num1));
+		System.out.println("Reverse of second number is : "+reverse(num2));
+		System.out.println("Reverse of third number is : "+reverse(num3));
+		System.out.println("Reverse of forth number is : "+reverse(num4));
+		
+	}
+}
+
+Advantage : code-reusability.
+
+Types of methods
+================
+2 types
+--------
+1.pre-defined method.
+these are the methods already pre-defined in java,provided by oracle.(james gosling and team)
+in-built methods.
+ 
+2.user-defined method.
+these methods are created by user(us).
+
+2.1)instance method(non-static method)
+---------------------------------------
+1.if a method is not having the keyword "static" in method signature those methods are called
+non-static methods.
+2.to execute non-static method, we have to create an object for the same class.use object
+reference to call the non-static method.
+
+3.Syntax to create object
+=======================
+ClassName object_reference_variable = new ClassName();
+
+object_reference_variable.methodName();
+
+
+2.2)static method.
+===================
+1.if a method is having the keyword "static" in method signature those methods 
+are called static methods.
+2.Static methods can be called directly there is no need to create object.
