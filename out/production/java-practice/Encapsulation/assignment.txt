@@ -39,15 +39,16 @@ Car: inherits, adds public void drive()
 ElectricCar: inherits, adds public void chargeBattery()
 main: Create ElectricCar, call start, drive, charge.
 
-9.Superclass: Employee; Subclasses: Manager, Developer (hierarchical)
+9.Superclass: Employee; Subclasses: Manager, Developer (hierarchical)✅
 Employee: protected String name; public void work()
 Manager: override work() (println “Managing team”)
 Developer: override work() (println “Writing code”)
 main: Create both, call work().
 
-10.Interface: Shape with public void draw(); Implementations: Circle, Square
+10.Interface: Shape with public void draw(); Implementations: Circle, Square ✅
 Circle implements draw (println “Drawing circle”); Square, similarly.
 main: Create Shape[] array assigned with new Circle() and new Square(), loop and invoke draw() on each (polymorphism interface style).
+
 
 11.Abstract Class: EmployeeBase with abstract void calculatePay(), plus public void work()
 Subclasses: HourlyEmployee (override calculatePay to compute hourly × rate), SalariedEmployee (fixed pay)

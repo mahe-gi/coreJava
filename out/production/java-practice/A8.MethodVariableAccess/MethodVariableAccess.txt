@@ -1,0 +1,2 @@
+Static method can call static method ==> directly
+non-Static method can call static method ==> directly

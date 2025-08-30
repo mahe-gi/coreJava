@@ -1,0 +1,77 @@
+=======================================================================
+		Key Features and Methods of java.lang.Math:
+=======================================================================
+Constants:
+1) Math.PI: Represents the mathematical constant pi (approximately 3.14159).
+
+2) Math.E: Represents the base of the natural logarithm, Euler's number (approximately 2.71828).
+ 
+
+
+Basic Arithmetic Operations:
+=============================
+1)Math.abs(x): Returns the absolute value of x.(negative number to positive)
+
+2)Math.max(x, y): Returns the greater of the two values x and y.
+
+3)Math.min(x, y): Returns the smaller of the two values x and y.
+
+
+
+Rounding and Truncation:
+=================================
+1) Math.round(x): Rounds x to the nearest long or int.
+
+2) Math.ceil(x): Returns the smallest integer value that is greater than or equal to x 
+and is equal to a mathematical integer.
+System.out.println(7.4); output : 8.0
+System.out.println(-7.4); output : -7.0
+ 
+
+3) Math.floor(x): Returns the largest integer value that is less than or equal to x 
+and is equal to a mathematical integer. 
+System.out.println(Math.floor(7.4)); output : 7.0
+System.out.println(Math.floor(-7.4)); output : -8.0
+
+4) Math.rint(x): Returns the double value that is closest in value to the argument 
+and is equal to a mathematical integer. 
+
+Rounding to the nearest integer: It rounds a given floating-point number to the nearest whole number.
+Return type: It always returns a double value, even if the result is an integer.
+Tie-breaking rule: If the argument is exactly halfway between two integers (i.e., its fractional 
+part is 0.5), Math.rint() rounds to the nearest even integer.
+For example, Math.rint(2.5) returns 2.0 (because 2 is even).
+Math.rint(3.5) returns 4.0 (because 4 is even).
+Difference from Math.round(): While both round numbers, Math.round() rounds 0.5 up to the next integer
+(e.g., Math.round(2.5) returns 3), and returns a long or int depending on the argument type.
+ Math.rint() adheres to the "round half to even" rule for tie-breaking and always returns a double.
+
+
+Exponential and Logarithmic Functions:
+=======================================
+1) Math.pow(base, exponent): Returns base raised to the power of exponent.
+
+2) Math.sqrt(x): Returns the square root of x.
+
+3) Math.cbrt(x): Returns the cube root of x.
+
+4) Math.exp(x): Returns Euler's number e raised to the power of x.
+
+5) Math.log(x): Returns the natural logarithm (base e) of x. 
+
+6) Math.log10(x): Returns the base 10 logarithm of x. 
+
+Trigonometric Functions:
+========================
+1) Math.sin(angle): Returns the sine of an angle (in radians).
+2) Math.cos(angle): Returns the cosine of an angle (in radians).
+3) Math.tan(angle): Returns the tangent of an angle (in radians).
+4) Math.toDegrees(radians): Converts an angle measured in radians to an approximately equivalent angle measured in degrees.
+5) Math.toRadians(degrees): Converts an angle measured in degrees to an approximately equivalent angle measured in radians.
+
+Random Number Generation:
+=========================
+1) Math.random(): Returns a pseudorandom double value greater than or equal to 0.0 and less than 1.0. 
+
+
+
