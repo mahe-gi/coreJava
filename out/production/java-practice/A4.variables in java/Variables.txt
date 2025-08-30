@@ -1,0 +1,39 @@
+Variable is a memory block used to store the data.
+
+There are two types of variables.
+1. Global variable.
+2. local variable.
+
+local variables
+===============
+1. Variables which are declared within the method are called local variables.
+2. These variables are used within the method. We cannot use these variables outside the method.
+3. these variables must be initialised to use.
+4. Scope of local variables will be within the method.
+5. Default values will not be there for local variables.
+6. formal arguments of a method are local variables.
+
+syntax : datatype variableName = data;
+local variables will not have any access nodifiers as well as no static key word.
+
+Global variables.
+================
+variables which are declared outside a method but inside the class are called global variables.
+There are two types of global variables.
+1. Static variable
+2. non static variable.
+
+Syntax of global variable:
+modifier static data-type variable_name = data;
+
+2. Global variables have default values if developer forgets to initialise the variable.
+Default values of different data types.
+boolean->false
+int-> 0
+double-> 0.0 
+char->empty character 
+string-> null
+
+3.These global variables can be accessed in any of the methods in the same class.
+4. Static variables can be used in any of the methods directly.
+5. Non static variables can be used only with the help of object reference variable.

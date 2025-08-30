@@ -8,10 +8,6 @@ main: Instantiate, give raise, print details.
  */
 
 
-
-
-
-
 public class Employee {
     private String id;
     private String name;
