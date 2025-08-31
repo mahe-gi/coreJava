@@ -1,0 +1,191 @@
+Generalization and Specialization in OOPs
+=========================================
+Generalization
+Converting a subclass type into a superclass type is called 'Generalization' because we 
+are making the subclass to become more general and its scope is widening. This is also 
+called widening or up-casting. Widening is safe because the classes will become more 
+general. For example,(Vehicle is Super class, Car is sub-class) if we say Car is a Vehicle, 
+there will be no objection. Thus Java compiler will not ask for cast operator in generalization.
+
+example :
+class Father 
+{
+    public void work()
+    {
+        System.out.println("Earning Father");
+    }
+}
+
+class Son extends Father 
+{
+    public void play()
+    {
+        System.out.println("Enjoying son");
+    }
+}
+
+class Main 
+{
+    public static void main(String[] args)
+    {
+	//up-casting
+        Father father = (Father) new Son();
+
+        // which is widened using casting
+        // and stored in father variable
+        // Though casting is done but it is not needed
+        father.work();
+        father.play();//error
+    }
+}
+So, in widening or Generalization, up-sacting , we can access all the superclass methods, but not the 
+subclass methods. 
+
+Specialization
+===============
+Converting a super class type into a sub class type is called 'Specialization'. Here, we are
+coming down from more general form to a specific form and hence the scope is narrowed. Hence,
+this is called narrowing or down-casting. Narrowing is not safe because the classes will 
+become more and more specific thus giving rise to more and more doubts. For example if we 
+say Vehicle is a Car we need a proof. Thus, In this case, Java compiler specifically asks 
+for the casting. This is called explicit casting.
+
+modifying the same above program.
+example :
+class Father 
+{
+    public void work()
+    {
+        System.out.println("Earning Father");
+    }
+}
+
+class Son extends Father 
+{
+    public void play()
+    {
+        System.out.println("Enjoying son");
+    }
+}
+
+class Main 
+{
+    public static void main(String[] args)
+    {
+	//father is a superclass reference, new operator returns a subclass reference.
+        //Father father = (Father) new Son();
+
+        //down casting the upcasted object
+	Son son = (Son)father;
+        son.work();
+        son.play();
+    }
+}
+----------------------------------------------------------------------------------
+				   Try it 
+----------------------------------------------------------------------------------
+class : product
+
+class : Electronics
+fields : 
+    private String id;
+    private String name;
+    private double price;
+    private int warrantyMonths;
+    private String brand;
+methods :
+    double calculateDiscountedPrice(double discountRate)
+    boolean isUnderWarranty() { return warrantyMonths > 0;}
+
+class : Cothing
+fields : 
+    private String id;
+    private String name;
+    private double price;
+    private String size;
+    private String material;
+methods :
+    double calculateDiscountedPrice(double discountRate)
+    public String getSize() { return size; }
+package generalisationSpecialisation;
+
+abstract class Product
+{
+	 private String id;
+	 private String name;
+	 private double price;
+	 
+	 public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public Product(String id,String name,double price)
+	 {
+		 this.id = id;
+		 this.name = name;
+		 this.price = price;
+	 }
+	 public abstract double calculateDiscountedPrice(double discountRate);
+}
+class Electronics extends Product
+{
+	private int warrantyMonths;
+    private String brand;
+    public Electronics(String id,String name,double price,int warrantyMonths,String brand)
+    {
+    	super(id, name, price);
+    	this.warrantyMonths = warrantyMonths;
+    	this.brand = brand;
+    }
+    public boolean isUnderWarranty() 
+    { 
+    	return warrantyMonths > 0;
+    }
+    public double calculateDiscountedPrice(double discountRate)
+    {
+    	return (getPrice()*(100-discountRate))/100;
+    }
+}
+class Clothing extends Product
+{
+	private String size;
+    private String material;
+    public String getSize() 
+    { 
+    	return size; 
+    	
+    }
+    public Clothing(String id,String name,double price, String size,String material)
+    {
+    	super(id, name, price);
+    	this.size = size;
+    	this.material = material;
+    }
+    public double calculateDiscountedPrice(double discountRate)
+    {
+    	return (getPrice()*(100-discountRate))/100;
+    }
+}
+public class ProductMainClass 
+{
+	 public static void main(String[] args) 
+	 {
+		 Electronics p = new Electronics("G123M4", "Smart watch", 4000, 6, "Noise");
+		System.out.println(p.calculateDiscountedPrice(10));
+		System.out.println(p.isUnderWarranty());
+	 }
+}

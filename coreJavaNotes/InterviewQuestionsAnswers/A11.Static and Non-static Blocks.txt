@@ -1,0 +1,77 @@
+1. What is a static initialization block in Java?
+A block prefixed with the static keyword, executed once when the class is loaded by the JVM.
+
+2. When does a static block run?
+It runs at class loading time, before the main() method or any object creation.
+
+3. Can a class have multiple static blocks? How are they executed?
+Yes. Multiple static blocks are allowed and are executed sequentially in the order they appear.
+
+4. What is an instance (non-static) initializer block?
+A block without static that is executed before a constructor whenever an object is created.
+
+5. What is the execution order among static blocks, instance blocks, constructors, and main()?
+Static blocks → main() starts → for each object: instance blocks → constructor.
+
+6. What is the output of this code?
+class Foo {
+  static { System.out.println("static"); }
+  { System.out.println("instance"); }
+  public Foo() { System.out.println("constructor"); }
+  public static void main(String[] args) {
+    new Foo();
+    new Foo();
+  }
+}
+Answer:
+static
+instance
+constructor
+instance
+constructor
+
+7. What differences exist between a static block and an instance block?
+Static block: executes once at class load, cannot access this, only static members.
+Instance block: executes every time an object is created, can access both static and instance members.
+
+8. Can you use this inside a static block?
+No. this refers to an instance and is not available in static context.
+Scientech Easy
+
+9. Can you access instance variables inside a static block?
+No—unless you explicitly create an instance first.
+
+10. Can you declare a static block inside a method?
+No, static blocks are only allowed at class level.
+
+11. Why use static blocks?
+They’re ideal for complex static initialization tasks—e.g., loading configuration or setting up resources that must run once per class load.
+
+12. When might instance initializer blocks be useful?
+They serve to factor out repeated initialization code across constructors—especially handy when a class has multiple constructors.
+
+13. What happens if a class references a static final constant without loading the class?
+If the constant is compile-time constant, the class may not get loaded, and its static block might not execute.
+
+14. Can a static block throw checked exceptions?
+Yes—but such exceptions must be caught inside; otherwise, they cause an ExceptionInInitializerError at runtime.
+
+15. What’s the execution order when subclasses and superclass have both static and instance blocks?
+Superclass static block
+Subclass static block
+For object creation: superclass instance block → superclass constructor → subclass instance block → subclass constructor.
+
+16. Can instance initializer blocks reference superclass members?
+Yes—just like constructors, they can access superclass fields and methods.
+
+17. Are instance initializer blocks included in constructors?
+Yes—the compiler automatically inserts them at the start of every constructor.
+
+18. Can static blocks be used to run a program without defining main()?
+Yes—in legacy contexts, JVM code in static blocks can run even in the absence of main().
+
+19. If a class has only a private constructor, can you still run code?
+Yes—via static methods or blocks. You can execute code in static blocks without instantiating the class.
+
+20. How could you combine both blocks in a challenging interview question?
+For example: “Explain the output of this Java code that includes multiple static blocks, instance blocks in both superclass and subclass, and print statements in constructors.”

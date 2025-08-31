@@ -1,0 +1,223 @@
+Write a sample program for showing single level inheritance.
+============================================================
+example:
+class Demo
+{
+	move()
+	{
+		Syso(move North)
+	}
+}
+class Sample extends Demo
+{
+	move()
+	{
+		syso(move south)
+	}
+}
+class Main
+{
+	main()
+	{
+		Sample s1 = new Sample()
+		s1.move()
+	}
+}
+
+class Vehicle {
+  void start() { System.out.println("Vehicle started."); }
+}
+
+class Car extends Vehicle {
+  void playRadio() { System.out.println("Playing radio."); }
+}
+Car c = new Car();
+c.start();       // inherited from Vehicle
+c.playRadio();   // new behavior
+
+
+
+
+multi level inheritance.
+=========================
+write a program for the below requirements.
+1.Create 2 methods in supermost class 
+2.create one method in immediate superclass 
+3.override second method of supermost class 
+4.override the method of immediate superclass.
+
+Class A
+{
+	public void walk()
+	{
+		syso("walk for a while")
+	}
+	public void run()
+	{
+		syso("run for a while")
+	}	
+}
+class B extends class A
+{
+	public void swim()
+	{
+		syso("swim in river")
+	}
+}
+class C extends B
+{
+	public void run()
+	{
+		syso("Run on the beach")
+	}
+	public void swim()
+	{
+		syso("swim in the sea")
+	}
+}
+class Main
+{
+	main()
+	{
+		C c1 = new C();
+		c1.walk()
+		c1.run()
+		c1.swim()
+	}
+}
+
+
+class Animal {
+    void eat() { System.out.println("Animal eats."); }
+}
+
+class Dog extends Animal {
+    void bark() { System.out.println("Dog barks."); }
+}
+
+class Puppy extends Dog {
+    void weep() { System.out.println("Puppy weeps."); }
+}
+
+Puppy p = new Puppy();
+p.eat();   // from Animal
+p.bark();  // from Dog
+p.weep();  // from Puppy
+
+
+write a program to display hierarchical inheritance.
+===================================================
+add a program for regular requirements
+define a non static method in super class
+create 3 subclasses
+override superclass method in first subclass 2nd and the last subclass.
+create all the subclass objects and call the method.
+
+Class A
+{
+	read()
+	{
+		syso("Read news paper");
+	}
+}
+
+Class B extends A
+{
+	read()
+	{
+		syso("read the book");
+	}
+}
+
+class C extends A
+{
+	read()
+	{
+		syso("read thw  article");
+	}
+} 
+class D extends A
+{
+	read()
+	{
+		syso("read a story");
+	}
+}
+
+class MainClass
+{
+	main()
+	{
+		B b1 = new B();
+		C c1 = new C();
+		D d1 = new D();
+		b1.read();
+		c1.read();
+		d1.read();
+	}
+}
+
+class Vehicle {
+    void move() { System.out.println("Vehicle moves."); }
+}
+
+class Car extends Vehicle {
+    void openTrunk() { System.out.println("Trunk opened."); }
+}
+
+class Bike extends Vehicle {
+    void kickStart() { System.out.println("Bike kick-started."); }
+}
+
+Car car = new Car(); car.move();
+Bike bike = new Bike(); bike.move();
+
+Method Overriding
+==================	
+During inheritance process subclass will have complete freedom to change the method implementation of inherited method 
+this process is called method overriding.
+
+Method overriding depends on two factors:-
+factor 1: inheritance is must. 
+factor 2: subclass should maintain same method signature present in the superclass.
+
+Method overriding is optional it depends on the requirements
+superclass method can be overriden at any level of subclass.
+
+Advantages of method overriding 
+==================================
+1.by using method overriding we can make specific changes for the method implementation of the 
+inherited method to a particular subclass without affecting other subclasses.
+
+Only non static methods are overridden, static methods cannot be inherited in order to override.
+
+Can we override the main method?
+no because main method is static.
+
+If subclass does not override a method then the method implementation will be same as in the Super class.
+
+| Aspect                  | Method Overloading                        | Method Overriding                                           |
+| ----------------------- | ----------------------------------------- | ----------------------------------------------------------- |
+| **Binding**             | Compile-time (static)                     | Runtime (dynamic)                                           |
+| **Parameter signature** | Must differ                               | Must be exactly the same                                    |
+| **Inheritance needed?** | Not required                              | Required (superclass ↔ subclass)                            |
+| **Return type**         | Can differ                                | Same or covariant return                                    |
+| **Modifiers allowed**   | Can overload static/final/private methods | Cannot override static/final/private methods; access ↑ only |
+
+
+
+1.method overriding will not affect all the subclasses.
+2.overriding will affect to the copy that is given to that particular class because super class will provide separate copy 
+to each and every subclass.so it is not affected to the super class and other subclasses.
+3.overriding is not compulsory.
+
+
+1. The Diamond Problem – Ambiguity at Play
+Consider this hierarchy:
+
+    A
+   / \
+  B   C
+   \ /
+    D
+If both B and C override a method from A, and D inherits from B and C, which implementation should D use? This conflict creates ambiguity that's difficult for the compiler to resolve

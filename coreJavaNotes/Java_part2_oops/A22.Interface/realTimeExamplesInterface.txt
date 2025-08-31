@@ -1,0 +1,165 @@
+Example 01 
+============
+interface : Camera
+methods : abstract void takePhoto();
+          //default void recordVideo(){System.out.println("Default");}
+
+interface : Browser 
+methods : abstract void browse(String url);
+
+interface : Games 
+methods : abstract void playGame(String title);
+
+class : MySmartphone implements Camera, Browser, Games 
+methods : public void takePhoto() 
+          public void recordVideo() 
+          public void browse(String url) 
+          public void playGame(String title) 
+ 
+          
+
+interface Camera 
+{
+  void takePhoto();
+  default void recordVideo() 
+  { 
+       System.out.println("Default video recording"); 
+  }
+}
+
+interface Browser 
+{
+  void browse(String url);
+}
+
+interface Games 
+{
+  void playGame(String title);
+}
+
+class MySmartphone implements Camera, Browser, Games 
+{
+  public void takePhoto() 
+  { 
+     System.out.println("Photo captured!"); 
+  }
+  public void recordVideo() 
+  { 
+     System.out.println("Custom video recording"); 
+  }
+  public void browse(String url) 
+  { 
+     System.out.println("Opening browser: " + url); 
+  }
+  public void playGame(String title) 
+  { 
+     System.out.println("Playing: " + title); 
+  }
+}
+
+public class App 
+{
+  public static void main(String[] args) 
+  {
+    MySmartphone phone = new MySmartphone();
+    phone.takePhoto();
+    phone.browse("https://example.com");
+    phone.playGame("AdventureGame");
+  }
+}
+
+Example : 2
+=======================================
+interface : MessageSender 
+methods : abstract void sendMessage(String to, String msg);
+
+interface : MessageReceiver 
+methods : abstract void onMessage(String from, String msg);
+
+class : ChatClient implements MessageSender, MessageReceiver 
+methods : public void sendMessage(String to, String msg) 
+          public void onMessage(String from, String msg) 
+
+
+interface MessageSender 
+{
+  void sendMessage(String to, String msg);
+}
+
+interface MessageReceiver 
+{
+  void onMessage(String from, String msg);
+}
+
+class ChatClient implements MessageSender, MessageReceiver 
+{
+  public void sendMessage(String to, String msg) 
+  {
+    System.out.println("To " + to + ": " + msg);
+  }
+  public void onMessage(String from, String msg) 
+  {
+    System.out.println("From " + from + ": " + msg);
+  }
+}
+
+public class ChatApp 
+{
+  public static void main(String[] args) 
+  {
+    ChatClient client = new ChatClient();
+    client.sendMessage("Alice", "Hi Alice!");
+    client.onMessage("Bob", "Hey there!");
+  }
+}
+
+
+example 3
+========================================
+interface : WeatherProvider 
+methods : double getTemperature(String city);
+
+interface : Notifier 
+methods : void sendNotification(String user, String message);
+
+class : CityWeatherApp implements WeatherProvider, Notifier
+methods : public double getTemperature(String city) 
+          public void sendNotification(String user, String message) 
+
+conditions :  if (temp > 35)"Rohit, It's scorching hot today!"
+
+
+
+interface WeatherProvider 
+{
+  double getTemperature(String city);
+}
+
+interface Notifier 
+{
+  void sendNotification(String user, String message);
+}
+
+class CityWeatherApp implements WeatherProvider, Notifier 
+{
+  public double getTemperature(String city) 
+  {
+    System.out.println("Fetching from API: " + city);
+    return 30.2; 
+  }
+  public void sendNotification(String user, String message) 
+  {
+    System.out.println("Notifying " + user + ": " + message);
+  }
+}
+
+public class Main 
+{
+  public static void main(String[] args) 
+  {
+    CityWeatherApp app = new CityWeatherApp();
+    double temp = app.getTemperature("Hyderabad");
+    if (temp > 35) app.sendNotification("Rohit", "It's scorching hot today!");
+  }
+}
+

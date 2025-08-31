@@ -1,0 +1,59 @@
+1.What is upcasting in Java? How is it different from downcasting?
+Answer: Upcasting is converting a subclass reference to a superclass reference—happens implicitly; downcasting 
+is converting a superclass reference to a subclass reference—requires explicit cast.
+
+2.Is upcasting always safe? Why?
+Answer: Yes—since a subclass "is a" superclass, it’s safe and implicit.
+
+3.Why is downcasting potentially unsafe? What exception must you watch for?
+Answer: It may cause ClassCastException if the object isn’t actually of the target subclass.
+
+4.Why can't downcasting be implicit in Java?
+Answer: To force the programmer to explicitly acknowledge risk of type mismatch.
+
+5.How can you prevent ClassCastException during downcasting?
+Answer: Use the instanceof operator to check type before casting.
+
+6.Given Animal a = new Dog();, explain which methods can be called via a, and how would you call Dog-specific
+methods?
+Answer: You can call methods declared in Animal or overridden in Dog. To call Dog-specific methods, you must 
+downcast to Dog.
+
+7.Write code that causes a ClassCastException, and fix it with a type check.
+Answer: Animal a = new Animal(); Dog d = (Dog)a; → use if (a instanceof Dog).
+
+8.How does method overriding affect behavior when upcasting or downcasting? Specifically, which version of the method runs?
+Answer: Due to dynamic dispatch, the subclass’s overridden method runs even when referenced via superclass. 
+
+9.Given: Base b = new Derived();, what are the allowed and disallowed casts?
+Answer: Upcasting is allowed implicitly. Downcasting to Derived is only allowed with explicit cast and if the object 
+is actually Derived. 
+
+10.Explain why (Derived) new Base() throws a runtime exception while (Derived) b may not—if b refers to a Derived.
+Answer: The actual object created matters—casting fails if the runtime type doesn’t match. 
+
+11.How can you visualize inheritance and casting operations?
+Answer: Use UML-like diagrams to map class hierarchy; safe casts follow the inheritance arrows, unsafe ones go opposite.
+
+12.Explain how upcasting supports polymorphism and flexible code.
+Answer: By treating subclass instances as superclass type, you can write generic code that works across implementations.
+
+13.Name situations where downcasting might be necessary in real-world applications.
+Answer: Accessing subclass-specific methods or fields when a general reference is passed in.
+
+14.Summarize key differences between upcasting and downcasting (implicit vs explicit, safe vs risky, method access, etc.).
+Answer includes: Implicit vs explicit, safe vs can throw, method access limitations, etc. 
+
+15.Why does the compiler allow a potentially unsafe downcast? What checks occur at compile time vs runtime?
+Answer: Compiler checks only hierarchy; runtime enforces actual object type. 
+
+16.What role does the final or private modifier play in casting—or does it have any? (Less relevant, but tests deeper OOP knowledge.)
+
+17.Design a safe mechanism—or helper method—for performing downcasting in Java-heavy systems.
+Answer: Utility using instanceof, generics, or Optional to return safely cast object or fallback.
+
+18.What is the impact of casting on code performance? Is the difference measurable?
+Answer: Upcasting has negligible cost; downcasting incurs runtime type check, minimal overhead.
+
+19.Explain the difference between compile-time check and runtime behavior in the context of casting.
+Answer: Compile-time ensures type relations syntactically; runtime ensures actual object type compatibility.

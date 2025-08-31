@@ -1,0 +1,74 @@
+static and non-static blocks
+============================
+In Java, static and non-static blocks are used for initialization purposes within a class, 
+but they differ in their execution timing and access to members.
+
+
+Static Blocks (Static Initializer Blocks):
+==========================================
+Definition: A static block is a block of code marked with the static keyword.
+ 
+Execution: It is executed only once when the class is loaded into memory by the Java Virtual Machine
+(JVM), even before the main() method or any object creation.
+
+Purpose: Primarily used to initialize static variables or perform any class-level setup that needs 
+to happen only once.
+
+Access: Can only access static members (variables and methods) of the class. It cannot access non-static
+(instance) members because no object exists when it executes. 
+
+example : 
+    class MyClass 
+{
+        static int staticVar;
+        static 
+	{
+            staticVar = 10; // Initializing a static variable
+            System.out.println("Static block executed.");
+        }
+    }
+Non-Static Blocks (Instance Initializer Blocks):
+=================================================
+Definition: A non-static block is a block of code without the static keyword. 
+
+Execution: It is executed every time an object of the class is created, before the constructor is called.
+
+Purpose: Used to initialize non-static (instance) variables or perform common initialization logic 
+that should apply to every object created, regardless of which constructor is used.
+
+Access: Can access both static and non-static members of the class. 
+
+Example:
+
+    class MyClass {
+        int instanceVar;
+        {
+            instanceVar = 20; // Initializing a non-static variable
+            System.out.println("Non-static block executed.");
+        }
+        MyClass() {
+            System.out.println("Constructor executed.");
+        }
+    }
+
+Feature		|Static Block					|Non-Static Block
+==============================================================================================================
+Keyword		| static					| None
+Execution	| Once, during class loading			| Every time an object is created
+Purpose		| Class-level initialization, static members	| Object-level initialization, instance members
+Access		| Only static members				| Both static and non-static members
+Timing		| Before main() and object creation		| Before the constructor, during object creation
+
+
+
+
+
+
+
+
+
+
+
+
+
+

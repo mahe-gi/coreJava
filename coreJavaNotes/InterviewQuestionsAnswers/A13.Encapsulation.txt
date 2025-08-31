@@ -1,0 +1,95 @@
+1.What is encapsulation in Java?
+Answer: Encapsulation is the mechanism of wrapping data (fields) and the methods that manipulate them 
+into a single class, hiding internal state and exposing controlled access via public methods—commonly 
+known as data hiding. 
+
+2.Why is encapsulation important?
+Answer: It protects object integrity, restricts unwanted access, supports maintainability, and allows 
+implementation changes without impacting external clients. 
+
+3.How is encapsulation implemented in Java?
+Answer: By declaring fields as private and providing public getter and setter methods for controlled 
+access. 
+
+4.What are getters and setters?
+Answer: Getters (accessor methods) retrieve field values; setters (mutator methods) set or update them.
+They control access and can include validation logic. 
+
+5.What role do access modifiers play in encapsulation?
+Answer: Access modifiers (private, public, protected, default/package) determine visibility. Making 
+attributes private is vital for encapsulation. 
+
+6.List some benefits of using encapsulation.
+Answer: Advantages include data hiding, enhanced security, flexibility, maintainability, unit-testability, 
+and the ability to implement read-only or write-only fields. 
+
+7.How do encapsulated classes enhance maintainability?
+Answer: Changes to internal fields or logic only require modifying the class itself, not dependent 
+external code. 
+
+8.Why might you make a class read-only or write-only?
+Answer: Omitting setter or getter methods allows you to restrict editing or reading, e.g., immutable or 
+sensitive data. 
+
+9.How can encapsulation help validate data?
+Answer: Setters can include logic to enforce constraints before modifying the internal state (e.g., 
+valid age range). 
+
+10.How does encapsulation reduce coupling?
+Answer: By hiding internal implementation, external classes only interact via defined interfaces, 
+lowering dependencies. 
+
+11.How is encapsulation used in Factory or Singleton patterns?
+Answer: These patterns encapsulate object creation logic, hiding construction details and managing 
+instantiation via controlled interfaces like getInstance(). 
+
+12.What does the principle "Whatever changes encapsulate it" mean?
+Answer: It emphasizes isolating change-prone code within a single encapsulated area/class, simplifying 
+maintenance. 
+
+13.Difference between encapsulation and abstraction?
+Answer:
+Encapsulation: focuses on bundling data and methods and hiding internal state.
+
+Abstraction: hides implementation details and presents only essential functionalities at a higher level.
+They operate at different levels (design vs. implementation). 
+
+14.Give a real-world analogy differentiating abstraction and encapsulation.
+Answer: Encapsulation is like a TV’s internal circuits hidden inside; abstraction is the remote control 
+interface with only necessary buttons exposed. 
+
+15.Show a simple Java class illustrating encapsulation.
+Answer:
+
+class Person {
+    private String name;
+    private int age;
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
+}
+
+16.Example of field encapsulation with validation.
+Answer:
+
+public void setAge(int age) {
+    if (age < 0) throw new IllegalArgumentException("Age cannot be negative");
+    this.age = age;
+}
+
+This showcases validation in setter. 
+
+
+17.What’s field encapsulation?
+Answer: Restricting direct field access and exposing through public get/set methods—supporting 
+validation and changeability. 
+
+18.What are disadvantages of encapsulation?
+Answer: Slight performance overhead due to method calls; rarely an issue in modern systems. 
+
+19.Why use final classes in the context of encapsulation?
+Answer: Prevent subclassing that could expose internal behavior or state, enhancing control and immutability. 
+
+20.How to make immutable classes using encapsulation?
+Answer: Make all fields private and final, provide no setters, and offer only getters; ensure deep copies when necessary.

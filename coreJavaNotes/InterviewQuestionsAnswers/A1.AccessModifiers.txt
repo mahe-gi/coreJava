@@ -1,0 +1,63 @@
+1.What are the four access modifiers in Java?
+Java has public, protected, private, and default (package-private, no keyword)
+
+2.Explain the purpose of access modifiers.
+They control the visibility of classes, methods, variables, and constructors to enforce encapsulation and modular design.
+
+3.Which is the most restrictive and which is the least restrictive modifier?
+private is the most restrictive (accessible only within the class); public is the least restrictive (accessible anywhere)
+
+4.What is default (package-private) access? Is there a keyword for it?
+It's when no modifier is used—members are accessible only within the same package—and there is no specific keyword
+
+5.What does the protected modifier allow?
+It allows access within the same package and also by subclasses (even in different packages)
+
+
+6.Can top-level classes be declared private or protected?
+No—only public or default (package-private) is valid; inner classes can be private or protected
+
+7.How do access modifiers affect method overriding?
+Overriding methods cannot reduce visibility. For example, a public method cannot be overridden with private or default access
+
+8.Can a private constructor restrict subclassing?
+Yes—a class with only private constructors cannot be subclassed or instantiated from outside. This is often used in Singleton patterns
+
+9.interfaces, what’s the default access level for members?
+Members in interfaces are implicitly public (and static/final for variables)—even without explicit modifiers
+
+10.Why is it recommended to declare class variables as private?
+It enforces encapsulation, preventing external modification and allowing controlled access via getters/setters
+
+11.What happens when accessing protected members from subclasses in different packages—is that always allowed?
+Not always. There's a nuance: You cannot access a protected member via an instance of the superclass from outside its package—even in subclasses
+
+12.Can you access private members via reflection?
+Technically yes, but it's considered a bad practice as it breaks encapsulation. (from community wisdom)
+
+13.Why not just make everything public?
+Public access increases the risk of unintended misuse or bugs by exposing internal details—especially in large codebases. Better to restrict access where possible
+
+14.Order of visibility from most to least accessible?
+private → default (package-private) → protected → public
+
+
+15.How do access modifiers support encapsulation in OOP?
+By hiding internal class details and exposing only necessary components, they maintain integrity and minimize unintended interactions
+
+
+16.What happens if you declare a method with no access modifier outside its package?
+It results in a compile-time error, as default access restricts visibility to the same package
+
+17.Explain why private methods cannot be overridden.
+They are not inherited by subclasses, so overriding is impossible
+
+
+18.How many public classes can a .java file contain?
+Only one public class per .java file is allowed
+
+19.What is the impact of changing a class from default to public?
+It becomes accessible across packages—important when designing APIs or modules.
+
+20.Give a real-world analogy for access modifiers.
+Like secure connectors: Public is like an HDMI port—open and accessible; private is like a locked internal compartment—accessible only in specific contexts.

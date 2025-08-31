@@ -1,0 +1,126 @@
+Main Method in Java
+===================
+1. What is the main method?
+It is the entry point of any standalone Java application.
+The JVM looks for the main method to start execution.
+
+2. Syntax
+public static void main(String[] args) 
+{
+    // code to be executed
+}
+
+
+3. Explanation of each keyword
+-----------------------------------
+Part	 |Meaning
+-------------------------------------------
+public	 |Accessible by JVM from anywhere.
+static	 |JVM calls it without creating an object.
+void	 |Does not return any value to JVM.
+main	 |Name recognized by JVM as entry point.
+String[] | args	Command line arguments passed as a String array.
+
+Why main is public static void?
+public: To be accessible by JVM from outside the class.
+static: No object is needed; JVM calls it directly.
+void: It does not return any value back to JVM.
+main: Pre-defined method name recognized by JVM.
+
+5. Can we overload the main method?
+Yes, you can overload it like:
+public static void main(String[] args) { }
+public static void main(int a) { }
+But: Only the standard public static void main(String[] args) is called by JVM at runtime.
+
+6. Can we change the order of modifiers?
+Yes. For example:
+static public void main(String[] args) { }
+This is valid because order of access modifiers does not matter.
+
+7. Can main method be final?
+Yes, you can declare it as final:
+public static final void main(String[] args) { }
+
+8. Alternative parameter declaration
+You can write:
+public static void main(String args[]) { }
+Both String[] args and String args[] are valid.
+
+9. What if main method is missing or signature is incorrect?
+Error: JVM will throw “Main method not found” or NoSuchMethodError.
+
+10. main method in class hierarchy
+If main is not in the class you run, it will not inherit from a parent class. 
+Each class with main acts as a separate entry point.
+
+declaration of main method
+======================================
+1. Standard Declaration (Most Common)
+public static void main(String[] args) 
+{
+    System.out.println("Hello World");
+}
+Explanation:This is the standard form recognized by JVM.
+-------------------------------------------------------
+2. Changing order of modifiers
+static public void main(String[] args) 
+{
+    System.out.println("Hello World");
+}
+Explanation:Order of public static and final can be interchanged.
+---------------------------------------------------------
+3. Using final keyword
+public static final void main(String[] args) 
+{
+    System.out.println("Hello World");
+}
+Explanation:You can add final. JVM accepts it as it does not affect the signature.
+----------------------------------------------------------------------------------
+4. Using synchronized keyword
+public synchronized static void main(String[] args) 
+{
+    System.out.println("Hello World");
+}
+Explanation:synchronized is also allowed with static. Rarely used.
+----------------------------------------------------------------------------------
+5. Changing parameter declaration style
+public static void main(String args[]) 
+{
+    System.out.println("Hello World");
+}
+Explanation:String[] args and String args[] both are valid.
+----------------------------------------------------------------------------------
+6. Using varargs (Java 5 onwards)
+public static void main(String... args) 
+{
+    System.out.println("Hello World");
+}
+Explanation:Varargs syntax (String... args) is allowed. Treated as an array internally.
+---------------------------------------------------------------------------------------
+7. Using final for parameter
+public static void main(final String[] args) 
+{
+    System.out.println("Hello World");
+}
+Explanation:Parameters can be declared as final.
+---------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

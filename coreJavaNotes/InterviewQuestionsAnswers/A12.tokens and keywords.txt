@@ -1,0 +1,74 @@
+1.How many reserved words are there in Java?
+There are 54 reserved words are there in Java including _.
+
+2.How many reserved literals are there and what are those?
+There are three reserved literals are there those are true, false and null.
+
+3.Under keywords how many keywords are not in-use and what are those?
+There are two keywords which are not in use those are const and goto.
+
+4.What is the other alternative we have for a keyword const?
+Final is a keyword which we have for the alternative of const.
+
+5.Why go to statement is not in use in Java?
+Go to statement increases the complexity in the code and creates confusion for the reader. This type of complexity 
+in understanding the code is called spaghetti code. So in order to reduce the confusion and complexity in writing and understanding the code
+keyword goto is not used.
+
+6.In which version of Java constant and go to keywords are added in Java?
+in version Java 1.1.
+
+7.how many used keywords are there in Java?
+including _ there are 49 keywords are there in Java.
+
+8.Can we use _ as variable name( identifier) in Java?
+Before Java 8 we can use _ as variable name. But in Java eighth version this rule has been stopped. and then we used to get error from Java 8 version.
+
+9.Can we use _ in between the digits offer number to improve the readability in Java?
+Yes we can use.
+int a = 10_23_456;
+System.out.println(a);
+
+10.how many contextual words are there in Java?
+Including when contextual word there are 17.
+
+11.What is the purpose of yield keyword in switch?
+it acts similar to the operation of return keyword in a method. it returns the value from the switch.
+
+12.What is var keyword in Java?
+It is the type of keyword used to identify the type of the data and it creates respect you variable of the data type.
+
+
+13.Can I use var data type for global variables?
+No you cannot use var data type for global variables.
+
+14.Can I use var data type for arguments in method?
+No we cannot use var data type for arguments in method.
+
+15.In which version where keyword is introduced in Java?
+In Java 10.
+
+16.In which version keyword yield is added?
+In Java 14
+
+17.in which version of Java keyword when is added?
+In Java 21.
+
+18.Can we use yield and when keyword outside the switch?
+No these two keywords are especially designed to use in switch.
+
+19. Can we use reserved words as identifiers in Java? 
+No. since, reserved words have pre-defined meaning which understood by compiler and JVM.
+
+20. How many tokens are there in Java?
+7.
+
+21. List all the tokens in Java.
+KILOSCS
+keywords
+identifiers
+literals
+operators
+separators
+comments
+white space

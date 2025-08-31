@@ -1,0 +1,76 @@
+Method signature and method implementation are binded or connected either during compilation stage or during execution stage.
+this process is called method binding.
+
+If methods are binded during compilation stage it is called compile time binding.
+if methods are binded during execution stage it is called a runtime binding.
+
+
+Compile time binding is also called as early binding
+runtime binding is also called as dynamic binding.
+
+
+
+
+
+
+1. What is Binding
+Binding is the association between a method call and the actual method body. In Java, this occurs in two main types:
+Static (early) binding: resolved at compile time
+Dynamic (late) binding: resolved at runtime 
+
+2. Static (Early) Binding
+When it occurs: at compile time
+Applicable to: static methods, private methods, and final methods (i.e., methods that cannot be overridden) 
+Why: compiler associates the method call to the method signature by the reference type, knowing at compile time there's no risk of overriding 
+
+skin is it static binding 
+costume is a non dynamic binding 
+
+olden days mobile battery can be removed means dynamic binding
+nowadays mobile battery is fixed it is a static binding 
+
+apple watches can be connected with apple mobile phones only it is a static binding 
+other company watches can be connected with any Android that is dynamic binding
+
+Examples:
+Overloaded methods (“compile-time polymorphism”)
+Private, static, or final methods
+
+class Parent {
+  static void food() { System.out.println("Parent.food"); }
+}
+class Child extends Parent {
+  static void food() { System.out.println("Child.food"); }
+}
+Parent p = new Child();
+p.food(); // Outputs: Parent.food
+
+Key point: reference type determines which method to call 
+
+
+3. Dynamic (Late) Binding
+When it occurs: at runtime
+Applicable to: all non‑static, non‑final, non‑private methods — i.e., instance methods that are overridden in subclasses 
+
+Why: the actual object referred to by the reference might be of a subclass, so the JVM defers selection of the method 
+implementation until runtime. 
+
+Example:
+class Animal {
+  void makeNoise() { System.out.println("Animal noise"); }
+}
+class Dog extends Animal {
+  @Override
+  void makeNoise() { System.out.println("Dog barks"); }
+}
+Animal a = new Dog();
+a.makeNoise(); // Outputs: Dog barks
+Key point: object type determines which method execution is selected at runtime.
+
+| Feature              | Static Binding                           | Dynamic Binding                   |
+| -------------------- | ---------------------------------------- | --------------------------------- |
+| Binding time         | Compile-time                             | Runtime                           |
+| Supports             | `static`, `private`, `final`, overloaded | Overridden methods                |
+| Method resolution by | Reference type                           | Object’s actual runtime type      |
+| Performance          | Slightly faster                          | Slight overhead via vtable lookup |
+| Polymorphism type    | Compile-time polymorphism                | Runtime polymorphism              |

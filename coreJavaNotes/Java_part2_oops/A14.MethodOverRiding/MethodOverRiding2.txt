@@ -1,0 +1,113 @@
+Example : Amazon App – Product Return Policy
+===========================================
+Superclass: Product
+Method: returnPolicy()
+
+Subclass: Electronics (extends Product)
+Overrides returnPolicy()
+public void returnPolicy() 
+{
+    System.out.println("Electronics have 7 days return policy with original packaging.");
+}
+
+Subclass: Clothing (extends Product)
+Overrides returnPolicy()
+public void returnPolicy() 
+{
+    System.out.println("Clothing has 30 days return policy.");
+}
+
+
+2.Uber App – Calculate Fare
+==========================
+Superclass: Ride
+Method: calculateFare()
+
+public double calculateFare() 
+{
+    return 50.0; // base fare
+}
+
+Subclass: UberGo (extends Ride)
+Overrides calculateFare()
+public double calculateFare() 
+{
+    return 50.0 + (distance * 10); // specific calculation for UberGo
+}
+
+Subclass: UberPremier (extends Ride)
+Overrides calculateFare()
+public double calculateFare() 
+{
+    return 100.0 + (distance * 15); // specific calculation for UberPremier
+}
+
+
+PhonePe App – Payment Processing
+================================
+Superclass: Payment
+Method: processPayment()
+
+public void processPayment() {
+    System.out.println("Processing generic payment.");
+}
+
+
+Subclass: UPIPayment (extends Payment)
+
+Overrides processPayment()
+public void processPayment() {
+    System.out.println("Processing payment via UPI.");
+}
+
+
+Subclass: CardPayment (extends Payment)
+Overrides processPayment()
+public void processPayment() {
+    System.out.println("Processing payment via Debit/Credit Card.");
+}
+
+During inheritance process subclass will have complete freedom to change the method implementation
+of inherited method this process is called method overriding.
+Method overriding depends on two factors:-
+factor 1: inheritance is must. 
+factor 2: subclass should maintain same method signature present in the superclass.
+
+Method overriding is optional it depends on the requirements
+superclass method can be overriden at any level of subclass.
+
+Advantages of method overriding by using method overriding we can make specific changes for the method implementation of the 
+inherited method to a particular subclass without affecting other subclasses.
+
+Only non static methods are overridden, static methods cannot be inherited in order to override.
+
+Can we override the main method?
+no because main method is static.
+
+If subclass does not override a method then the method implementation will be same as in the Super class.
+
+| Aspect                  | Method Overloading                        | Method Overriding                                           |
+| ----------------------- | ----------------------------------------- | ----------------------------------------------------------- |
+| **Binding**             | Compile-time (static)                     | Runtime (dynamic)                                           |
+| **Parameter signature** | Must differ                               | Must be exactly the same                                    |
+| **Inheritance needed?** | Not required                              | Required (superclass ↔ subclass)                            |
+| **Return type**         | Can differ                                | Same or covariant return                                    |
+| **Modifiers allowed**   | Can overload static/final/private methods | Cannot override static/final/private methods; access ↑ only |
+
+
+
+1.method overriding will not affect all the subclasses.
+2.overriding will affect to the copy that is given to that particular class because super class will provide separate copy 
+to each and every subclass.so it is not affected to the super class and other subclasses.
+3.overriding is not compulsory.
+
+
+1. The Diamond Problem – Ambiguity at Play
+Consider this hierarchy:
+
+    A
+   / \
+  B   C
+   \ /
+    D
+If both B and C override a method from A, and D inherits from B and C, which implementation should D use? This conflict creates ambiguity that's difficult for the compiler to resolve

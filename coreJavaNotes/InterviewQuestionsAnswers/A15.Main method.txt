@@ -1,0 +1,73 @@
+1.What is the purpose of the main method in Java?
+Answer: It's the entry point where the JVM begins execution of a standalone Java application. Without it, the program 
+won’t run. 
+
+2.What is the exact signature the JVM looks for?
+Answer: public static void main(String[] args) or equivalently public static void main(String... args) (varargs syntax supported since Java 5). 
+
+3.Why must main be public?
+Answer: So the JVM, which is external to your class, can access and invoke it. If it's not public, a runtime error like NoSuchMethodError occurs. 
+
+4.Why must main be static?
+Answer: Because the JVM invokes it without creating an instance of the class. Non-static main methods lead to runtime errors despite successful compilation. 
+
+5.Why is the return type void?
+Answer: The JVM does not expect any return value. Once main finishes, the program terminates. 
+
+6.Why must the method be named main?
+Answer: The JVM specifically searches for a method named main; renaming it causes execution failure. 
+
+7.What is the role of String[] args?
+Answer: It receives command-line arguments passed to the program, enabling runtime input without recompilation. 
+
+8.Can we tweak the parameter's name?
+Answer: Yes—args is a convention, not a requirement. You can rename it (e.g. String[] myArgs) or use varargs String... args. 
+
+9.Are alternative main signatures allowed?
+Answer: Only for overloading. The JVM still requires the exact signature to start execution. 
+
+10.Can you overload main?
+Answer: Yes—Java supports overloaded main methods, but only one with the exact JVM signature will be invoked at startup. 
+
+11.What happens if the main signature is altered?
+Answer: The compiler may succeed, but the JVM will not find the entry point and throw an error (e.g., NoSuchMethodError). 
+
+12.Is main required in every class?
+Answer: No. Only the startup class needs main. Other classes may omit it. 
+
+13.What about calling main from another method?
+Answer: You can—but it doesn't start a new JVM. It's just like any other static method call, sharing the same heap and threads.
+
+14.Can main throw exceptions?
+Answer: Yes, you can declare exceptions (e.g., throws Exception), but unhandled ones will terminate the program and print a stack trace. 
+
+15.Can main be final, synchronized, or strictfp?
+Answer: Yes—such modifiers are technically allowed, though rarely used. 
+
+16.Should main contain complex logic?
+Answer: Best practice is to keep it lean, delegating tasks to other methods or classes for maintainability and readability. 
+
+17.How does main fit into GUI apps (e.g., Swing)?
+Answer: In Swing, main often sets up the UI by invoking Swing components via SwingUtilities.invokeLater, ensuring thread-safe UI construction. 
+
+18.Why public static void main(String[] args)?
+Answer:
+public: JVM access
+static: no instance needed
+void: no return value expected
+String[] args: command-line input
+
+19.What happens if public is removed?
+Answer: The JVM can't access main, leading to runtime failure. 
+
+20.What if static is removed?
+Answer: JVM can't call main on an instance—it throws an error at runtime. 
+
+21.What if return type isn't void?
+Answer: It compiles, but fails at runtime because the JVM expects void. 
+
+22.Can parameter type differ?
+Answer: No—only String[] or varargs are accepted. 
+
+23.Can we define a program without main()?
+Answer: Not from Java 7 onwards. Older versions could use static blocks as hacks.

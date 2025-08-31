@@ -1,0 +1,116 @@
+Constructor : 
+
+A constructor is a special method-like block used to initialize a new object when it's created. 
+It has the same name as the class, no return type, and is automatically called when you use new.
+
+Syntax of the constructor
+modifier contractor name(arguments)
+{
+}
+
+there are two types of constructors
+1. pre-defined constructor
+2. user defined constructor
+
+
+constructor can be again of two types based on the argument
+1.constructor with argument 
+2.constructor without argument.
+
+For using constructor we can perform any operation but the main purpose of constructor is to initialise all instance variables.
+
+Suppose developer does not create any constructor compiler will create default constructor.
+Constructor without any argument and with empty body is called the default constructor.
+Developing multiple constructors with a different argument list is called constructor overloading.
+We go for constructor overloading to create same class object in multiple ways.
+
+Example:
+Student
+1. Degree student or master's student
+employee
+1. Experienced employee fresher employee
+
+process of calling the constructor from another constructor is called constructor chaining.
+
+Constructor training is achieved within the same class by using this() statement.
+
+We go for constructor training to avoid repetitive code among the constructors and to implement reusability of 
+the code among the constructors.
+
+This() method inside the constructor, must be the first statement within the constructor.
+We cannot use this() inside the constructor multiple times.
+
+This keyword can also be used inside the non static methods to access non static variables of the same class.
+
+| Feature     | Constructor        | Method                                                                                            |
+| ----------- | ------------------ | ----------------------- |
+| Return type | None               | Can return values       |                                                                          |
+| Name        | Same as class      | Any valid identifier    |                                                                         |
+| Invoked     | Implicit via `new` | Explicit by name        |                                                                         |
+| Purpose     | Initialize objects | Define behavior         |                                                                         |
+| Overload    | Yes                | Yes                     |                                                                         |
+| Override    | No                 | Yes                     |
+
+
+importent Rules
+--------------------------------
+1.Must have same name as the class.
+
+2.No return type, not even void.
+
+3. Cannot be abstract, static, final, or synchronized, but can have access modifiers (public, private, etc.) 
+
+4.If defined, default constructor is not auto-generated anymore.
+
+Example : 
+1.flower class having a non-static variable fNmae and a non-static method to print the name of the flower.
+
+2.area of circle, static pi and non-static r. and a non static method to print area.
+
+3.Meredes-Benz, series-A,B,C, speed, distance, find time.
+
+4. Student Details. 
+
+Modified Box Program
+====================
+
+public Box(int l, int b)
+{
+this.l = l;
+this.b = b;
+}
+public Box(int l, int b, int h)
+{
+this(l,b);
+this.h = h;
+}
+
+public void printDimenesions()
+{
+if(H>0)
+{
+l*b*h
+}
+ELSE{
+l*b
+}
+
+Register page
+=============
+
+-------------------------------
+| Full Name *                  |
+| [__________________________] |
+| Email Address *              |
+| [__________________________] |
+| Password *                   |
+| [__________________________] |
+| Phone Number (optional)      |
+| [__________________________] |
+| Bio (optional)               |
+| [__________________________] |
+| [Register]                   |
+-------------------------------
+
+
+

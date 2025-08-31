@@ -1,0 +1,74 @@
+Methods
+=========
+1.Where to create a method?
+Methods are created inside the class.
+
+2.How to call a method?
+Static methods are called directly but non static methods are called by object 
+reference variable.
+
+3.Where to call the method from? 
+A method can be called from another method.
+
+4.Can we compile the program without main method?
+yes we can compile the program.
+
+5.Can we execute the program without main method?
+No we cannot execute the program without main method.main method is compulsory 
+for the execution.
+
+6.Can we create a method inside another method?
+no, we cannot create a method inside the another method.
+
+7.What is the use of creating our own method?
+For code reusability purpose.
+
+8. Can we create multiple arguments?
+yes we can create multiple arguments.
+
+9. can we create method with different type of arguments(like different datatype arguments)
+yes.
+
+10. What is the formal argument?
+Variables which are declared as a part of method signature.
+
+
+11. What is actual argument?
+Arguments that we passed during the method calling process are called actual arguments.
+
+12. Why we should initialize arguments compulsory?
+Because arguments are the local variables. And local variables must be initialized.
+
+13. Can we write a method with return statement if return type is void?
+yes.
+
+public static void run(int i)
+{
+	return ;
+}
+
+14. When return statement is mandatory?
+if the return type of a method is other than void.
+
+
+variables
+===========
+1. is default values applicable for local variables?
+.no default values are applicable only for the instance and static variables
+
+2. What happens if we don't initialise local variable?
+We get compile time error if we use non initialised local variable.
+int x;
+System.out.println(12);
+//no error : output : 12
+
+3. Will local variables comes under non static variable category?
+No local variables are different, instance variables are different.
+
+4. Can we create a static variable inside the method?
+No static variables are created within the class limit.
+
+5. Is access modifier applicable for local variables?
+No, access modifiers are applicable only for the instance and static variables.
+
+

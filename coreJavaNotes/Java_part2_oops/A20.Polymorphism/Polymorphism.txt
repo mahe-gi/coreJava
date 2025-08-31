@@ -1,0 +1,201 @@
+ What Is Polymorphism?
+Polymorphism—Greek for “many forms”—allows a single interface or method to work in different ways 
+depending on context. It's a core feature of OOP in Java, enabling flexible and reusable code 
+
+2️.Types of Polymorphism
+=======================
+a) Compile-Time (Static) Polymorphism – Method Overloading
+Same method name, different parameter lists.
+Resolved by the compiler based on arguments 
+
+Example: Calculator
+class Calculator 
+{
+    int add(int a, int b) 
+    { 
+         return a + b; 
+    }
+    double add(double a, double b) 
+    { 
+         return a + b; 
+    }
+    int add(int a, int b, int c) 
+    { 
+        return a + b + c; 
+    }
+}
+Usage:
+Calculator calc = new Calculator();
+System.out.println(calc.add(2, 3));           // 5
+System.out.println(calc.add(2.5, 3.5));       // 6.0
+System.out.println(calc.add(1, 2, 3));        // 6
+
+
+b) Run-Time (Dynamic) Polymorphism – Method Overriding
+======================================================
+Subclass overrides a superclass method.
+The JVM decides which method to call at runtime based on the actual object.
+
+Example: Payment Processor
+----------------------------
+class Payment 
+{
+    void pay(double amount) 
+    { 
+        System.out.println("Paying " + amount); 
+    }
+}
+
+class CreditCardPayment extends Payment 
+{
+    void pay(double amount) 
+    {
+        System.out.println("Paid " + amount + " via Credit Card");
+    }
+}
+
+class UpiPayment extends Payment 
+{
+    void pay(double amount) 
+    {
+        System.out.println("Paid " + amount + " via UPI");
+    }
+}
+Usage :- level-1 :
+Payment p1 = new CreditCardPayment();
+Payment p2 = new UpiPayment();
+p1.pay(100);  // Prints: Paid 100 via Credit Card
+p2.pay(150);  // Prints: Paid 150 via UPI
+		OR
+Usage:- level-2 :
+public static void makePayment(Payment p, double amt)
+{
+	p.pay(amt);
+}
+public static void main(String[] args) 
+{
+	makePayment(new CreditCardPayment(), 100);
+	makePayment(new UpiPayment(), 150);
+}
+
+Usage :- level-3 :collection of payments
+import java.util.List;
+import java.util.ArrayList;
+List [] payments = {new CreditCardPayment(100),new UpiPayment(150),new CreditCardPayment(200),new UpiPayment(250)};
+				or
+
+List<Payment> payments = new ArrayList<>();
+payments.add(new CreditCardPayment(100));
+payments.add(new UpiPayment(150));
+payments.add(new CreditCardPayment(200));
+payments.add(new UpiPayment(250));
+
+
+for (Payment payment : payments)
+{
+	makePayment(payment);
+}
+
+
+3️.Why Polymorphism Matters
+===========================
+Reusability: Share and reuse code across types.
+Flexibility: Write generic code (e.g., void process(Payment p) can handle all payments).
+Maintainability: Add new types without modifying existing client code.
+ 
+4️.Real-Time Example: Shape Drawing App
+---------------------------------------
+abstract class Shape 
+{
+    abstract void draw();
+}
+
+class Circle extends Shape 
+{
+    void draw() 
+    { 
+        System.out.println("Drawing a circle"); 
+    }
+}
+
+class Rectangle extends Shape 
+{
+    void draw() 
+    { 
+        System.out.println("Drawing a rectangle"); 
+    }
+}
+
+public class DrawingApp 
+{
+    public static void render(Shape s) 
+    {
+        s.draw();
+    }
+
+    public static void main(String[] args) 
+    {
+        Shape[] shapes = { new Circle(), new Rectangle() };
+        for (Shape s : shapes) 
+        {
+            render(s); // Calls the correct draw() based on instance type
+        }
+    }
+}
+Output:
+Drawing a circle
+Drawing a rectangle
+This shows runtime polymorphism in a graphical app.
+
+
+| Aspect                | Compile-Time (Overloading)            | Runtime (Overriding)              |
+| --------------------- | ------------------------------------- | --------------------------------- |
+| **When resolved**     | At compile time                       | At runtime                        |
+| **How achieved**      | Method with different signatures      | Subclass overrides superclass     |
+| **Binding type**      | Early binding                         | Late/dynamic binding              |
+| **Use case examples** | `add(int, int)`, `add(double,double)` | Payment processing, Shape drawing |
+
+
+Polymorphism lets you use one class to interact with many forms of objects:
+
+Compile-time: Same method, different parameters (overloading).
+
+Run-time: Same method signature, different implementations (overriding).
+
+
+
+
+
+how up-casting helps polymorphism?
+================================================
+main advantages : 
+1.use one variable type for many subclasses.
+
+how you upcast:
+Payment pay = new CreditCardPayment();
+
+you can also do:
+pay = new UpiPayment();
+
+2.All in the same code block. This means you can write a single method:
+void process(Payment p) { p.pay(100); }
+That handles any kind of payment. This would be much harder without upcasting—requiring separate methods 
+or messy conditional logic. Upcasting makes your code flexible and extendable 
+
+2. Simplifies collections of mixed types
+You can store different payment methods in one list:
+List<Payment> payments = new ArrayList<>();
+payments.add(new CreditCardPayment());
+payments.add(new UpiPayment());
+
+Then:
+for (Payment p : payments) 
+p.pay(amt);
+
+This works because each subclass overrides pay() — the correct one runs at runtime. Upcasting allows handling 
+diverse objects uniformly 
+
+3. Hides unnecessary details
+Using Payment pay = new CreditCardPayment(); restricts you to calling only methods from Payment. This is good 
+encapsulation—you can’t mistakenly call refund(), a subclass-specific method, unless you explicitly downcast. 
+So the compiler protects you from misuse.

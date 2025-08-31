@@ -1,0 +1,101 @@
+1.static variable of super-class in sub-class.
+you can access it.but if you declare the same static variable in sub-class, super class static variable
+will be hidden, you get sub-class variable value.
+
+2.static method of super-class in sub-class.
+you can access it.but if you declare the same static method in sub-class, super class static method
+will be hidden, you get sub-class method implementation.
+
+3.Non-static variable of super-class in sub-class.
+you can access it and you can modify or change the value also to the object level by re-defining it
+in subclass. if you define the same variable in sub-class, super class variable will be hidden.
+you get sub-class variable value.
+
+4.Non-static method of super-class in sub-class.
+you can access it and you can modify or change the implementation also to the object level.by re-defining it
+in subclass.
+
+1.we can refer a static member with an object reference, we wont get error.
+class A
+{
+	public static int k = 10;
+	public static void go()
+	{
+		System.out.println("Go away");
+	}
+}
+public class MVMainClass 
+{
+	public static void main(String[] args) 
+	{
+		A ob = new A();
+		ob.go();
+	}
+
+}
+
+output : Go away
+
+2.static members of the super-class will be hidden if you have members in sub-class also.
+package behaviourOfVMinSubClass;
+class A
+{
+	public static int k = 10;
+	public static void go()
+	{
+		System.out.println("Go away");
+	}
+}
+class B extends A
+{
+	public static int k = 20;
+	public static void go()
+	{
+		System.out.println("Go Far....");
+	}
+}
+
+public class MVMainClass 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(B.k);
+		B.go();
+		
+	}
+
+}
+output :
+20
+Go Far....
+
+package behaviourOfVMinSubClass;
+class A
+{
+	public int k = 10;
+	public void go()
+	{
+		System.out.println("Go away");
+	}
+}
+class B extends A
+{
+	public int k = 20;
+	public void go()
+	{
+		System.out.println("Go Far....");
+	}
+}
+
+public class MVMainClass 
+{
+	public static void main(String[] args) 
+	{
+		B ob = new B();
+		System.out.println(ob.k);
+		ob.go();
+		
+	}
+
+}
+

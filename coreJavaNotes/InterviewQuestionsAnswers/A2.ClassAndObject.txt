@@ -1,0 +1,102 @@
+1.can we have multiple classes in single java file?
+Yes we can have multiple classes in a single file.
+
+2.Can a class be a public or default?
+Yes a class can be only public or default.
+
+3.Can a class be private or protected?
+No class cannot be private or protected.
+
+4.Can inner-class be private or protected?
+Yes inner class can be private or protected.
+
+5.can we declare multiple public classes in a single file?
+no there should be only one public class in a file.
+
+6.What should be the file name if we have multiple classes in a file.
+file name should be same as public class name in the file.
+
+7. How can we access static methods from the other class?
+By using class name as reference we can access static methods from the other class.
+
+8. How can we access static variables from the other class?
+By using class name as reference we can access static variables from the other class.
+
+9. How to access non static variables or non static methods from the other class?
+In order to access non static members like variables or class we have to create 
+object for the respective class and we use that object reference variable to call a non 
+static member of that particular class.
+
+10. What is class in Java?
+A class is a blueprint or a template for creating objects.
+
+11. What is object in Java?
+an object is the real entity.class doesnt exist in the real world but the objects are.
+
+12. which one is logical entity class or object?
+.class is the logical entity and object is the real entity.
+
+13. what are all the components that a class can contain?
+Data member(variable)
+Method
+Constructor
+Nested Class(a class inside the class)
+Interface
+
+14. what are all the components that an object contains?
+identifier
+state 
+behaviour
+
+15. What are the types of variables that a class can contain?
+Static variables,non static variables and local variables.
+
+16. What happens when we declare a class as public?
+If a class declared as public you can access that class and its components from 
+other packages also.
+
+17. What happens when we declare a class as default?
+if a class is declared as default we can access the class and its components 
+within the same package.
+
+
+18. In how many ways can we create object In java?
+There are five ways to create object in Java.
+1.Using new keyword
+className obj = new ClassName();
+
+2.Using clone() method
+		ObjectCreation original = new ObjectCreation();
+		ObjectCreation copy = (ObjectCreation) original.clone();
+		System.out.println(original.k);
+
+3.Using Deserialization
+------------------------------------------------------
+ObjectOutputStream out = new ObjectOutputStream(...);
+out.writeObject(original);
+
+// Deserialize
+ObjectInputStream in = new ObjectInputStream(...);
+MyObject obj = (MyObject) in.readObject();
+
+4.Using Constructor.newInstance() from Reflection API
+------------------------------------------------------
+Constructor<MyObject> ctor =
+    MyObject.class.getDeclaredConstructor(/* types */);
+ctor.setAccessible(true);
+MyObject obj = ctor.newInstance(/* args */);
+
+
+
+this 5th way of creating object is not in use from java version 9
+5.Using Class.forName().newInstance()
+---------------------------------------
+MyObject obj = (MyObject)Class.forName("com.example.MyObject").newInstance();
+
+19. How will you identify a variable should be a static or a non static?
+If the variable is going to change its value from one object to another object 
+so that variable will be considered as non static. If the variable is going to be 
+same for all the objects then such type of variables considered as static variables.
+
+20. How will you identify a method to be a static or non static in Java?
+if a method uses any non static variables then method should be non static otherwise static.

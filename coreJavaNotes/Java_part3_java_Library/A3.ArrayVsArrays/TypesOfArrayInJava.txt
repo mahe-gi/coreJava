@@ -1,0 +1,57 @@
+Classification of array Based on Size
+
+Fixed-Size Arrays
+-----------------
+Once created, the length cannot be changed. This is the traditional array you declare 
+like int[] arr = new int[5]; or initialize as int[] arr = {1, 2, 3};. 
+
+
+Dynamic Arrays (via ArrayList)
+------------------------------
+Not technically arrays, but flexible list structures like ArrayList<Integer> allow 
+resizing during runtime. These are dynamic and manage memory allocation.
+
+Classification Based on Dimensions
+==================================
+1)One-Dimensional Arrays
+A simple, linear collection of elements accessible via a single index, like int[] 
+singleDim = {1, 2, 3};. 
+
+2)Two-Dimensional & Multi-Dimensional Arrays
+Structured like grids (2D) or higher-dimensional matrices.
+for example, int[][] matrix = new int[3][3];. 
+
+3)Jagged (Ragged) Arrays
+These are special multidimensional arrays where each sub-array (row) can have a 
+different length. 
+For example : 
+
+int[][] jagged = {{1, 2},{3, 4, 5},{6}};
+
+Additional Array Behavior in Java
+==================================
+1.Java arrays are objects and inherit from java.lang.Object. 
+
+2.Arrays can store primitive types (like int, char, boolean) as well as object references (like 
+String, Integer), but all elements must be of the same declared type. 
+
+3.Arrays use zero-based indexing, and once their size is set, it cannot be altered.
+
+| **Category**      | **Type**                | **Description**                                      |
+| ----------------- | ----------------------- | ---------------------------------------------------- |
+| **By Size**       | Fixed-Size              | Length is immutable once declared                    |
+|                   | Dynamic (via ArrayList) | Resizable structure—behaves like arrays but flexible |
+|		    |                         |                                                      |    
+| **By Dimensions** | One-Dimensional         | Simple linear array                                  |
+|                   | Two-/Multi-Dimensional  | Arrays of arrays, like grids or cubes                |
+|                   | Jagged Arrays           | Nested arrays with variable row lengths              |
+
+
+int [] a = {1,2,3,4,5};
+class name : [I
+there is no package where you'd find int[] or char[] as a normal class—they're implemented behind the 
+scenes by the Java during runtime. 
+
+
+
+

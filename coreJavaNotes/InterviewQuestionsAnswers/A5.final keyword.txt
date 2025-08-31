@@ -1,0 +1,64 @@
+1.What is the purpose of the final keyword in Java?
+It prevents modification—used with variables, methods, or classes to make them unchangeable.
+
+2.What is a final variable?
+Once initialized, its value cannot be changed.
+
+3.What is a final method?
+A method declared final cannot be overridden in subclasses.
+
+4.What is a final class?
+A class declared final cannot be subclassed (e.g., String).
+
+5.What is a blank final variable?
+A final variable declared without initialization, which must be assigned exactly once (in constructor or static block).
+
+6.Where can you initialize a static blank final variable?
+In a static initializer block.
+
+7.Can you change the state of an object referenced by a final variable?
+Yes—the object’s internal state can change; only the reference is immutable.
+
+8.Can you create a final array? Can its elements be modified?
+Yes, the reference is final but the array elements are mutable.
+
+9.What’s the difference between final, finally, and finalize()?
+final: prevents modification (variables, methods, classes)
+finally: block that always executes after a try–catch
+finalize(): deprecated cleanup method before garbage collection
+
+10.Why can't a constructor be declared final?
+Constructors aren’t inherited or overridden, so final is meaningless here.
+
+11.Can a method be both abstract and final?
+No—abstract methods need to be overridden; final methods cannot be.
+
+12.Can a class be both abstract and final?
+No—the class cannot be inherited if final, but must be inherited if abstract.
+
+13.Can a static method be final?
+Yes—static methods can also be marked final.
+
+14.What are compile-time constants in Java?
+Variables declared public static final with compile-time known value—they're inlined by the compiler.
+
+15.What is a risk of using compile-time constants from libraries?
+If the library changes the constant later, your compiled code may still use the old value until recompiled.
+
+16.Does declaring a method final improve performance?
+Not necessarily—JIT may inline final methods at runtime, but declaring final isn’t a reliable compiler optimization cue.
+
+17.Why use final on method parameters?
+It’s mostly for code clarity—it prevents accidental reassignment rather than offering performance benefits.
+
+18.Should we use final for local variables by default?
+Optional—commonly not used for locals, but can improve clarity in codebases where applied.
+
+19.Why final constants are often in uppercase?(example: Integer.MAX_VALUE)
+As a naming convention to signify immutable constant values.
+
+20.Static final vs final—what’s the difference?
+final: immutable per instance (assigned once per object)
+static final: immutable constant shared across the class
+
+“Static final is for constants.”

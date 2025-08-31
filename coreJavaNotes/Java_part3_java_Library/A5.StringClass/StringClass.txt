@@ -1,0 +1,902 @@
+String class
+------------
+A java strings is stored as objects,we can store strings with the help of objects of following classes.
+1.java.lang.String
+2.java.lang.StringBuilder
+3.java.lang.StringBuffer
+
+Note points : 
+String calss is public
+String class is final
+String class extends Object Class
+String class implements
+Comparable interface
+serializable interface
+charSequence interface
+
+
+Constructors of String class
+----------------------------
+1.No argumented constructor
+it is used to create an empty String object.
+
+2.String(String s)
+used to create a String object with the given string.
+
+3.String(char [] ch)
+String object with char array.
+
+we can create String class in two ways
+--------------------------------------
+1.using literals
+2.using new keyword
+anything enclosed with in double quotes is considered as a String literal.
+everytime a string literal is created, an object of String class is created in String pool area
+(String constant pool area, exisits in heap area) and its address is returned.
+Note : If String object of the given literal is already exists in the string pool area,then a new object is not 
+created.instead the adress of the existing object is returned.(memory management).
+
+Using new Keyword
+-----------------
+we create a String object using new key word.
+String object created using new keyword will be there in heap area, not in String constant pool area).
+
+Characteristics of a string object
+----------------------------------
+Object of the String class is immutable(the object once created can never be modified).
+When we try to modify the string object, a new string is created and address is returned.
+
+Dis-advantages of String object
+-------------------------------
+Since the object of the string calss is immutable, everytime we try to modify a string object,a new string object is
+created, hence more time is consumed.
+
+in order to avoid this,and whenever a string involves many manipulations over it, it is recommende to store Strings using
+String builder or StringBuffer objects.
+
+StringBuilder and StringBuffer
+==============================
+both classes belong to java.lang package and they are used to store strings.
+
+characteristics:
+the object of both the classes mutable in nature.
+
+StringBuilder constructors :
+1.StringBuilder();
+creates an empty StringBuilder object.
+2.StringBuilder(String);
+creates a stringBuilder object with the given string.
+important note :
+StringBuilder s = "Hello";(Wrong)
+StringBuilder s = new StringBuilder("Hello");(correct)
+
+String
+example : 
+StringBuilder s1 = new StringBuilder("Hello");
+StringBuilder s2 = s1;
+s1.append("everyone");
+Syso(s1);
+Syso(s2);
+
+Methods of String builder class.
+1.stringBuilder.append("aa");
+apend() concates the given string at last.
+append() method is oveloaded,such that it can accept string, int, float, boolean,char[] long, any of the datatype.
+char charAt(index);
+int length();
+int indexOf("string");//otherwise return -1
+string substring(int start-index);
+string substring(int start-index, end-index);
+StringBuilder reverse();
+
+we can not concate using + operator.
+
+StringBuilder v/s StringBuffer
+-------------------------------
+In Java, both StringBuffer and StringBuilder are classes used to create mutable sequences of characters, meaning 
+their content can be modified after creation, unlike the immutable String class. The key differences between them 
+lie in thread safety and performance:
+
+Thread Safety (Synchronization):
+--------------------------------
+StringBuffer:- is thread-safe and synchronized. Its methods are synchronized, meaning that only one thread can access 
+an instance of StringBuffer at a time. This makes it suitable for use in multi-threaded environments where multiple 
+threads might try to modify the same string simultaneously, preventing data corruption.
+
+StringBuilder:- is not thread-safe and non-synchronized. Its methods are not synchronized, allowing multiple threads 
+to access and modify an instance concurrently. This makes it unsuitable for direct use in multi-threaded environments
+without external synchronization mechanisms.
+
+Performance:
+-------------
+StringBuffer:- is generally slower than StringBuilder. The synchronization overhead of its methods adds a performance
+cost, as it ensures only one thread can operate on the object at a time.
+StringBuilder is generally faster than `StringBuffer**. The absence of synchronization overhead allows for quicker 
+execution of operations, making it more efficient in single-threaded environments.
+
+In summary:
+===========
+Use StringBuffer when thread safety is a requirement, such as in multi-threaded applications where shared mutable 
+strings need to be protected from concurrent modifications.
+Use StringBuilder when performance is a priority and the application is primarily single-threaded or thread safety 
+is handled externally.
+
+| Feature         | `String`               | `StringBuilder`                     | `StringBuffer`                                    |
+| --------------- | ---------------------- | ----------------------------------- | ------------------------------------------------- |
+| Mutability      | Immutable              |  Mutable                            |  Mutable                                          |
+| Thread Safety   |  Yes (immutable)       | No                                  | Yes (synchronized)                                |
+| Synchronization | N/A                    | None                                | All methods synchronized                          |
+| Performance     | Slow for concatenation | Fast (single-threaded)              | Slower than `StringBuilder`, faster than `String` |
+| Introduced in   | Java 1.0               | Java 1.5 (JDK 5)                    | Java 1.0                                          |
+| Use case        | Constant/fixed strings | Single-threaded string construction | Multi-threaded mutable string use                 |
+
+
+
+String class methods
+--------------------
+1.charAt(int index) – returns character at given position. 
+2.length() – number of characters in the string. 
+3.substring(int beginIndex) – from beginIndex to end. 
+4.substring(int beginIndex, int endIndex) – between beginIndex (inclusive) and endIndex (exclusive). 
+5.subSequence(int start, int end) – returns a CharSequence view of the substring.[Because String implements CharSequence, calling subSequence() on a String internally invokes substring() and returns a String, just upcast to CharSequence] 
+6.toLowerCase() 
+7.toUpperCase() – convert all letters to lower or upper case.
+8.trim() – removes leading and trailing whitespace. 
+9.equals(Object) – content equality. 
+10.equalsIgnoreCase(String) – case-insensitive comparison. 
+11.contains(CharSequence) – tests if a sequence is present. 
+12.startsWith(String) / 
+13.endsWith(String) – prefix/suffix checking. 
+14.indexOf(...) / 
+15.lastIndexOf(...) – find first or last occurrence of char or substring, optional from-index. 
+16.cmpareTo(String) 
+17.compareToIgnoreCase(String) – lexicographical comparison. 
+18.concat(String) – append another string. (similar to +) 
+19.replace(char oldChar, char newChar) – simple char replacement. 
+20.String replaceAll(String regex, String replacement) – replaces all substrings matching regex. 
+21.replaceFirst(String regex, String replacement) – replaces first match only. 
+22.String[] split(String regex) – splits into array by regex. 
+23.join(CharSequence delimiter, CharSequence... elements) – concatenate elements with a delimiter. (Java 8+)
+	String joined = String.join("+ ", "Apricot", "Mango", "Plum");
+	System.out.println(joined);
+	output : Apricot+ Mango+ Plum
+
+24.valueOf(...) – static overloads to convert primitives or objects to string. 
+25.getBytes() – encode string into byte array using platform or specified charset. 
+String s = "abc";
+	    System.out.println(Arrays.toString(s.getBytes()));
+output : [97, 98, 99]
+
+26.getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) – copy chars to existing array. 
+public class GetCharsDemo {
+    public static void main(String[] args) {
+        String str = "Welcome to TutorialsPoint";
+        // Prepare a char array
+        char[] buffer = new char[10]; // space for exactly 10 chars
+
+        // Copy from str index 5 (0‑based) through index 14 (i.e. srcEnd=15 exclusive),
+        // into buffer starting at buffer[0].
+        str.getChars(5, 15, buffer, 0);
+
+        System.out.println(Arrays.toString(buffer));
+    }
+}
+output : [m, e,  , t, o,  , T, u, t, o]
+
+27.toCharArray() – convert entire string to char[]. 
+28.isEmpty() – checks if length is zero. 
+29.intern() – ensures unique instance in the string pool. Useful for memory/performance optimization.
+When you call s.intern(), Java checks its string pool.
+
+If an identical string already exists there, it returns the pool’s reference.
+Otherwise, it adds the string to the pool and returns that new reference.
+Ensures only one copy of any distinct string is kept in the pool at runtime.
+ 
+30.contentEquals(CharSequence) – compare to StringBuffer or other CharSequence.
+		String s1 = new String("abc");
+		StringBuilder s2 = new StringBuilder("abc");
+		System.out.println(s1.contentEquals(s2));
+  
+31.codePointAt(int index),-->ASCII value 
+32.codePointBefore(int index),  
+33.valueOf(boolean b)                 → String
+34.valueOf(char c)                    → String
+35.valueOf(char[] data)               → String
+36.valueOf(double d)                  → String
+37.valueOf(float f)                   → String
+38.valueOf(int i)                     → String
+39.valueOf(long l)                    → String
+40.valueOf(Object obj)                → String
+--------------------------------------------------------------------------------------------------
+Newer String Methods (Java 8+).Introduced in more recent Java versions (Java 8 to Java 17):
+
+chars() → returns IntStream of char values (Java 9+) 
+
+codePoints() → returns IntStream of Unicode code points (Java 9+) 
+
+isBlank() → boolean – true if empty or all whitespace (Java 11+) 
+
+lines() → returns Stream<String> of lines (Java 11+) 
+
+repeat(int count) → String – repeats string count times (Java 11+) 
+--------------------------------------------------------------------------------------------------
+=============================================================================================================
+Java provides various format specifiers for use with methods like String.format() and System.out.printf(). 
+These specifiers control how different data types are presented in the output. Common Format Specifiers with 
+Examples:
+
+1) %s (String): Formats the argument as a string
+    String name = "Alice";
+    System.out.printf("Hello, %s!%n", name); // Output: Hello, Alice!
+----------------------------------------------------------------------
+2) %d (Decimal Integer): Formats the argument as a decimal integer.
+    int age = 30;
+    System.out.printf("You are %d years old.%n", age); // Output: You are 30 years old.
+---------------------------------------------------------------------------------------
+3) %f (Floating-Point Number): Formats the argument as a decimal floating-point number.
+    double price = 19.99;
+    System.out.printf("The price is $%.2f%n", price); // Output: The price is $19.99
+----------------------------------------------------------------------------------------
+4) %c (Character): Formats the argument as a single character.
+    char grade = 'A';
+    System.out.printf("Your grade is %c.%n", grade); // Output: Your grade is A.
+----------------------------------------------------------------------------------------
+5) %b (Boolean): Formats the argument as a boolean value (true or false).
+    boolean isActive = true;
+    System.out.printf("User active status: %b%n", isActive); // Output: User active status: true
+-------------------------------------------------------------------------------------------------
+6) %t (Date/Time): Used for formatting date and time values. Requires a sub-specifier (e.g., %tY for year, %tm for month, %td for day).
+    import java.util.Date;
+    Date now = new Date();
+    System.out.printf("Current date: %tY-%tm-%td", now, now, now); // Output: Current date: 2025-07-29 (example)
+---------------------------------------------------------------------------------------------------------------------------------------
+7) %n (Newline): Inserts a platform-specific newline character.
+    System.out.printf("First line.%nSecond line.%n");
+    /* Output:
+    First line.
+    Second line.
+    */
+---------------------------------------------------------------------------------------------------------------------------------------
+8) %% (Percent Sign): Inserts a literal percent sign.
+    System.out.printf("Discount: 10%% off%n"); // Output: Discount: 10% off
+---------------------------------------------------------------------------------------------------------------------------------------
+
+String programs
+===============
+1)Java Program to count the total number of characters in a string
+public class CountCharacter    
+{    
+    public static void main(String[] args) {    
+        String string = "The best of both worlds";    
+        int count = 0;    
+            
+        //Counts each character except space    
+        for(int i = 0; i < string.length(); i++) {    
+            if(string.charAt(i) != ' ')    
+                count++;    
+        }    
+            
+        //Displays the total number of characters present in the given string    
+        System.out.println("Total number of characters in a string: " + count);    
+    }    
+}     
+Output:
+Total number of characters in a string: 19
+
+2)Java Program to count the total number of punctuation characters exists in a String
+punctuations :{'!', ',', ';' , '.', '?', '-', '\'', '\"', ':'}
+public class CountPunctuation   
+{    
+	public static void main (String args[])   
+	{    
+		//Stores the count of punctuation marks    
+		int count = 0;    
+		String str = "He said, 'The mailman loves you.' I heard it with my own ears.";    
+		for (int i = 0; i < str.length(); i++)   
+		{    
+			//Checks whether given character is punctuation mark    
+			if(str.charAt(i) == '!' || str.charAt(i) == ',' || str.charAt(i) == ';' || str.charAt(i) == '.' ||  str.charAt(i) == '?' || str.charAt(i) == '-' ||    
+			str.charAt(i) == '\'' || str.charAt(i) == '\"' || str.charAt(i) == ':')   
+			{    
+				count++;    
+			}    
+		}    
+		System.out.println("The number of punctuations exists in the string is: " +count);    
+	}    
+}    
+Output:
+The number of punctuations exists in the string is: 5
+
+3) Java Program to count the total number of vowels and consonants in a string
+public class CountVowelConsonant {    
+    public static void main(String[] args) {    
+            
+        //Counter variable to store the count of vowels and consonant    
+        int vCount = 0, cCount = 0;    
+            
+        //Declare a string    
+        String str = "This is a really simple sentence";    
+            
+        //Converting entire string to lower case to reduce the comparisons    
+        str = str.toLowerCase();    
+            
+        for(int i = 0; i < str.length(); i++) {    
+            //Checks whether a character is a vowel    
+            if(str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u') {    
+                //Increments the vowel counter    
+                vCount++;    
+            }    
+            //Checks whether a character is a consonant    
+            else if(str.charAt(i) >= 'a' && str.charAt(i)<='z') {      
+                //Increments the consonant counter    
+                cCount++;    
+            }    
+        }    
+        System.out.println("Number of vowels: " + vCount);    
+        System.out.println("Number of consonants: " + cCount);    
+    }    
+}   
+Output:
+
+Number of vowels: 10
+Number of consonants: 17
+
+5) Java Program to determine whether two strings are the anagram.
+import java.util.Arrays;  
+public class Anagram {  
+    public static void main (String [] args) {  
+        String str1="Brag";  
+        String str2="Grab";  
+  
+        //Converting both the string to lower case.  
+        str1 = str1.toLowerCase();  
+        str2 = str2.toLowerCase();  
+  
+        //Checking for the length of strings  
+        if (str1.length() != str2.length()) {  
+            System.out.println("Both the strings are not anagram");  
+        }  
+        else {  
+            //Converting both the arrays to character array  
+            char[] string1 = str1.toCharArray();  
+            char[] string2 = str2.toCharArray();  
+  
+            //Sorting the arrays using in-built function sort ()  
+            Arrays.sort(string1);  
+            Arrays.sort(string2);  
+  
+            //Comparing both the arrays using in-built function equals ()  
+            if(Arrays.equals(string1, string2) == true) {  
+                System.out.println("Both the strings are anagram");  
+            }  
+            else {  
+                System.out.println("Both the strings are not anagram");  
+            }  
+        }  
+    }  
+}   
+Output:
+Both the strings are anagram
+
+6) Java Program to divide a string in 'N' equal parts.
+public class DivideString {  
+    public static void main(String[] args) {  
+          String str = "aaaabbbbcccc";  
+  
+        //Stores the length of the string  
+        int len = str.length();  
+        //n determines the variable that divide the string in 'n' equal parts  
+        int n = 3;  
+        int temp = 0, chars = len/n;  
+        //Stores the array of string  
+        String[] equalStr = new String [n];  
+        //Check whether a string can be divided into n equal parts  
+        if(len % n != 0) {  
+            System.out.println("Sorry this string cannot be divided into "+ n +" equal parts.");  
+        }  
+        else {  
+            for(int i = 0; i < len; i = i+chars) {  
+                //Dividing string in n equal part using substring()  
+                String part = str.substring(i, i+chars);  
+                equalStr[temp] = part;  
+                temp++;  
+            }  
+    System.out.println(n + " equal parts of given string are ");  
+            for(int i = 0; i < equalStr.length; i++) {  
+                System.out.println(equalStr[i]);  
+                }  
+            }  
+        }  
+}  
+Output:
+
+3 equal parts of given string are
+aaaa
+bbbb
+cccc
+7) Java Program to find all subsets of a string
+public class AllSubsets {  
+    public static void main(String[] args) {  
+  
+        String str = "FUN";  
+        int len = str.length();  
+        int temp = 0;  
+        //Total possible subsets for string of size n is n*(n+1)/2  
+        String arr[] = new String[len*(len+1)/2];  
+  
+        //This loop maintains the starting character  
+        for(int i = 0; i < len; i++) {  
+            //This loop adds the next character every iteration for the subset to form and add it to the array  
+            for(int j = i; j < len; j++) {  
+                arr[temp] = str.substring(i, j+1);  
+                temp++;  
+            }  
+        }  
+  
+        //This loop prints all the subsets formed from the string.  
+        System.out.println("All subsets for given string are: ");  
+        for(int i = 0; i < arr.length; i++) {  
+            System.out.println(arr[i]);  
+        }  
+    }  
+}  
+Output:
+
+All subsets for given string are:
+F
+FU
+FUN
+U
+UN
+N
+10) Java Program to remove all the white spaces from a string
+String str1="Remove white spaces";    
+            
+        //Removes the white spaces using regex    
+        str1 = str1.replaceAll(" ", "");    
+            
+        System.out.println("String after removing all the white spaces : " + str1);
+
+11) Java Program to replace lower-case characters with upper-case and vice-versa
+public class changeCase {    
+    public static void main(String[] args) {    
+            
+        String str1="Great Power";    
+        StringBuffer newStr=new StringBuffer(str1);    
+            
+        for(int i = 0; i < str1.length(); i++) {    
+                
+            //Checks for lower case character    
+            if(Character.isLowerCase(str1.charAt(i))) {    
+                //Convert it into upper case using toUpperCase() function    
+                newStr.setCharAt(i, Character.toUpperCase(str1.charAt(i)));    
+            }    
+            //Checks for upper case character    
+            else if(Character.isUpperCase(str1.charAt(i))) {    
+                //Convert it into upper case using toLowerCase() function    
+                newStr.setCharAt(i, Character.toLowerCase(str1.charAt(i)));    
+            }    
+        }    
+        System.out.println("String after case conversion : " + newStr);    
+    }    
+}     
+Output:
+
+String after case conversion: gREAT pOWER
+
+12) Java Program to replace the spaces of a string with a specific character
+public class ReplaceSpace    
+{    
+    public static void main(String[] args) {    
+        String string = "Once in a blue moon";    
+        char ch = '-';    
+            
+        //Replace space with specific character ch    
+        string = string.replace(' ', ch);    
+            
+        System.out.println("String after replacing spaces with given character: ");    
+        System.out.println(string);    
+    }    
+}      
+Output:
+
+String after replacing spaces with given character:
+Once-in-a-blue-moon
+
+13) Java Program to determine whether a given string is palindrome
+public class PalindromeString    
+{    
+    public static void main(String[] args) {    
+        String string = "Kayak";    
+        boolean flag = true;    
+            
+        //Converts the given string into lowercase    
+        string = string.toLowerCase();    
+            
+        //Iterate the string forward and backward, compare one character at a time     
+        //till middle of the string is reached    
+        for(int i = 0; i < string.length()/2; i++){    
+            if(string.charAt(i) != string.charAt(string.length()-i-1)){    
+                flag = false;    
+                break;    
+            }    
+        }    
+        if(flag)    
+            System.out.println("Given string is palindrome");    
+        else    
+            System.out.println("Given string is not a palindrome");    
+    }    
+}    
+Output:
+
+Given string is palindrome
+
+14) Java Program to determine whether one string is a rotation of another
+public class StringRotation    
+{    
+    public static void main(String[] args) {    
+        String str1 = "abcde", str2 = "deabc";    
+            
+        if(str1.length() != str2.length()){    
+            System.out.println("Second string is not a rotation of first string");    
+        }    
+        else {    
+            //Concatenate str1 with str1 and store it in str1    
+            str1 = str1.concat(str1);    
+             //Check whether str2 is present in str1    
+            if(str1.indexOf(str2) != -1)    
+                System.out.println("Second string is a rotation of first string");    
+            else    
+                System.out.println("Second string is not a rotation of first string");    
+        }    
+    }    
+}     
+Output:
+
+Second string is a rotation of first string
+
+15) Java Program to find maximum and minimum occurring character in a string
+public class Characters     
+   
+   public static void main(String[] args) {    
+      String str = "grass is greener on the other side";    
+      int[] freq = new int[str.length()];    
+      char minChar = str.charAt(0), maxChar = str.charAt(0);    
+      int i, j, min, max;            
+          
+      //Converts given string into character array    
+      char string[] = str.toCharArray();    
+          
+      //Count each word in given string and store in array freq    
+      for(i = 0; i < string.length; i++) {    
+          freq[i] = 1;    
+          for(j = i+1; j < string.length; j++) {    
+              if(string[i] == string[j] && string[i] != ' ' && string[i] != '0') {    
+                  freq[i]++;    
+                      
+                  //Set string[j] to 0 to avoid printing visited character    
+                  string[j] = '0';    
+              }    
+          }    
+      }    
+          
+      //Determine minimum and maximum occurring characters    
+      min = max = freq[0];    
+      for(i = 0; i <freq.length; i++) {    
+              
+          //If min is greater than frequency of a character     
+          //then, store frequency in min and corresponding character in minChar    
+          if(min > freq[i] && freq[i] != '0') {    
+              min = freq[i];    
+              minChar = string[i];    
+          }    
+          //If max is less than frequency of a character     
+          //then, store frequency in max and corresponding character in maxChar    
+          if(max < freq[i]) {    
+              max = freq[i];    
+              maxChar = string[i];    
+          }    
+      }    
+          
+      System.out.println("Minimum occurring character: " + minChar);    
+      System.out.println("Maximum occurring character: " + maxChar);    
+  }    
+   
+Output:
+
+Minimum occurring character: a
+Maximum occurring character: e
+
+16) Java Program to find Reverse of the string
+public class Reverse   
+{    
+    public static void main(String[] args) {    
+        String string = "Dream big";    
+        //Stores the reverse of given string    
+        String reversedStr = "";    
+            
+        //Iterate through the string from last and add each character to variable reversedStr    
+        for(int i = string.length()-1; i >= 0; i--){    
+            reversedStr = reversedStr + string.charAt(i);    
+        }    
+            
+        System.out.println("Original string: " + string);    
+        //Displays the reverse of given string    
+        System.out.println("Reverse of given string: " + reversedStr);    
+    }    
+}    
+Output:
+
+Original string: Dream big
+Reverse of given string: gib maerD
+
+17) Java program to find the duplicate characters in a string
+public class DuplicateCharacters {    
+     public static void main(String[] args) {    
+        String string1 = "Great responsibility";    
+        int count;    
+            
+        //Converts given string into character array    
+        char string[] = string1.toCharArray();    
+            
+        System.out.println("Duplicate characters in a given string: ");    
+        //Counts each character present in the string    
+        for(int i = 0; i <string.length; i++) {    
+            count = 1;    
+            for(int j = i+1; j <string.length; j++) {    
+                if(string[i] == string[j] && string[i] != ' ') {    
+                    count++;    
+                    //Set string[j] to 0 to avoid printing visited character    
+                    string[j] = '0';    
+                }    
+            }    
+            //A character is considered as duplicate if count is greater than 1    
+            if(count > 1 && string[i] != '0')    
+                System.out.println(string[i]);    
+        }    
+    }    
+}     
+Output:
+
+Duplicate characters in a given string:
+r
+e
+t
+s
+i
+
+18) Java program to find the duplicate words in a string
+public class DuplicateWord {    
+    public static void main(String[] args) {    
+        String string = "Big black bug bit a big black dog on his big black nose";    
+        int count;    
+            
+        //Converts the string into lowercase    
+        string = string.toLowerCase();    
+            
+        //Split the string into words using built-in function    
+        String words[] = string.split(" ");    
+            
+        System.out.println("Duplicate words in a given string : ");     
+        for(int i = 0; i < words.length; i++) {    
+            count = 1;    
+            for(int j = i+1; j < words.length; j++) {    
+                if(words[i].equals(words[j])) {    
+                    count++;    
+                    //Set words[j] to 0 to avoid printing visited word    
+                    words[j] = "0";    
+                }    
+            }    
+                
+            //Displays the duplicate word if count is greater than 1    
+            if(count > 1 && words[i] != "0")    
+                System.out.println(words[i]);    
+        }    
+    }    
+}    
+Output:
+
+Duplicate words in a given string :
+big
+black
+
+19) Java Program to find the frequency of characters
+public class FrequencyCharacter     
+{    
+     public static void main(String[] args) {    
+        String str = "picture perfect";    
+        int[] freq = new int[str.length()];    
+        int i, j;    
+            
+        //Converts given string into character array    
+        char string[] = str.toCharArray();    
+            
+        for(i = 0; i <str.length(); i++) {    
+            freq[i] = 1;    
+            for(j = i+1; j <str.length(); j++) {    
+                if(string[i] == string[j]) {    
+                    freq[i]++;    
+                        
+                    //Set string[j] to 0 to avoid printing visited character    
+                    string[j] = '0';    
+                }    
+            }    
+        }    
+            
+        //Displays the each character and their corresponding frequency    
+        System.out.println("Characters and their corresponding frequencies");    
+        for(i = 0; i <freq.length; i++) {    
+            if(string[i] != ' ' && string[i] != '0')    
+                System.out.println(string[i] + "-" + freq[i]);    
+        }    
+    }    
+}    
+Output:
+
+Characters and their corresponding frequencies
+p-2
+i-1
+c-2
+t-2
+u-1
+r-2
+e-3
+f-1
+20) Java Program to find the largest and smallest word in a string
+public class SmallestLargestWord    
+   
+  public static void main(String[] args){     
+      String string = "Hardships often prepare ordinary people for an extraordinary destiny";    
+      String word = "", small = "", large="";    
+      String[] words = new String[100];    
+      int length = 0;    
+          
+      //Add extra space after string to get the last word in the given string    
+      string = string + " ";    
+          
+      for(int i = 0; i < string.length(); i++){    
+          //Split the string into words    
+          if(string.charAt(i) != ' '){    
+              word = word + string.charAt(i);    
+          }    
+          else{    
+              //Add word to array words    
+              words[length] = word;    
+              //Increment length    
+              length++;    
+              //Make word an empty string    
+              word = "";    
+          }    
+      }            
+      //Initialize small and large with first word in the string    
+      small = large = words[0];    
+          
+      //Determine smallest and largest word in the string    
+      for(int k = 0; k < length; k++){    
+              
+          //If length of small is greater than any word present in the string    
+          //Store value of word into small    
+          if(small.length() > words[k].length())    
+              small = words[k];    
+   
+          //If length of large is less than any word present in the string    
+          //Store value of word into large    
+          if(large.length() < words[k].length())    
+              large = words[k];    
+      }    
+      System.out.println("Smallest word: " + small);    
+      System.out.println("Largest word: " + large);    
+  }  }  
+Output:
+
+Smallest word: an
+Largest word: extraordinary
+
+23) Java Program to separate the Individual Characters from a String
+public class IndividualCharacters  
+{  
+    public static void main(String[] args) {  
+        String string = "characters ";  
+  
+        //Displays individual characters from given string  
+        System.out.println("Individual characters from given string: ");  
+  
+        //Iterate through the string and display individual character  
+        for(int i = 0; i < string.length(); i++){  
+            System.out.print(string.charAt(i) + " ");  
+        }  
+    }  
+}  
+Output:
+
+Individual characters from given string:
+c h a r a c t e r s
+
+24) Java Program to swap two string variables without using third or temp variable.
+public class SwapStrings     
+{    
+    public static void main(String[] args) {    
+        String str1 = "Good ", str2 = "morning ";    
+         System.out.println("Strings before swapping: " + str1 + " " + str2);    
+        
+        //Concatenate both the string str1 and str2 and store it in str1    
+        str1 = str1 + str2;    
+        //Extract str2 from updated str1    
+        str2 = str1.substring(0, (str1.length() - str2.length()));    
+        //Extract str1 from updated str1    
+        str1 = str1.substring(str2.length());    
+            
+        System.out.println("Strings after swapping: " + str1 + " " + str2);    
+    }    
+}    
+Output:
+
+Strings before swapping: Good morning
+Strings after swapping: morning Good
+
+26) Reverse String in Java Word by Word
+import java.util.*;  
+public class ReverseStringDemo  
+{  
+public static void main(String[] arg)  
+{  
+ReverseStringDemo rs=new ReverseStringDemo();  
+Scanner sc=new Scanner(System.in);  
+System.out.print("Enter a string: ");  
+String  str=sc.nextLine();    
+System.out.println("Reverse of a String  is : "+rs.reversestr(str));          //called method  
+}  
+//reverse string method  
+static String reversestr(String s)  
+{  
+String r="";  
+for(int i=s.length();i>0;--i)        //execute until condition i>0 becomes false  
+{  
+r=r+(s.charAt(i-1));   
+}  
+return r;  
+}  
+}  
+9) Java Program to find all the permutations of a string
+public class InterviewQ1 
+{
+   // Function to display all permutations of the string str
+   static void printallPermutns(String str, String str2)
+   {
+       // check if string is empty or null
+       if (str.length() == 0) 
+       {
+           System.out.println(str2);
+           return;
+       }
+
+       for(int i = 0; i < str.length(); i++) 
+       { 
+           // ith character of str
+           char ch = str.charAt(i); 
+           // Rest of the string after excluding
+           // the ith character
+           String str3 = str.substring(0, i) + str.substring(i + 1);
+           // Recursive call
+           printallPermutns(str3, str2 + ch);
+       }
+   } 
+   // Driver code
+   public static void main(String[] args)
+   {
+       String s = "ABC";
+       printallPermutns(s, "");
+   }
+}
+Output:
+
+All the permutations of the string are:
+ABC
+ACB
+BAC
+BCA
+CBA
+CAB
+
+
+

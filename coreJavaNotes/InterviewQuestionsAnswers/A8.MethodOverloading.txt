@@ -1,0 +1,28 @@
+1.Can you overload 2 methods with the same number of arguments but with different data types?
+yes
+
+2.can we overload 2 methods with the same data type but different number of arguments?
+yes
+
+3.can we overload both static and non static methods together?
+yes
+
+4.can we overload main method? 
+Yes, we can overload main method but the predefined main method will be executed automatically 
+and overloaded main method that we have created must be called.
+
+5.What are the advantages of method overloading.
+
+Advantages
+The advantages of method overlaoding is listed below:
+
+Method overloading improves the Readability and reusability of the program.
+Method overloading reduces the complexity of the program.
+Using method overloading, programmers can perform a task efficiently and effectively.
+Using method overloading, it is possible to access methods performing related functions with slightly different arguments and types.
+
+5.What are the disadvantages of method overloading.
+Disadvantages
+Too many overloaded methods can make the code harder to read and maintain.
+Similar method names with different parameters can confuse developers and lead to incorrect usage.
+Improper use may lead to ambiguity in method selection, especially with type conversions.

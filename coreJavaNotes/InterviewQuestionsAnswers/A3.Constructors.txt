@@ -1,0 +1,76 @@
+1.What is a constructor in Java?
+A special block of code that initializes a new object; has the same name as the class and no return type 
+
+2.Can you define a constructor explicitly?
+yes—if you don't define one, the Java compiler supplies a default no-argument constructor 
+
+3.Difference between default (compiler-provided) and no-argument constructor (explicit).
+Default is auto-generated; a non-arg constructor you write manually replaces the default 
+
+4.What are the rules for defining a constructor?
+Must match class name, no return type, may use access modifiers (public/protected/private/default), 
+we should not mention static/final/abstract/synchronized 
+
+5.Why can’t constructors have return types?
+To distinguish them from methods; having a return type makes it a method instead of a constructor 
+
+6.Can constructors be overloaded?
+Yes—multiple constructors with different parameter lists are allowed 
+
+7.What is constructor chaining?
+Calling one constructor from another using this(...) or calling superclass constructor using super(...);
+must be the first line in the constructor 
+
+8.What’s a private constructor and its use?
+Restricts instantiation from outside the class; often used in Singletons 
+
+9.Can you use this() or super() inside a regular method?
+No—these are allowed only in constructors; using them in methods causes compile-time errors 
+
+10.What if a constructor is declared with a return type?
+Treated as a method; constructor must have no return type—this leads to compile errors 
+
+11.Can constructors be declared as static, final, or abstract?
+No—these modifiers are not allowed for constructors 
+
+12.Does Java provide copy constructors like C++?
+No—copy constructors must be user-defined 
+
+13.What is the default behavior of superclass constructor invocation?
+If not specified, Java automatically inserts super() as the first statement 
+
+14.What happens if you define any constructor— won’t compiler provide default one?
+Correct—if you define a parameterized constructor, the default no-arg constructor is not provided automatically 
+
+15.Is recursion via constructor chaining allowed?
+No—calling a constructor recursively (e.g., this() to a constructor that again calls this()) leads to compile-time error 
+
+16.Can an abstract class have a constructor?
+Yes—abstract classes can have constructors, used during subclass instantiation 
+
+17.Difference between constructor vs method?
+Constructors initialize objects, have no return type, and share the class name; methods define behavior, have return types, and can have any name 
+
+18.Explain this keyword usage in constructor context.
+Used to refer to current object, differentiate instance variables, and invoke other constructors via this(...) 
+
+19.Order of constructor calls in inheritance chain?
+Superclass’s constructor is invoked first, followed by subclass’s constructor 
+
+20.Why do we need constructors?
+To properly initialize object state, prevent default null/default primitive values across many instances 
+
+21.Why’s a static constructor not allowed in Java?
+Static belongs to class, but constructors initialize instances—static constructor doesn’t align with object instantiation semantics 
+
+22.Constructor’s legal modifiers?
+Public, protected, private, or default; cannot be static, final, abstract, or synchronized 
+
+23.Difference between super() vs this()?
+this() invokes another constructor in same class; super() invokes superclass constructor; both must be first statement 
+
+24.What if a user-defined no-arg constructor replaces default?
+The compiler will not generate default constructor; user must explicitly define if needed 
+
+25.What’s behavior when constructor throws exception?
+Java allows throws clause in constructor; exception handling must then be provided by the calling code

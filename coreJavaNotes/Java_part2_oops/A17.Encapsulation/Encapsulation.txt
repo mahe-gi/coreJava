@@ -1,0 +1,149 @@
+class : Account
+fields : 
+String accountNumber; // read-only
+double balance;       // read-write
+String password;      // write-only
+
+methods : 
+getAccountNumber()
+getBalance()
+setBalance(double amt) //amt>0
+setPassword(String pwd) //0-9999
+
+
+public class Account 
+{
+    private final String accountNumber; // read-only
+    private double balance;             // read-write
+    private String password;            // write-only
+
+    public Account(String acctNum) 
+    {
+        this.accountNumber = acctNum;
+    }
+
+    // Read-Only
+    public String getAccountNumber() 
+    {
+        return accountNumber;
+    }
+
+    // Read-Write with validation
+    public double getBalance() 
+    {
+        return balance;
+    }
+    public void setBalance(double amt) 
+    {
+        if (amt >= 0) this.balance = amt;
+    }
+
+    // Write-Only
+    public void setPassword(double pwd) 
+    {
+        if (isValid(0<pwd&&pwd<=9999))
+            this.password = hash(pwd);
+    }
+}
+
+
+Encapsulation in Java 
+=====================
+1. What is Encapsulation?
+Encapsulation is a fundamental Object-Oriented Programming (OOP) principle where:
+Data (variables) and methods (code) operating on the data are bundled together into a single unit called a class.
+or
+Encapsulation binds data(VARIABLE) and code(METHOD) together while hiding data from external access.
+
+
+2.It is also known as data hiding because it restricts direct access to class variables.
+
+3.Achieved using:
+1.Private variables (fields)
+2.Public setter and getter methods to access and update the private variables on required conditions(validating before initialization of a private variable).
+
+4.Provides control over data by restricting unauthorized access and modification.
+
+3. Why Encapsulation? (Advantages)
+Data Hiding: Prevents direct access to sensitive data.
+Control: You can control how variables are accessed or modified (e.g. validation in setters).
+Flexibility and Maintenance: You can change implementation without affecting external classes using your class.
+Increased Security: Only specific methods can modify data safely.
+Improves Reusability and Modularity: Class becomes self-contained with controlled interaction.
+
+4. How to Implement Encapsulation in Java?
+Steps:
+4.1)Declare class variables as private.
+4.2)Provide public getter and setter methods to access and update these variables.
+
+Example:
+public class Student 
+{
+    // Step 1: private data members
+    private String name;
+    private int age;
+
+    // Step 2: public getter method
+    public String getName() 
+    {
+        return name;
+    }
+
+    // Step 2: public setter method
+    public void setName(String name) 
+    {
+        this.name = name;
+    }
+
+    public int getAge() 
+    {
+        return age;
+    }
+
+    public void setAge(int age) 
+    {
+        if(age > 0) // validation logic
+        { 
+            this.age = age;
+        }
+    }
+}
+
+
+5. Real-Time Example
+In a banking app:
+-----------------------------------------------
+Balance amount is private in the Account class.
+Only methods like deposit() and withdraw() can modify it, ensuring controlled updates and preventing invalid operations.
+
+6. Difference between Encapsulation and Abstraction
+Encapsulation						|Abstraction
+-----------------------------------------------------------------------------------------------------------------
+Hides data by restricting access to class members.	|Hides implementation details, showing only functionality.
+Achieved using private fields and public methods.	|Achieved using abstract classes and interfaces.
+
+7. Can we achieve Encapsulation without getters and setters?
+No, because:Without getters/setters, private data members cannot be accessed or updated from outside the class.
+
+8. Is Encapsulation possible without making variables private?
+Technically no, because if variables are public, they can be accessed directly, violating encapsulation’s data hiding principle.
+
+9. Encapsulation in JavaBeans
+JavaBeans follow encapsulation principle by:
+Declaring variables as private.
+Providing public no-arg constructor.
+Providing getters and setters for all fields.
+
+10. Disadvantages of Encapsulation
+Overhead of getters and setters: Slight increase in code size and complexity.
+Improper design: Excessive getters/setters without logic makes it similar to public fields (anti-pattern).
+
+11.
+Encapsulation = Data hiding + Controlled access
+Uses private fields + public getters/setters
+Provides security, flexibility, and maintainability
+Core principle for robust OOP design
+
+Quick Remembering Statement
+=============================
+Encapsulation binds data and code together while hiding data from external access.

@@ -1,0 +1,469 @@
+Interface in Java
+==================
+Interface is one of the "type definition blocks" in java.
+
+interface
+methods : default complete methods, static complete methods and abstract methods.
+variables : public final static variables.
+importent point: it will not have non-static variables.(reason, since interface dont have constructors)
+
+
+1.An interface in Java is a blueprint of a class. It has static constants(public static final variables) and abstract methods.
+The interface in Java is a mechanism to achieve abstraction. 
+
+2.By default in interface, all the variables will be public, static and final.so these variables
+cannot be re-initialized.
+
+
+why public variables?	
+Always public for Accessibility, Interface variables are implicitly public so that any 
+implementing class — regardless of package — can access them directly.
+
+why static variables?
+Interfaces cannot be instantiated(cannot create objects)like classes; there's no object to hold non static variables.
+
+why final variables?
+If multiple classes implement the same interface and the variable is not final, each class 
+could modify it—leading to inconsistent behavior.
+
+
+3.By default in interface, all the non-static methods will be abstract and public.
+[Default Methods are Non‑Static]
+ 
+why public methods?
+All methods must be accessible to any implementor, so they’re implicitly public.
+
+4.Interfaces don’t contain concrete method implementations (unless marked default or static). 
+As a result, all their methods are implicitly abstract, meaning they only define a signature 
+not behavior.
+
+5.There can be only abstract methods in the Java interface, not method body. It is used to 
+achieve abstraction and multiple inheritance in Java.
+In other words, you can say that interfaces can have abstract methods and variables. It 
+cannot have a method body.
+6.Java Interface also represents the IS-A relationship.(inheritance)
+
+7.It cannot be instantiated just like the abstract class.meaning we cannot create object.
+
+8.No constructors for interfaces; cannot be instantiated directly.
+
+Before Java 8:
+================
+Only constants and abstract methods 
+
+Java 8:
+=======
+Added default methods (with bodies) and static methods inside interfaces 
+
+Java 9+:
+========
+Introduced private and private static methods—useful for refactoring shared logic.
+
+
+
+>>Classes use "implements" key word and must override all non-default methods, or be declared abstract 
+
+>>Multiple interfaces can be implemented, enabling multiple inheritance of behavior .
+
+>>An interface can extend multiple interfaces 
+
+Uses of Java interface
+==========================
+There are mainly three reasons to use interface. They are
+2.It is used to achieve abstraction.
+3.By interface, we can support the functionality of multiple inheritance.
+4.it can be used to achieve loose coupling.
+
+
+
+Declaring an interface
+======================
+An interface is declared by using the interface keyword. It provides total abstraction;
+means all the methods in an interface are declared with the empty body, and all the
+variables/fields are public, static and final by default. A class that implements an interface must
+implement all the methods declared in the interface.
+Syntax:
+interface interface_name
+{
+// declare constant fields
+// declare methods that abstract by default.
+}
+
+
+
+Relationship between classes and interfaces
+=============================================
+1.a class extends another class, 
+2.an interface extends another interface, 
+3.but a class implements an interface.
+
+Example
+interface A
+{
+ void display();
+}
+class B implements A
+{
+ public void display()
+ {
+ System.out.println("Hello");
+ }
+}
+class MB
+{
+ public static void main(String args[])
+ {
+ B obj = new B();
+ obj.display();
+}
+}
+Output:
+Hello
+
+
+Interface Example:
+In this example, the interface A has only one method. Its implementation is provided by
+B and C classes. In a real scenario, an interface is defined by someone else, but its
+implementation is provided by different implementation providers. Moreover, it is used
+by someone else. The implementation part is hidden by the user who uses the interface.
+
+interface A
+{
+ void display();
+}
+
+class B implements A
+{
+	public void display()
+	{
+ 		System.out.println("Display method in B class");
+	}
+}
+class C implements A
+{
+ 	public void display()
+ 	{
+ 		System.out.println("display method in C class");
+	}
+}
+class MainClass
+{
+ 	public static void main(String args[])
+ 	{
+ 		C obj=new C();
+ 		obj.display();
+	}
+}
+
+
+
+Multiple inheritance by interface
+================================
+If a class implements multiple interfaces, or an interface extends multiple interfaces, it is
+known as multiple inheritance.
+
+interface A
+{
+ 	void display();
+}
+interface B
+{
+ 	void show();
+}
+class C implements A,B
+{
+ 	public void display()
+ 	{
+ 		System.out.println("Hello");
+ 	}
+ 	public void show()
+ 	{
+ 		System.out.println("Welcome");
+ 	}
+}
+class MainClass
+{
+ 	public static void main(String args[])
+ 	{
+ 		C obj = new C();
+ 		obj.display();
+ 		obj.show();
+ 	}
+}
+
+Output:
+ Hello
+ Welcome
+
+Abstract class in Java
+=========================
+A class which is declared as abstract is known as an abstract class. It can have abstract
+and non-abstract methods. It needs to be extended and its method implemented. It
+cannot be instantiated.
+Points to Remember
+>>An abstract class must be declared with an abstract keyword.
+>>It can have abstract and non-abstract methods.
+>>It cannot be instantiated.
+>>It can have constructors and static methods also.
+>>It can have final methods which will force the subclass not to change the body of
+the method.
+
+Difference between abstract class and interface
+=================================================
+1.Abstract class and interface both are used to achieve abstraction where we can declare
+the abstract methods. 
+2.Abstract class and interface both can't be instantiated.
+But there are many differences between abstract class and interface that are given
+below.
+		Abstract class 										Interface
+1) Abstract class can have abstract and nonabstract methods.			|Interface can have only abstract methods. Since Java 8, it can have default and statc methods also.
+2) Abstract class doesn't support multple inheritance.				|Interface supports multple inheritance.
+3) Abstract class can have final, non-final, static and non-static variables.	|Interface has public static and final variables.
+4) Abstract class can provide the implementaton of interface.			|Interface can't provide the implementaton of abstract class.
+5) The abstract keyword is used to declare abstract class.			|The interface keyword is used to declare interface.
+										|
+6) An abstract class can extend another Java					|
+class and implement multple Java interfaces.					|An interface can extend another Java interface only.
+										|
+										|
+7) An abstract class can be extended using keyword "extends".			|An interface can be implemented using keyword "implements".
+8) A Java abstract class can have class members like private, protected, etc.	|Members of a Java interface are public by default.
+										|
+9)Example:									|Example:
+public abstract class Shape{							|public interface Drawable{
+public abstract void draw();							|void draw();
+}										|}
+
+
+1.can interface have complete methods?
+Yes, default methods and static methods.
+
+2.What Are Default Methods?
+1.Introduced in Java 8, default methods are interface methods that include a method body, 
+using the default keyword. 
+2.They’re also known as defender or virtual extension methods. 
+
+3.Why Java Introduced Them?
+Backwards compatibility: Now you can add methods to existing interfaces without breaking older classes that implement them. 
+Reduce boilerplate: Frequently-used utility methods in interfaces mean fewer duplicates across implementing classes. 
+
+4.How They Work – Syntax & Behavior
+public interface MyInterface 
+{
+    default void log(String msg) 
+    {
+        System.out.println("Log: " + msg);
+    }
+}
+
+5.A class can inherit a default method without needing to override it. Or it can override it with custom behavior. 
+
+6.Multiple Inheritance Conflicts?
+
+using classes multiple inheritance not possible.Why?
+two reasons :
+reason 1 : ambiguity in constructor chaining.
+reason 2 : ambiguity in method calling if two super classes have same method.
+
+how it is resolved in interface.
+reason 1 resolved : no constructors only.
+reason 2 resolved : interface provide only method signature, no implementation.
+
+When a class implements two interfaces that both define the same default method signature, Java will prompt an error 
+unless the class overrides the method to resolve ambiguity. 
+
+You can even access a specific interface’s default implementation using:
+
+InterfaceName.super.method();
+InterfaceName.super.method();
+
+A.super.run();
+B.super.run();
+
+can interface have static methods?
+Yes, since Java 8, interfaces in Java can indeed have static methods, but with important rules and limitations:
+
+1. Supported Since Java 8
+=========================
+Java 8 introduced the ability to define static methods directly in interfaces—allowing you to include fully implemented, 
+utility-style methods within interface definitions.
+
+2. Syntax & Usage
+==================
+public interface MathUtils 
+{
+    static int add(int a, int b) 
+    {
+        return a + b;
+    }
+}
+// Calling the method:
+int result = MathUtils.add(2, 3); // result = 5
+
+You must call static interface methods using the interface name, not via implementing classes or instances 
+
+3. Not Inherited or not Overridable
+=================================
+Static methods in interfaces do not get inherited by implementing classes or sub-interfaces 
+
+You cannot override them in implementing classes—they’re effectively fixed within the interface 
+
+4. Purpose & Best Use
+======================
+Ideal for utility and helper methods related to the interface(with-in the interface), avoiding the need for separate utility classes 
+
+
+5. Complement to Default Methods
+=================================
+Compared to default methods (instance-level, inheritable, and overrideable), static methods:
+1.Belong to the interface itself
+2.Can’t access instance data
+3.Are not part of implementing class’s inheritance chain
+
+
+| Feature                    | Default Method                | Static Method              |
+| -------------------------- | ----------------------------- | -------------------------- |
+| Introduced in Java version | Java 8                        | Java 8                     |
+| Belongs to                 | Instance / implementing class | Interface itself           |
+| Called via                 | Instance or class             | Interface name only        |
+| Overridable?               | Yes                           | No                         |
+| Common use case            | Behavioral extension          | Utility or factory methods |
+
+=========================================================================
+example :
+interface Validator 
+{
+    static boolean isValidEmail(String email) 
+    {
+        return email.contains("@") && email.endsWith(".com");
+    }
+    boolean validate(String input);
+}
+
+class MyValidator implements Validator 
+{
+    @Override
+    public boolean validate(String input) 
+    {
+        return (input.length() > 0 && Validator.isValidEmail(input));
+    }
+}
+public class EmailValidationMain 
+{
+	public static void main(String[] args) 
+	{
+		String email = "Abhi@gmail.com";
+		MyValidator ob = new MyValidator();
+		System.out.println(ob.validate(email));
+	}
+}
+Here, isValidEmail acts as a helper method within the interface, while validate is implemented by the class.
+======================================================================================
+
+
+Can we have private methods in an interface?
+Yes — starting with Java 9, interfaces can have private methods (including private static ones). 
+
+Purpose & Benefits
+====================
+Private methods let you hide shared logic used by multiple default or static methods, keeping that logic internal and non-public, improving code clarity and reuse 
+
+Avoid duplication: Common functionality can be pulled into a private helper instead of being repeated in each default method 
+
+
+
+
+implementing classes can use default methods via instances and override them. But static methods in interfaces cannot be accessed through those instances, 
+nor overridden—they must be called directly on the interface.
+
+Default Methods are Non‑Static
+=================================
+Declared with the default keyword, these methods provide a concrete implementation in an interface.
+
+They are implicitly public and instance-level, meaning they must be called on an instance of an implementing class.
+
+You can override them in your class to provide custom behavior.
+
+
+
+Why can't a class extend an interface?
+If we allow a class to extend an interface there are some incomplete methods are present in interface one of the biggest feature of extend
+keyword is if you want to override the method yes you can you override it but if you don't override it you will get the previous implementation but here 
+there are no previous implementations so this is the reason a class cannot extend an interface.
+
+ if a class could extend an interface, it might bypass implementing abstract methods, conflicting with the interface's contract.
+
+
+
+Interface fields: always public static final.
+interface MyInterface {
+    int num = 40; // interpreted as public static final int num = 40;
+}
+
+
+you can’t declare non-static(instance) variables in an interface .why?
+Because we cannot create object for an interface.
+
+can An interface have constructor?
+No an interface will not have constructor. Because there is no necessity for creating an object for an interface.
+
+Only non static methods can be default methods. We cannot write default keyboard with static methods.
+
+
+Before Java 8, adding any new method to an already-published interface (like java.util.Collection) would break every implementing 
+class — they all would have to add the new method or stop compiling.
+But with default methods, Oracle could safely evolve existing libraries without forcing developers to update all their implementing classes. 
+The default implementation gives maintainers freedom to extend interfaces without breaking compatibility 
+
+One real-world example: Java 8 introduced stream() on Collection. Without default methods, they'd need to create new abstract classes or 
+break existing code — not feasible at scale.
+
+These methods belong to the interface itself—not to the implementing class.
+
+Default Methods
+These are instance methods—you can call them on an implementing class instance.
+
+If your interface has:
+
+default void foo() { … }
+and your class:
+
+class A implements I {
+    // no override
+}
+You can write:
+A a = new A();
+a.foo(); // Works!
+You can also override this method in your class if you want customized behavior. 
+
+Static Methods
+These methods belong to the interface itself—not to the implementing class.
+
+Defined like:
+
+interface I {
+    static void bar() { … }
+}
+You must call them via the interface:
+
+I.bar(); //  Works
+
+Attempting to call:
+a.bar();
+or override it in class A won’t compile—static interface methods can't be inherited or overridden by classes
+
+implementing classes can use default methods via instances and override them. But static methods in interfaces cannot be accessed through those instances, nor overridden—they must be called directly on the interface.
+
+
+Default Methods are Non‑Static
+Declared with the default keyword, these methods provide a concrete implementation in an interface.
+
+They are implicitly public and instance-level, meaning they must be called on an instance of an implementing class.
+
+You can override them in your class to provide custom behavior.
+
+
+
+
+Static Methods aren’t inherited—only accessed via the defining type.
+

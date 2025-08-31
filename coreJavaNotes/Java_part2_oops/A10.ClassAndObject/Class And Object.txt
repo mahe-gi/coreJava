@@ -1,0 +1,269 @@
+Class
+======
+1.A class is a blueprint or a template for creating objects. where as an object is the real entity.
+class doesnt exist in the real world but the objects are.
+example : 
+class : animal 
+objects : lion, tiger, cow, cat, dog..
+
+class : human 
+objects : virat, rohith, MSDoni.. etc....
+
+class : phone 
+objects : iphone, samsung, nokia, vivo, oppo, realme......
+
+class : car
+honda, tata, toyota....
+
+
+
+2.A class is an abstract plan—like architectural blueprints for a house. 
+It outlines structure and behavior but doesn’t represent any “real” thing by itself.
+
+3.It defines the structure and behavior that objects of that class will possess. 
+
+4.It acts as a logical entity and does not consume memory until an object is created from it.
+(It's a logical entity and doesn’t occupy heap memory for instance data.)
+
+A Class in Java can contain:
+----------------------------
+Data member(variable)
+Method
+Constructor
+Nested Class(a class inside the class)
+Interface
+
+Object :
+========
+1.An object is an instance of a class. 
+2.An object is a real, concrete instance of a class:
+created using new, it occupies memory and stores actual values.
+
+Every Object contains 3 components :
+
+identifier : - name of the object.
+state : properties of the object.
+behaviour : actions or tasks of the object.
+
+example : 
+Dog
+identifier : pluto
+states : color, breed, height, waight etc...
+behaviour : barking, running, jumping.....(actions or task or operation)
+
+example : 
+mobile 
+identifier : samsung
+states : color, model, height, waight, screen resulation etc...
+behaviour : calling, browsing, gaming....(actions or task or operation)
+
+example : 
+app
+identifier : instagram
+states : profile photo, userId.
+behaviour : audio-video calling, chatting, reels....(actions or task or operation)
+
+
+Importent points : 
+----------------------
+1.using single class we can create multiple objects.
+2.class is called a logical entity
+3.object is called a real entity.
+Some Important points about a class:
+4.In Java, we can not declare a top-level class as private. Java allows only public and 
+default access specifiers for top-level classes. We can declare inner classes as private.
+
+5.We can include any type of the three variables in Java – local, instance and static variables.
+
+6.There can be only one public class in a single file and its name should be the same as the 
+name of the Java file. There can be more than one non-public classes in a single Java file.
+
+7.A public class is visible to all classes from all the packages.
+
+8.A class with default access is visible only to the classes within the same package.
+
+9.We can also use the non-access modifiers for the class such as final, abstract and strictfp.
+
+10.We cannot create an object or instance of an abstract class.
+
+11.No subclasses or child class can be created from a class that is declared as final.
+
+12.A class cannot be declared both as final and abstract at the same time.
+
+
+
+
+| Feature      |     Class                          | Object                                    |
+| ------------ | ---------------------------------- | ----------------------------------------- |
+| Description  | Blueprint / logical definition     | Instance / real entity                    |
+| Memory       | No memory for instance members     | Allocates memory on creation              |
+| Create using | Defined once using "class" keyword | Created many times with "new ClassName()" |
+| Entity type  | Logical (design-time)              | Physical (runtime) with actual data       |
+| Example      | "class Car { ... } "               | "new Car()" creates "myCar" object        |
+
+
+
+Class = blueprint (fields + methods), logical, no memory until objects are made.
+
+Object = an instance of a class, physical, with its own state in memory.
+
+List of ways to Create Objects in Java
+------------------------------------------
+1.Using new keyword
+className obj = new ClassName();
+
+2.Using clone() method
+		ObjectCreation original = new ObjectCreation();
+		ObjectCreation copy = (ObjectCreation) original.clone();
+		System.out.println(original.k);
+
+3.Using Deserialization
+------------------------------------------------------
+ObjectOutputStream out = new ObjectOutputStream(...);
+out.writeObject(original);
+
+// Deserialize
+ObjectInputStream in = new ObjectInputStream(...);
+MyObject obj = (MyObject) in.readObject();
+
+4.Using Constructor.newInstance() from Reflection API
+------------------------------------------------------
+Constructor<MyObject> ctor =
+    MyObject.class.getDeclaredConstructor(/* types */);
+ctor.setAccessible(true);
+MyObject obj = ctor.newInstance(/* args */);
+
+
+
+this 5th way of creating object is not in use from java version 9
+5.Using Class.forName().newInstance()
+---------------------------------------
+MyObject obj = (MyObject)Class.forName("com.example.MyObject").newInstance();
+
+
+
+understanding static and non static variables.
+---------------------------------------------
+1. If the value of a variable keeps changing for one object to another object then 
+such type of variables should be declared as non static.
+
+2. If any method is using a non static variable then the method also should be declared
+as non static.
+
+3. Any changes made in the static variable, changes will reflect in the whole class 
+and in all objects.
+
+4. Any changes made to the non static variable the changes will reflect only to the 
+particular object.
+
+
+Programs on understading Class Object
+========================================
+1.Pizza program
+properties : brand, pieces, pizzaName, price, size, address.
+behaviour :orderPizza(), eatPieces(), parcel().
+
+2.Book Program
+properties : Book name, author name, Price of the book
+behavoiur : issueBook(), returnBook(), turnCurrentPage(), bookMarkPage().
+
+3.Contact App
+properties : contactName, contactNumber
+behaviour : call(), message(), rename().
+
+
+4.Employee Program
+
+5.Box program
+
+6.Mobile Program
+
+7.Student program.
+
+package classAndObjectPrograms;
+
+class Pizza
+{
+	public String name;
+	public String size;
+	public double price;
+	public int pieces = 8;
+	
+	public Pizza(String name,String size,double price)
+	{
+		this.name = name;
+		this.size = size;
+		this.price = price;
+	}
+	public void orderPizza()
+	{
+		System.out.println("Pizza ordered.....\nOrder details : ");
+		System.out.println("Pizza name : "+name);
+		System.out.println("Pizza size : "+size);
+		System.out.println("Price : "+price);
+		System.out.println("Number of pieces : "+pieces);
+	}
+	public void eatPieces(int n)
+	{
+		System.out.println("number of pieces consumed : "+n);
+		System.out.println("Number of pieces left : "+(pieces-n));
+	}
+	public void ParcelPizza(String address)
+	{
+		System.out.println("Pizza parcel confirmed.....\nOrder details : ");
+		System.out.println("Pizza name : "+name);
+		System.out.println("Pizza size : "+size);
+		System.out.println("Price : "+price);
+		System.out.println("Number of pieces : "+pieces);
+		System.out.println("Adresss details : "+address);
+	}
+}
+public class PizzaMainClass 
+{
+	public static void main(String[] args) 
+	{
+		Pizza chickenPizza = new Pizza("Chicken-pizza","medium",350);
+		chickenPizza.orderPizza();
+		chickenPizza.eatPieces(3);
+		chickenPizza.ParcelPizza("NiT, Ameerpet");
+		Pizza vegPizza = new Pizza("Veg-pizza","large",300);
+		Pizza cheesePizza = new Pizza("Cheese-pizza","small",200);
+	}
+}
+
+
+package classAndObjectPrograms;
+
+class Contact
+{
+	public String name;
+	public String number;
+	
+	public Contact(String name,String number)
+	{
+		this.name = name;
+		this.number = number;
+	}
+	public void call()
+	{
+		System.out.println("Calling "+name+" by dailing "+number);
+	}
+	public void message(String text)
+	{
+		System.out.println("Message sent : "+text+" to "+name);
+	}
+}
+
+public class ContactsMainClass 
+{
+	public static void main(String[] args) 
+	{
+		Contact naveen = new Contact("Naveen singh","9876543210");
+		naveen.call();
+		Contact Abhishek = new Contact("Abhishek satpute","1234567890");
+		Abhishek.message("Hello... Good morning");
+	}
+}
+
+
+ 

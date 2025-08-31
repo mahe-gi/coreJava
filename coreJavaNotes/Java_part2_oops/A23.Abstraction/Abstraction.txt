@@ -1,0 +1,57 @@
+Abstraction.
+============
+1.hiding method implementation details and providing access only to method signature is called abstraction.
+2.In simple terms hiding unnecessary details and providing access only to the necessary details is called abstraction.
+
+abstraction can be achieved in two ways 
+by using interface 
+by using abstract class.
+
+Hotel menu: this is interface containing food names only.(not how they are prepared)//method names, not method implementation.
+
+waiter : receives order from you(helper method).
+
+chefs and cooks are hidden from you.(they will be there in the kitchen) if you come to know who is the chef, there is a possibility that 
+you can meet them directly and know the recipie.
+
+waiter goes to specific chef and gets the food ready. food will be served to you.
+
+here, chefs and preparestion way is hidden from you(you means main method).
+
+
+
+interface
+
+
+Design of Abstraction
+------------------------
+interface Sample
+{
+	void test();
+}
+
+class Run implements Sample
+{
+	public void test()
+	{
+		System.out.println("Test is completed : ");
+	}
+}
+thiss helperClass hides implementation class details and its logics to you.
+class HelperClass
+{
+	public static Sample getObject()
+	{
+		Sample s1 = new Sample();
+		return s1;
+	}
+}
+
+class MainClass
+{
+	public static void main(String[] args)
+	{
+		Sample rv = HelperClass.getObject();
+		rv.test();
+	}
+}

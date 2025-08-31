@@ -1,0 +1,63 @@
+What is Object Type-Casting?
+=============================
+Converting an object to look like another object is called object type casting.
+
+There are two types of typecasting. 
+
+1.Upcasting: 
+============
+1.Upcasting is the typecasting of a child object to a parent object. 
+2.Upcasting can be done implicitly. 
+3.Upcasting gives us the flexibility to access the parent class members but it 
+is not possible to access the all child class members using this feature. 
+[Instead, we can access all the overridden methods.]
+
+Parent p =(Parent)new Child();//explicit up-casting
+Parent p = new Child();//implicit up-casting
+
+2.Downcasting: Similarly, downcasting means the typecasting of upcasted object back to a child object. 
+Downcasting cannot be implicit.
+Child c = (Child)p;
+
+//A [] a = {new A(), new A(),...}
+
+Just like the data types, the objects can also be typecasted. However, in objects, there are 
+only two types of objects, i.e. parent object and child object. Therefore, typecasting of 
+objects basically means that one type of object (i.e.) child or parent to another. 
+
+
+During upcasting subclass properties are hidden super class properties are visible.
+
+Upcasting can be achieved in two ways.
+Implicit upcasting 
+explicit upcasting.
+
+upcasting can be achieved in implicit way because every subclass will have only single superclass 
+developer involvement is not required because subclass exactly knows who is the superclass.
+
+downCasting
+============
+Process of converting upcasted object back to subclass object is called a downcasting.
+in order to perform downcasting we must fulfill 2 conditions.
+
+Condition 1 :do not create a new object rather use existing object.(means up-casted object) 
+Condition 2 : object should be already upcasted.
+Downcasting is achieved only in one way that is explicit downcasting.
+implicit downcasting is not possible because a super class can have multiple subclasses.
+
+
+*************************Important point*******************************************
+When we upcast, over-ridden methods will be visible.
+*************************Important point*******************************************
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,353 @@
+1) What is method overriding in Java?
+A) Writing a method in a subclass with the same name of superclass's method
+B) Mentioning the same return type of the method of the superclass
+C) The argument list in the method of subclass and the method of superclass should be the same
+D) All the above(a)
+
+
+2) Method Overriding is useful to add extra functionality or code to a method of subclass with the same name as the inherited method. State TRUE or FALSE.
+A) TRUE(a)
+B) FALSE
+C) -
+D) -
+
+
+3) It is not mandatory to override all or a few methods of the Superclass. State TRUE or FALSE.
+A) TRUE(a)
+B) FALSE
+C) -
+D) -
+
+4) Why should a method be overridden in Java instead of writing a method with a different name?
+A) Large projects heavily depend on inheritance
+B) The code-base refers to the same method with the same method signature in different classes of the project
+C) It is not possible to change the method calling code at all occurrences of the project. It may break the whole project.
+D) All the above.(a)
+
+
+5) The Method-Overloading and Method-Overriding are not the same. State TRUE or FALSE.
+A) TRUE(a)
+B) FALSE
+C) -
+D) -
+
+
+6) What is the output of the below Java program with Method Overriding?
+
+class Bus
+{
+  void seatingCapacity()
+  {
+    System.out.println("Superclass Seats=32");
+  }
+}
+class ElectricBus extends Bus
+{
+  void seatingCapacity()
+  {
+    System.out.println("Subclass Seats=20");
+  }
+  void showInfo()
+  {
+    seatingCapacity();
+    this.seatingCapacity();
+  }
+}
+public class MethodOverriding1
+{
+  public static void main(String[] args)
+  {
+    ElectricBus eb = new ElectricBus();
+    eb.showInfo();
+  }
+}
+
+A) 
+Subclass Seats=20
+Superclass Seats=32
+
+B) 
+Superclass Seats=32
+Subclass Seats=20
+
+C) 
+Superclass Seats=32
+Superclass Seats=32
+
+D) 
+Subclass Seats=20
+Subclass Seats=20(a)
+
+
+7) What is the output of the below Java program with Method Overriding and SUPER keyword?
+
+class Car
+{
+  void showTransmission()
+  {
+    System.out.println("Transmission Manual");
+  }
+}
+class ElectricCar extends Car
+{
+  void showTransmission()
+  {
+    System.out.println("Transmission AMT");
+  }
+  void showInfo()
+  {
+    this.showTransmission();
+    super.showTransmission();
+  }
+}
+public class MethodOverriding2
+{
+  public static void main(String[] args)
+  {
+    ElectricCar ec = new ElectricCar();
+    ec.showInfo();
+  }
+}
+
+A) 
+Transmission AMT
+Transmission Manual(a)
+B) 
+Transmission Manual
+Transmission AMT
+C) 
+Transmission Manual
+Transmission Manual
+D) 
+Transmission AMT
+Transmission AMT
+
+
+
+8) Identify INVALID Java Method Overriding in the below code snippets?
+
+Follow the notation "superclassMethod" and "subclassMethod".
+A) 
+void superclassMethod(int a, float b){ }
+void subclassMethod(int a, float b) { }
+
+B) 
+void superclassMethod(){ }
+void subclassMethod(){ }
+
+C) 
+int superclassMethod(int a, float b){ }
+void subclassMethod(int a, float b) { }(a)
+
+D) None
+
+
+9) A successful Method Overriding calls the method of ___ in Java.
+A) Superclass
+B) Subclass(a)
+C) -
+D) -
+
+10) A failed method overriding calls the method of a ___ in Java.
+A) Superclass
+B) Subclass
+C) Superclass or Subclass(a)
+D) None
+
+11) What is the output of the below Java program with method overriding?
+
+class Cat
+{
+  int jumpingHeight(int weight)
+  {
+    System.out.println(10);
+    return 10;
+  }
+}
+class WildCat extends Cat
+{
+  void jumpingHeight(int weight)
+  {
+    System.out.println("20");
+  }
+}
+public class MethodOverriding3
+{
+  public static void main(String[] args)
+  {
+    WildCat wc = new WildCat();
+    wc.jumpingHeight(30);
+  }
+}
+
+A) 10
+B) 20
+C) 30
+D) Compiler error(A)
+
+
+12) What is the output of the below Java program with Method Overriding?
+
+class Sparrow{ }
+class BigSparrow extends Sparrow { }
+class Cat2
+{
+  Sparrow jumpingHeight(int weight)
+  {
+    System.out.println(40);
+    return new Sparrow();
+  }
+}
+class WildCat2 extends Cat2
+{
+  BigSparrow jumpingHeight(int weight)
+  {
+    System.out.println("50");
+    return new BigSparrow();
+  }
+}
+public class MethodOverriding4
+{
+  public static void main(String[] args)
+  {
+    WildCat2 wc = new WildCat2();
+    wc.jumpingHeight(80);
+  }
+}
+
+A) 40
+B) 50(A)
+C) 80
+D) Compiler error
+
+13) What is the output of the below Java program with method overriding?
+class Steel
+{
+  void setGrade(int g)
+  {
+    System.out.print(",GRADE="+g);
+  }
+}
+class CarbonSteel extends Steel
+{
+  void setGrade(char grade)
+  {
+    System.out.print(",Grade="+grade);
+  }
+}
+public class MethodOverriding5
+{
+  public static void main(String[] args)
+  {
+    Steel s = new CarbonSteel();
+    s.setGrade(5);
+    s.setGrade('A');
+  }
+}
+
+A) ,GRADE=5,GRADE=A
+B) ,GRADE=5,GRADE=65(a)
+C) ,Grade=5,Grade=65
+D) Compiler error
+
+
+
+14) What is the output of the below Java program with method overriding?
+
+class Wood
+{
+  void setQuality(int q)
+  {
+    System.out.print(",QUALITY="+q);
+  }
+}
+class PlyWood extends Wood
+{
+  void setQuality(char qual)
+  {
+    System.out.print(",quality="+qual);
+  }
+}
+public class MethodOverriding6
+{
+  public static void main(String[] args)
+  {
+    PlyWood pw = new PlyWood();
+    pw.setQuality(10);
+    pw.setQuality('B'); //ASCII of B=66
+  }
+}
+
+A) ,QUALITY=10,quality=B(a)
+B) ,QUALITY=10,quality=65
+C) ,quality=10,quality=B
+D) Compiler error
+
+
+
+15) What is the output of the below Java program with method overriding?
+
+class Amplifier
+{
+  void addGain(int a)
+  {
+    System.out.println((a + 10)+"dB");
+  }
+}
+class DigitalAmplifier extends Amplifier
+{
+  void addGain(int a)
+  {
+    super.addGain(a+5);
+  }
+}
+public class MethodOverriding7
+{
+  public static void main(String[] args)
+  {
+    DigitalAmplifier da = new DigitalAmplifier();
+    da.addGain(12);
+  }
+}
+
+A) 22dB
+B) 27dB(a)
+C) 22dB 27dB
+D) Compiler error
+
+
+16) If the method signature of a Superclass and the method signature of a Subclass are the same, then the subclass method is said to be _____ the superclass's method.
+A) Overriding(a)
+B) Overloading
+C) -
+D) -
+
+17) A method of a Superclass can not override the method of the Subclass. State TRUE or FALSE.
+A) TRUE(a)
+B) FALSE
+C) -
+D) -
+
+18) Method overriding increases the burden on the JVM in terms of runtime checks and resolution. State TRUE or FALSE.
+A) FALSE
+B) TRUE(a)
+C) -
+D) -
+
+19) What are the advantages of Method Overriding in Java?
+A) A subclass can add extra functionality to the overriding method.
+B) A subclass can call both the overridden method and overriding method.
+C) It supports polymorphism. A superclass reference can be used to call the common method of all subclasses.
+D) All the above(a)
+
+20) An Overridden method is the method of ____ class and the overriding method is the method of ___ class.
+A) super, sub(a)
+B) sub, super
+C) super, super
+D) sub, sub
+
+21) To successfully override a superclass method in Java, the access modifier of the method of the subclass can be ___ restrictive.
+A) Less
+B) More
+C) Less or Same(a)
+D) None

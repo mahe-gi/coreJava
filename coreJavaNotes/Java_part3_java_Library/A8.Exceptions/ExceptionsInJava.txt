@@ -1,0 +1,144 @@
+The exception handling is one of the powerful mechanism to handle the runtime errors so that normal
+flow of the application can be monitored.
+
+In general exception is an abnormal condition in Java exception is an event that disrupts the normal
+flow of the program 
+or
+an exception is a problem that arises during the execution of a program when an exception occurs 
+the normal flow of the program is disrupted and the program terminates abnormally.
+
+An exception can occur for many different reasons the following are some scenarios where an 
+exception occurs 
+1 the user has entered an invalid data 
+2 a file that needs to be opened cannot be found 
+3 a network connection has been lost in the middle of the communication some of these exceptions 
+are caused by user error others by programmer error and others by physical resources that have 
+failed in some manner.
+
+based on this the exceptions are categorized into three types.
+1.checked exceptions 
+2.unchecked exceptions 
+3.errors
+
+there are mainly two types of exceptions checked and unchecked where error is considered as unchecked exceptions.
+
+Checked exceptions
+------------------
+checked exception is an exception that occurs at the compile time these are also called as compile time exceptions
+these exceptions cannot simply be ignored at the time of compilation the programmer should take care of these exceptions.
+Examples
+FileNotFoundException 
+ClassNotFoundException 
+NoSuchFieldException etc... 
+the checked exceptions can be handled at the time of compilation.
+
+unchecked exceptions
+an unchecked exception is an exception that occurs at the time of execution.
+these are also called as runtime exceptions these include programming bugs such as logic errors 
+or improper use of API. 
+runtime exceptions are ignored at the time of compilation.
+
+Examples
+ArithmeticException
+ArrayIndexOutOfBoundsException
+NullPointerException
+NegativeArraySizeException etc..
+
+The unchecked exceptions can be checked at runtime.
+
+Errors 
+------
+these are not exceptions at all but problems that arise beyond the control of the user or the 
+programmer. error defines problems that are not accepted by programmer or program. 
+examples 
+memory error, hardware error, JVM error etc....
+
+1.An exception is nothing but runtime error it can be handled to provide a suitable message to user .
+2.Java uses a mechanism or model to handle exceptions this mechanism is known as exception handling mechanism.
+3.exception handling is a mechanism to handle runtime errors such as class not found arithmetic exception etc...
+The core advantage of exception handling is to maintain the normal flow of the application . Normally exception
+interrupts the normal flow of the application that is why we use exception handling.
+let's take an scenario 
+statement 1 ;
+statement 2 ;
+statement 3 ;
+statement 4 ;
+statement 5 ;//exception occures
+statement 6 ;
+statement 7 ;
+statement 8 ;
+statement 9 ;
+statement 10 ;
+suppose there is 10 statements in your program there occurs an exception at statement 5 rest of code will not be executed that is statement 6 to 10 will not run.
+
+ if we perform exception handling stop the statements will be executed that is why we use handling in Java
+
+
+
+ there are five keywords used in Java exception handling
+
+try
+catch
+finally
+throw
+throws
+
+ exception class
+
+ the exception class can handle any kind of exceptions by using built in exception classes there are many built in classes in exception class some of them are
+
+ arithmetic exception :  arithmetic error
+
+ array index out of bounds exception :  array index bounds  exception
+
+ null pointer exception :  accessing an object through null pointer
+
+ class not found exception :  class not found
+
+ number format exception :  given number is not a number
+
+ IO exception :  input output exception
+
+ file not found exception :  unable to locate a file
+
+ SQL exception :  SQL statement is not well
+
+ exception handling requires the following four steps
+
+1) finding the problem( identify the statements who execution may result in exception.  Put all those statements in a try block.
+
+2) inform that an exception is thrown (Throw the exception)
+
+3) receive the exception catch the exception using catch block
+
+4) provide exception handling code in catch block.
+
+
+
+ try and catch block
+
+ try block
+
+ it is used to enclose the code that might throw an exception that is all statements that are likely to rise and exception runtime are kept in a  try block.  This block will  detect an exception    throws it. it will be handled by the catch block.
+
+
+
+ try block must be followed by either catch block or finally block.
+
+ syntax try catch
+
+ try
+
+{
+
+	 //code that may throw exception
+
+}
+
+  catch  (exception class_name reference)
+
+{
+
+	 statements;
+
+}

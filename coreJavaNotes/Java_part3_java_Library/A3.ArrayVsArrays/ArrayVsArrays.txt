@@ -1,0 +1,135 @@
+array
+-----
+Array (int[], String[], etc.) is your basic container with fixed size.
+An "array" (lowercase 'a') refers to the fundamental data structure in Java used to store a fixed-size, 
+sequential collection of elements of the same data type.
+
+Fixed Size: Once declared, the size of an array cannot be changed.
+
+Homogeneous: All elements within an array must be of the same data type (e.g., all integers, all strings, all custom objects).
+
+Indexed Access: Elements are accessed using a zero-based index.
+
+Arrays
+------
+Arrays refers to the java.util.Arrays class, which provides a collection of static utility methods for manipulating arrays. 
+These methods offer functionalities like sorting, searching, filling, and comparing arrays.
+
+importent : array is not the object of Arrays class
+array is the object of [I class.
+class [I
+{
+
+}
+
+Arrays is a helper class full of static methods to work on arrays.
+present in java.util.Arrays
+
+Think of ‘array’ as the box, and Arrays as the toolbox to sort, display, and search inside the box.
+
+
+int [] a = {8,3,2,4,5,1};
+System.out.println(a);
+output : [I@24d46ca6
+reason : implicit call goes to Object class toString().
+
+int [] a = {8,3,2,4,5,1};
+System.out.println(Arrays.toString(a));
+output : [8,3,2,4,5,1]
+reason : explicitly we are calling static toString() from Arrays class.
+
+
+
+Frequently used Arrays class methods....
+
+| Method                      | Signature Example                                                                             | Returns   |
+| ----------------------------| --------------------------------------------------------------------------------------------- | --------- |
+| asList                      | `List<T> asList(T... a)`                                                                      | `List<T>` |
+| binarySearch                | `int binarySearch(int[] a, int key)`(compulsory array must be sorted)	                      | `int`     |
+| sort                        | `void sort(T[] a)` or `void sort(int[] a, int fromIndex, int toLength)(end index excluded)    | `void`    |
+| fill                        | `void fill(T[] a, T val)` or subrange                                                         | `void`    |
+| equals / deepEquals         | `boolean equals(int[] a, int[] b)` / `boolean deepEquals(Object[] a1, Object[] a2)`           | `boolean` |
+| compare		      | `int compare(int[] a, int[] b)`                                                               | `int`     |
+| mismatch                    | `int mismatch(int[] a, int[] b)`                                                              | `int`     |
+| copyOf / copyOfRange        | `T[] copyOf(T[] original, int newLength)` / `T[] copyOfRange(T[] original, int from, int to)` | `T[]`     |
+| hashCode                    | `int hashCode(T[] a)` / `int deepHashCode(Object[] a)`                                        | `int`     |
+| toString / deepToString     | `String toString(T[] a)` / `String deepToString(Object[] a)`                                  | `String`  |
+
+Comparison
+
+| Feature                | Java *array*                             		| `java.util.Arrays` class                         |
+|------------------------|------------------------------------------------------|--------------------------------------------------|
+| Definition             | Language feature, container object       		| Utility class with static methods                |
+| Package                | Built in (JVM)                           		| `java.util`                                      |
+| Purpose                | Hold multiple homogeneous elements (fixed size) 	| perform operations on arrays (sort, search, fill)|
+| Create new array?      | Yes — e.g. `new int[5]`                  		| No                                               |
+| Size change?           | No, fixed length                         		| N/A                                              |
+| Example use            | `int[] arr = {1,2,3};`                   		| `Arrays.sort(arr); Arrays.toString(arr);`        |
+
+
+array(lowercase a)--> it is an object which contains homogeneous elements.
+Arrays--> it is a class present in util package, provides inbuilt methods to perform operation on array
+Array-- it is also a class
+
+
+
+
+
+
+
+
+
+
+
+
+
+Array class
+===========
+Package: java.lang.reflect
+
+1.It's part of Java's Reflection API, not the java.util utilities. 
+
+Purpose: To dynamically create and access arrays at runtime, especially when you don’t know the array type at compile time. 
+
+Declaration:	
+public final class Array extends Object
+
+It's a final utility class—meaning you can't instantiate or extend it, only call its static methods.
+
+
+| Method                                                    | Signature                                                              | Description                                                   | Return Type                  |
+| --------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------- |
+| `newInstance`                                             | `static Object newInstance(Class<?> componentType, int length)`        | Creates a one-dimensional array with componentType and length | `Object` (cast to array)     |
+| `newInstance` (multi‑dimensional)                         | `static Object newInstance(Class<?> componentType, int... dimensions)` | Creates an n-dimensional array with the given lengths         | `Object`                     |
+| `getLength`                                               | `static int getLength(Object array)`                                   | Returns the length of the given array object                  | `int`                        |
+| `get`                                                     | `static Object get(Object array, int index)`                           | Retrieves the `Object` element at index                       | `Object`                     |
+| `getBoolean` / `getByte` / `getChar` / … `getDouble`      | e.g. `static boolean getBoolean(Object array, int index)`              | Retrieves the primitive value at index                        | corresponding primitive type |
+| `set`                                                     | `static void set(Object array, int index, Object value)`               | Assigns an Object reference element                           | `void`                       |
+| `setBoolean` / `setByte` / … / `setInt` / … / `setDouble` | e.g. `static void setInt(Object array, int index, int value)`          | Assigns a primitive at index                                  | `void`                       |
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+public class ReflectArrayExample {
+    public static void main(String[] args) {
+        // Dynamically create an int array of length 5
+        Object arr = Array.newInstance(int.class, 5);
+
+        // Set value at index 0
+        Array.setInt(arr, 0, 100);
+        // Retrieve value at index 0
+        int val = Array.getInt(arr, 0);
+        System.out.println("Element at 0: " + val);
+
+        // Get length
+        System.out.println("Length: " + Array.getLength(arr));
+
+        // Cast to int[] to use Arrays utility methods
+        int[] casted = (int[]) arr;
+        System.out.println("Full array: " + Arrays.toString(casted));
+    }
+}
+
+
+
+

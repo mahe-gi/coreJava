@@ -1,0 +1,573 @@
+Types of Classes in Java
+------------------------
+A class is a blueprint in the Java programming language from which an individual object can be built. 
+In Java, we will declare a class by using the class keyword.variables and functions are 
+declared simply within the class. Classes are required for the creation of Java objects.
+The object-oriented Programming (OOP) allows users to describe real-world objects. 
+Also, a class is sometimes known as a user-defined data type. 
+
+The following components add-up a class declaration:
+1.Modifiers
+2.Class name
+3.Keywords
+4.The class body within curly brackets {}.
+
+Class in Java 
+============= 
+1. Class is a set of all common properties/ attributes that objects which share.
+2. Class is not a real world entity. It is just a template or blueprint or prototype from which objects are created.
+3. Class does not occupy memory.
+4. Class is a group of variables of different data types and group of methods.
+
+A class in java can contain:
+• data member/ variable
+• method
+• constructor
+• nested class and 
+• interface
+
+structure :
+access_modifier class  <class_name>
+{  
+    data member;  
+    method;  
+    constructor;
+    nested class;
+    interface;
+}
+Eg of classes: 
+• Animal
+• Student
+• Bird
+• Vehicle
+• Company   
+
+example :
+class Student
+{  
+    int id;//data member (also instance variable)  
+    String name; //data member (also instance variable)  
+
+    public static void main(String args[])
+    {  
+        Student s1=new Student();//creating an object of Student  
+        System.out.println(s1.id);  
+        System.out.println(s1.name);  
+    }  
+}
+output : 
+0
+null
+
+Types of Classes
+================
+1.Final Class
+2.Static Class
+3.Abstract Class
+4.Concrete Class
+5.POJO Class
+6.Singleton Class
+7.Inner Class/nested classes
+
+
+1. Final Class
+==============
+1.Declaring a method with the final keyword indicates that the method cannot be overridden by subclasses.
+2.If a class that is marked final cannot be subclassed.   
+
+final class Base 
+{
+    void Display()
+    {
+        System.out.print("Method for Base class.");
+    }
+}
+
+class Extended extends Base 
+{
+
+    void Display()
+    {
+        System.out.print("Method of Extended class.");
+    }
+}
+
+class MainClass 
+{
+
+    public static void main(String[] arg)
+    {
+        Extended d = new Extended();
+        d.Display();
+    }
+}
+
+Output :Error
+
+3.Abstract Class
+=================
+1.A class that has zero or more abstract methods and is specified with the abstract keyword is called 
+an abstract class. 
+	In Java, the keyword abstract on a class simply means:
+	You cannot instantiate that class directly.
+	You’re signaling that this class is meant to be subclassed, even if it doesn’t 
+	define abstract methods itself.
+
+2.We must extend the abstract classes to a concrete class in order to use them because they are incomplete 
+classes.
+ 
+3.An abstract class can have Constructors and static methods. 
+
+4.It can have final methods.
+
+abstract class Product
+{
+    public int product(int x, int y) { return x * y; }
+}
+class MainClass extends Product 
+{
+    public static void main(String args[])
+    {
+        Product ob = new Product ();
+        int p = ob.product(20, 10);
+        System.out.println("Product: " + p);
+    }
+}
+output : Error -Product is abstract; cannot be instantiated
+
+other way : 
+abstract class Product
+{
+    public int product(int x, int y) { return x * y; }
+}
+class Multiplication extends Product
+{
+}
+class MainClass2 extends Product 
+{
+    public static void main(String args[])
+    {
+        Multiplication ob = new Multiplication ();
+        int p = ob.product(20, 10);
+        System.out.println("Product: " + p);
+    }
+}
+
+output : 200
+4. Concrete Class
+=================
+A normal class with an implementation for all of its methods and no abstract methods is called a 
+concrete class. 
+
+public class MainClass
+{
+    static int sum(int x, int y) 
+    { 
+         return x + y; 
+    }
+    public static void main(String args[])
+    {
+        int p = sum(10, 8);
+        System.out.println("Sum: " + p);
+    }
+}
+
+5. POJO Class
+=============
+POJO is an abbreviation for "Plain Old Java Object." A POJO class has only private 
+variables with setter and getter methods to access them.
+ It's a pure data structure with methods that can override some Object class methods (e.g. equals) or 
+other interfaces (e.g. serializable), but it has no behavior(methods) of its own.
+
+POJO class properties:
+----------------------
+1.When writing a POJO class, public setter and getter methods are required.
+2.Private variables should be used for all instance variables.
+
+class POJO 
+{
+    private int value = 365;
+    public int getValue() { return value; }
+    public void setValue(int value) { this.value = value; }
+}
+public class MainClass
+{
+    public static void main(String args[])
+    {
+        POJO p = new POJO();
+        System.out.println(p.getValue());
+    }
+}
+
+6. Singleton Class
+==================
+1.A singleton class is one that has just one object at any one moment. 
+2.Even yet, if we try to create an instance again, the newly created instance refers to the previous one. 
+3.Any modification we make to the class through any object impacts the variables in newly created objects as well. 
+4.It's commonly used to manage access while working with database connections and socket programming.
+
+
+The following steps are used to make Singleton Class:
+1.Make constructor private.(that is only available to you.)
+2.Create a static function that returns the singleton class's object.
+
+class Singleton 
+{
+    private static Singleton single_instance = null;
+
+    public String s;
+
+    private Singleton()
+    {
+        s = "Harsha";
+    }
+    // here a private constructor is used
+
+    // Method
+    public static Singleton getObject()
+    {
+        if (single_instance == null) {
+            single_instance = new Singleton();
+        }
+        return single_instance;
+    }
+}
+
+// Main class
+class MainClass 
+{
+    public static void main(String args[])
+    {
+        Singleton x = Singleton.getObject();
+        Singleton y = Singleton.getObject();
+
+        // change var of x
+        x.s = (x.s).toUpperCase();
+
+        System.out.println("String from x is -->" + x.s);
+        System.out.println("String from y is -->" + y.s);
+        System.out.println("\n");
+
+        y.s = (y.s).toLowerCase();
+
+        System.out.println("String from x is -->" + x.s);
+        System.out.println("String from y is -->" + y.s);
+    }
+}
+
+
+7. Inner Class
+==============
+1.We can define a class within a class in Java, and these classes are referred to as nested classes. 
+2.The outer class members (including private) can be accessed by the inner class. 
+
+Why Use Inner Classes: Main Benefits
+------------------------------------
+1. Grouping of Related Code
+When a class is only useful within another class, keeping them together makes your code more organized. 
+You don’t clutter your project with extra files.
+
+2. Strong Encapsulation & Access Control
+Inner classes can access private members of their outer class. Plus you can restrict an inner class to be
+private—completely hiding it from other parts of your code.
+
+3.Cleaner, Easier-to-Read Code
+Since both classes are usually linked, grouping them improves readability. You don't have to jump between 
+files to see the behavior.
+
+outer class can be only : public, default. static keyword not applicable for outer class.
+inner class can be : public, default, private, protected, static, non static.
+
+EXAMPLE :
+without using inner class concept:
+class Engine 
+{
+	private int horsepower;
+	public Engine(int hp) 
+	{
+		this.horsepower = hp;
+	}
+	void run() 
+	{
+		System.out.println(" engine starting at " + horsepower + " HP.");
+	}
+}
+public class Car 
+{
+    private String model;
+    private Engine engine;
+
+    public Car(String model, int horsepower) 
+    {
+        this.model = model;
+        this.engine = new Engine(horsepower);
+    }
+
+    public void start() 
+    {
+        engine.run();
+    }
+
+    public static void main(String[] args) 
+    {
+        Car car = new Car("Sedan", 120);
+        car.start();
+    }
+}
+
+With using inner class concept :
+
+public class Car 
+{
+    private String model;
+    private Engine engine;  // Engine tied to this Car
+
+    public Car(String model, int horsepower) 
+    {
+        this.model = model;
+        this.engine = new Engine(horsepower);
+    }
+
+    public void start() 
+    {
+        engine.run();
+    }
+
+    // Member inner class
+    private class Engine 
+    {
+        private int horsepower;
+        public Engine(int hp) 
+        {
+            this.horsepower = hp;
+        }
+        void run() 
+        {
+            System.out.println(model + " engine starting at " + horsepower + " HP.");
+        }
+    }
+
+    public static void main(String[] args) 
+    {
+        Car car = new Car("Sedan", 120);
+        car.start();  // Prints: "Sedan engine starting at 120 HP."
+    }
+}
+Why this helps:
+---------------
+Engine is only ever used by Car, so hiding it inside keeps things tidy.
+
+Engine can access model directly, even though it’s private.
+
+External classes don't even know Engine exists—great for encapsulation.
+
+There are 4 types of inner classes:
+------------
+
+Nested Inner class
+Static nested classes
+Method Local inner classes
+Anonymous inner classes
+
+Example :
+A. Member Inner Class (Non‑static nested class)
+----------------------------------------------------------
+Requires an instance of the outer class to create.
+Can access all outer class members, including private. 
+
+public class Outer 
+{
+    private String msg = "Hello";
+    class Inner 
+    {
+        void display() 
+        {
+            System.out.println("Message: " + msg);
+        }
+    }
+
+    public static void main(String[] args) 
+    {
+        Outer outer = new Outer();
+        Outer.Inner inner = outer.new Inner();
+        inner.display(); // prints "Message: Hello"
+    }
+}
+
+
+B.Static Nested Class:
+----------------------
+Declared static within the outer class.
+
+Can only directly access static members of the outer class. 
+These classes are like static members of the outer class.
+public class Outer 
+{
+    private static String staticMsg = "Hi from static!";
+    static class StaticNested 
+    {
+        void show() 
+        {
+            System.out.println(staticMsg);
+        }
+    }
+    public static void main(String[] args) 
+    {
+        Outer.StaticNested obj = new Outer.StaticNested();
+        obj.show(); // prints "Hi from static!"
+    }
+}
+
+class Car
+{
+	static class InnerClass1
+	{
+		public void walk()
+		{
+			System.out.println("Walk away");
+		}
+	}
+	class InnerClass2
+	{
+		public void show()
+		{
+			System.out.println("Disply the result");
+		}
+	}
+}
+class MainClassStaticClasses
+{
+	public static void main(String[] args) 
+	{
+		Car.InnerClass1 ob1 = new Car.InnerClass1();
+		ob1.walk();
+		Car outerClassObject = new Car();
+		Car.InnerClass2 ob2 = outerClassObject.new InnerClass2();
+	}
+}
+
+If you want to create object of inner static class, 
+syntax : 
+OuterClassName.InnerClassName orv = new OuterClassName.InnerClassName();
+
+If you want to create object of inner non-static class, 
+syntax : 
+OuterClass outerClassObject = new OuterClass();
+OuterClassName.InnerClassName orv = outerClassObject.new InnerClassName();
+
+
+
+C. Method Local Inner Class(An inner class can be declared within a method of an outer class.)
+----------------------------------------------------------------------------------------------
+1.Defined inside a method (or block).
+2.Scope limited to that method/block.
+3.Can access effectively final local variables (Java 8+).
+4.innerclass which is declared within the method can have non-static methods only(before java 8 version)...
+After java8 we can write static methods also...
+public class Outer 
+{
+    void myMethod() 
+    {
+        final String greeting = "Good morning!!";
+        class LocalInner 
+        {
+            void print() 
+            {
+                System.out.println(greeting);
+            }
+        }
+        LocalInner li = new LocalInner();
+        li.print(); // prints "Good morning!!"
+    }
+    public static void main(String[] args) 
+    {
+        new Outer().myMethod();
+    }
+}
+
+D.Anonymous Inner Class
+-----------------------
+1.No class name.
+2.Often used when implementing an interface or extending a class inline 
+public class Outer 
+{
+    interface Person 
+    {
+        void speak();
+    }
+    public static void main(String[] args) 
+    {
+        Person p = new Person() {
+            public void speak() 
+            {
+                System.out.println("Hello from anonymous inner");
+            }
+        };
+        p.speak();
+    }
+}
+
+
+2. Static Class
+================
+1.In Java, you cannot declare a top-level class as static.
+2.the static keyword can be used with nested (inner) classes.  
+3.Static is a Java word that explains how objects are kept in memory.  
+3.you dont need an object to access a static class.
+4.A static nested class cannot access non-static members of the outer class directly—only static members.
+
+| Feature                                 | Static Nested Class |
+| --------------------------------------- | ------------------- |
+| **Can have static members?**            | Yes                 |
+| **Can have non-static members?          | Yes                 |
+| **Access to outer’s static members?**   | Yes                 |
+| **Access to outer’s non-static members? | Not directly        |
+
+OuterClass.StaticNested nested = new OuterClass.StaticNested();
+nested.instanceMethod();
+---
+
+| Nesting Type              | Requires Outer Instance?  | Can Have Instance Methods?  |
+|---------------------------|---------------------------|---------------------------- |
+| **Static Nested Class**   |  No                       |  Yes                        |
+| **Non-Static Inner Class**|  Yes                      |  Yes (needs outer instance) |
+
+---
+
+“Since the class is static we cannot create the object. How does calling non-static method work?”
+
+When we say "static nested class," we're not implying it's uninstantiable.
+So you **can** create an object of the static nested class—and once you do, you can call its 
+non-static methods as usual:
+OuterClass.StaticNested nested = new OuterClass.StaticNested();
+nested.instanceMethod();
+
+
+
+class OuterClass 
+{
+    private static String msg = "Hello from Static Nested Class";
+
+    // Static nested class
+    public static class NestedStaticClass 
+    {
+        public void printMessage() 
+        {
+            System.out.println("Message: " + msg);
+        }
+    }
+}
+
+public class Test 
+{
+    public static void main(String[] args) 
+    {
+        OuterClass.NestedStaticClass nested = new OuterClass.NestedStaticClass();
+        nested.printMessage();
+    }
+}
+
+output : 
+Message: Hello from Static Nested Class
+
+

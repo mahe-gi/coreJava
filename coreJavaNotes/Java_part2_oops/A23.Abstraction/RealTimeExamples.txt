@@ -1,0 +1,117 @@
+public interface Device 
+{
+	public abstract void turnOn();
+	public abstract void turnOff();
+}
+class Fan implements Device
+{
+	public void turnOn()
+	{
+		System.out.println("Fan is turned On");
+	}
+	public void turnOff()
+	{
+		System.out.println("Fan is turned Off");
+	}
+}
+class TV implements Device
+{
+	public void turnOn()
+	{
+		System.out.println("TV is turned On");
+	}
+	public void turnOff()
+	{
+		System.out.println("TV is turned Off");
+	}
+}
+class TubeLight implements Device
+{
+	public void turnOn()
+	{
+		System.out.println("TubeLight is turned On");
+	}
+	public void turnOff()
+	{
+		System.out.println("TubeLight is turned Off");
+	}
+}
+class HelperClassDevice 
+{
+	public static Device getObject(String dvc)
+	{
+		switch (dvc) 
+		{
+			case"fan": return new Fan();
+			case"tv": return new TV();
+			case"light": return new TubeLight();
+			default: return null;
+		}
+	}
+}
+public class DeviceMainClass 
+{
+	public static void main(String[] args) 
+	{
+		Device d1 = HelperClassDevice.getObject("light");
+		//Device d1 = new TV();
+		d1.turnOn();
+		d1.turnOff();
+		Device d2 = HelperClassDevice.getObject("tv");
+		d2.turnOn();
+		d2.turnOff();
+	}
+}
+
+Example : 2
+public interface Notifier 
+{
+	public abstract void notify(String msg);
+}
+public class EmailNotifier implements Notifier
+{
+	public void notify(String msg)
+	{
+		System.out.println("Email message : "+msg);
+	}
+}
+public class SMSNotifier implements Notifier
+{
+	public void notify(String msg)
+	{
+		System.out.println("SMS message : "+msg);
+	}
+}
+public class WhatsAppNotifier implements Notifier
+{
+	public void notify(String msg)
+	{
+		System.out.println("WhatsApp message : "+msg);
+	}
+}
+public class HelperClassNotifier 
+{
+	public static Notifier getObject(String type)
+	{
+		switch (type) 
+		{
+			case "email":return new EmailNotifier();
+			case "sms":return new SMSNotifier();
+			case "whatsapp":return new WhatsAppNotifier();
+			default: return null;
+		}
+	}
+}
+public class NotifierMainClass 
+{
+	public static void main(String[] args) 
+	{
+		Notifier n1 = HelperClassNotifier.getObject("email");
+		n1.notify("Hello everyone");
+		Notifier n2 = HelperClassNotifier.getObject("whatsapp");
+		n2.notify("Class started already");
+		Notifier n3 = HelperClassNotifier.getObject("sms");
+		n3.notify("its Urget, call me back");
+	}
+}
+

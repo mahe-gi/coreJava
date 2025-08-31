@@ -1,0 +1,91 @@
+final Keyword in Java
+=================
+The final keyword is a non-access modifier used to restrict the user.
+
+1. Uses of final Keyword
+----------------------------
+a. Final Variable
+Meaning: Its value cannot be changed once assigned (acts like a constant).
+
+Declaration Example:
+final int MAX_USERS = 100;
+Must be initialized at the time of declaration or in the constructor (for instance variables).
+
+b. Final Method
+Meaning: Method cannot be overridden by subclasses.
+
+Usage Example:
+class Parent 
+{
+    final void display() 
+    {
+        System.out.println("Parent display");
+    }
+}
+
+class Child extends Parent 
+{
+    // void display() { } // Error: cannot override final method
+}
+
+
+c. Final Class
+Meaning: Class cannot be inherited (no subclasses).
+
+Usage Example:
+
+final class Vehicle 
+{
+    // class content
+}
+
+class Car extends Vehicle 
+{ // Error
+}
+
+
+
+2. Important Points
+===================
+1.Final variable = constant value(you cannot re-initialize it)
+
+2.Final method = cannot be overridden
+
+3.Final class = cannot be extended
+
+4.Final variables do not require initialization if declared as local blank final variables, but they must be initialized before use.
+
+5.Final can be used with instance variables, static variables, local variables, parameters, methods, and classes.
+
+6.Final does not mean immutability for objects. It prevents reassignment of the reference variable, but internal state can change.
+final C ob2 = new C();
+
+
+Example:
+final StringBuilder sb = new StringBuilder("Java");
+sb.append(" Programming"); // Allowed     -->"Java Programming"
+// sb = new StringBuilder("Python"); // Error
+
+
+3. Final with Inheritance
+Final Class: Cannot have child classes.
+
+Final Method: Cannot be overridden in child classes.
+
+Final Variable: Cannot be reassigned.
+
+4. Final Parameters
+You can declare method parameters as final to prevent them from being modified within the method.
+
+Example:
+void show(final int x) 
+{
+    // x = 10; // Error
+    System.out.println(x);
+}
+
+5. Final vs Finally vs Finalize()
+Keyword	Usage
+final	Non-access modifier for variables, methods, classes
+finally	Block used in exception handling
+finalize()	Method called by garbage collector before object destruction

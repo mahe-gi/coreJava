@@ -1,0 +1,25 @@
+class--> 
+methods : can have only complete methods.
+variables : can have static/non-static/final/public/private/default/protected variables
+constructor : class contains constructor.
+Object creation : yes, we can create object
+method can be : private/default/protected/public 
+
+abstract class -->
+methods : can have both complete and abstract methods.
+variables : can have static/non-static/final/public/private/default/protected variables
+constructor : abstract class can contain constructor.
+Object creation : No,we cannot create object.
+methods can be : private(it should be a complete method),abstract methods cannot be private,default/protected/public
+
+interface (pure abstract class) -->
+methods : 
+1.before java 8 : interface ca have only abstract methods.
+2.in java 8 : oracle introduced, default complete methods(non-static and can be over-ridden)
+	      oracle introduced, static complete methods.
+3.in java 9(onwards) : you can write private static methods.
+
+methods can be : Only public by default.
+variables : by default, variables final public and static.
+constructor :No constructor.
+Object creation :No, Not possible.

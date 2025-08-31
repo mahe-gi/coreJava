@@ -1,0 +1,27 @@
+class --> only complete methods
+we can have constructor in a class
+we also can create object of a class
+
+abstract class--> can have complete methods + abstract methods
+we can have constructor in an abstract class.
+we cannot create object of abstract class.
+
+interface(pure abstract class) --> can have only abstract methods(before java 8)
+
+java 8 --> Now, you can write complete methods but those complete methods must be
+default method(non-static) or static method.
+cannot have constructor.
+we cannot create object for interface
+
+class-class ==> extends
+abstract class to class==> extends
+interface - interface ==> extends
+interface-class==> implements
+
+by default, all the methods will be public and abstract.
+
+by default, all the variables will be final, static and public.
+
+
+
+

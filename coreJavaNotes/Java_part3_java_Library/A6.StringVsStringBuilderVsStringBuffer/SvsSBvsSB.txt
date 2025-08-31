@@ -1,0 +1,213 @@
+StringBuilder
+=============
+
+| Component               | Behavior                                                       |
+| ----------------------- | -------------------------------------------------------------- |
+| character array         | Immutable in size—you can't grow it directly                   |
+| `StringBuffer`          | Holds contents in a `char[]` plus a `count` for current length |
+| Upon exceeding capacity | Allocates *new* `char[]`, copies content, replaces old array   |
+| Capacity growth logic   | `max(minimumCapacity, oldCapacity × 2 + 2)`                    |
+
+
+| Feature              |   String                                                          |   StringBuilder                                                    |   StringBuffer                                                                                                                     |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+|   Mutability         | Immutable – cannot change once created                            | Mutable – contents can be modified                                 | Mutable – contents can be modified                              |
+|   Thread-Safety      | Implicitly safe due to immutability                               | Not thread-safe (no synchronization)                               | Thread-safe (synchronized methods)                              |
+|   Performance        | Slow for repeated concatenation – creates many temporary objects  | Fastest in multi-threaded contexts, minimal memory usage    	| Slower than `StringBuilder` due to synchronization overhead	  |
+|   Internal Storage   | Stored in String Pool                                             | Stored in mutable `char[]` on Heap                                 | Same as `StringBuilder`, but on Heap                            |
+|   Introduced In      | Since early versions of Java (java 1.1)                           | Java 5 (JDK 1.5)                                                   | Since early versions of Java (before Java 5)                    |
+|   Usage Scenarios    | Ideal for fixed or hardly-changed strings                         | Best for heavy modifications in single-threaded scenarios  	| Suitable for multi-threaded scenarios needing mutable strings   |
+|   Memory Behavior    | Creates new objects, can stress GC                                | Reuses buffer and reduces object creation                          | Also reuses buffer, but synchronization adds slight overhead    |
+|   Syntax Example     | `String s = "Hello";`                                             | `StringBuilder sb = new StringBuilder("Hello"); sb.append("...");` | `StringBuffer sbf = new StringBuffer("Hello"); sbf.append("...")|
+
+
+Why Use StringBuilder Instead of String, Despite Allocations?
+1.With regular String concatenation:
+s = s + "a";
+Each concatenation creates a new String, copying all characters every time. If you do this in a 
+loop, it results in complexity in the number of characters— a huge performance hit as 
+strings grow. 
+
+In contrast, StringBuilder appends characters in place, only copying when its internal buffer 
+is full—not on every append. This leads to a massive improvement in efficiency 
+
+2. Reduced Garbage & Memory Overhead
+Each new String concatenation allocates memory and leaves the old String for GC collection. 
+With enough operations, this creates a lot of short-lived objects and pressures the garbage 
+collector.
+
+StringBuilder, on the other hand, keeps mutating its internal buffer instead of throwing away 
+old versions, leading to good memory optamization.
+
+String:
+=======
+Immutable strings allow safe sharing across threads.
+Frequent concatenations result in poor performance due to creating many temporary String objects. 
+
+StringBuilder:
+==============
+Introduced in Java 5 to improve performance in non-threaded code. 
+Offers fast append/insert operations with very low object churn. 
+Popular in loops or dynamic string building. 
+
+
+StringBuffer:
+=============
+Requires synchronization on every method to be thread-safe. 
+Safer in concurrent contexts but incurs performance costs. 
+Preferred when multiple threads share and modify the same string.
+
+When to Use What?
+=================
+Use String when:
+----------------
+Data is constant or rarely modified.
+You need thread-safety through immutability.
+
+Use StringBuilder when:
+-----------------------
+Building strings extensively in single-threaded code.
+You want the best performance with minimal allocations.
+
+Use StringBuffer when:
+----------------------
+Mutable strings are modified across multiple threads.
+Thread-safety is essential without manual synchronization.
+
+
+Common StringBuilder Methods
+============================
+| Method                                                       | Description                                                                                                                  |
+| ------------------------------------------------------------ | -----------------------------------------------------------------------------------------------------------------------------|
+| append(...)                                                  | Appends various data types (e.g., `String`, `char`, `int`, `boolean`) to the end of the builder. Overloaded for flexibility. |
+| insert(int index,String s)                                   | Inserts data at a specified position. Works like `append()`, but you choose the insertion point.                             |
+|   delete(int start, int end)                                 | Removes characters between the `start` (inclusive) and `end` (exclusive) indices.                                            |
+|   deleteCharAt(int index)                                    | Removes the character at the specified index.                                                                                |
+|   replace(int start, int end, String str)                    | Replaces the character sequence in the specified range with a new string.						      |
+|   reverse()                                                  | Reverses the entire character sequence in the builder.                                                                       |
+|   charAt(int index)                                          | Returns the character at the specific index.                                                                                 |
+|   setCharAt(int index, char ch)                              | Changes the character at the specified index.                                                                                |
+|   substring(int start) / substring(int start, int end)       | Returns parts of the sequence as a `String`.                                                                                 |
+|   length()                                                   | Returns the current number of characters in the builder.                                                                     |
+|   capacity()                                                 | Shows total buffer capacity before expansion is needed.                                                                      |
+|   ensureCapacity(int minCapacity)                            | Ensures the internal buffer can hold at least the specified capacity without resizing.                                       |
+|   trimToSize()                                               | Trims internal buffer to match the current length, freeing unused space.                                                     |
+|   appendCodePoint(int codePoint)                             | Appends the Unicode character represented by the given code point.                                                           |
+|   toString()                                                 | Converts the current builder content into a `String`.                                                                        |
+
+
+insert()
+========
+public class InsertDemo {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder("Hello World!");
+        System.out.println("Before insert: " + sb);
+
+        // Insert "Beautiful " starting at index 6
+        sb.insert(6, "Beautiful ");
+        System.out.println("After insert:  " + sb);
+    }
+}
+
+capacity() 
+==========
+StringBuilder sb = new StringBuilder();      // default capacity = 16
+System.out.println(sb.capacity());           // prints: 16
+
+sb.append("HelloWorld123456");               // adds 15 characters
+System.out.println(sb.capacity());           // still 16
+
+sb.append("XYZ");                            // now exceeds capacity
+// Capacity grows: (16 * 2) + 2 = 34
+System.out.println(sb.capacity());           // prints: 34
+
+
+ensureCapacity()
+================
+public class EnsureCapacityDemo {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();  // Default capacity = 16
+        System.out.println("Default capacity: " + sb.capacity());
+
+        sb.ensureCapacity(50);  // Request minimum capacity of 50
+        System.out.println("After ensureCapacity(50): " + sb.capacity());
+
+        sb.ensureCapacity(30);  // Request smaller than current capacity
+        System.out.println("After ensureCapacity(30): " + sb.capacity());
+    }
+}
+
+output
+Default capacity: 16
+After ensureCapacity(50): 50
+After ensureCapacity(30): 50
+
+trimToSize()
+============
+public class TrimToSizeExample {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder(50); // initial capacity = 50
+        sb.append("Hello, World!");
+        System.out.println("Before trim: capacity = " + sb.capacity());
+        sb.trimToSize();
+        System.out.println("After trim: capacity = " + sb.capacity());
+    }
+}
+ouput :
+Before trim: capacity = 50
+After trim: capacity = 13
+
+appendCodePoint()
+=================
+StringBuilder sb = new StringBuilder("Example");
+sb.appendCodePoint(65); // Unicode code point for 'A'
+System.out.println(sb); // Prints: ExampleA
+
+
+
+
+StringBuffer methods
+=====================
+| Method                                                        |   Description                                                                                                                               |
+|-------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------|
+| append(...)                                                   | Adds content (e.g., `String`, `int`, `boolean`, `char[]`, `Object`, etc.) to the end of the buffer. Multiple overloaded versions supported. |
+| insert(int offset, …)                                         | Inserts content at the specified position, shifting existing characters as needed.                                                          |
+| delete(int start, int end)                                    | Removes characters between the specified indices (start inclusive, end exclusive).                                                          |
+| deleteCharAt(int index)                                       | Deletes a single character at the given index.                                                                                              |
+| replace(int start, int end, String str)                       | Replaces characters in the given range with a new string.                                                                                   |
+| reverse()                                                     | Reverses the entire sequence of characters within the buffer.                                                                               |
+| charAt(int index)                                             | Retrieves the character at a particular index.                                                                                              |
+| setCharAt(int index, char ch)                                 | Updates the character at the specified position.                                                                                            |
+| length()                                                      | Returns the current number of characters in the buffer.                                                                                     |
+| capacity()                                                    | Retrieves the current buffer capacity. Resizes automatically if needed.                                                                     |
+| ensureCapacity(int minimumCapacity)                           | Ensures the buffer capacity is at least the minimum specified; expands if necessary.                                                        |
+| getChars(int srcBegin, int srcEnd, char\[] dst, int dstBegin) | Copies characters from the buffer into a provided array.                                                                                    |
+| indexOf(String str)                                           | Returns the index of the first occurrence of a substring.                                                                                   |
+| lastIndexOf(String str)                                       | Returns the index of the last occurrence of a substring.                                                                                    |
+| subSequence(int start, int end)                               | Returns a subsequence (as a `CharSequence`) between the specified indices.                                                                  |
+| substring(int start, int end)                                 | Extracts a portion as a new `String` from the specified range.                                                                              |
+| toString()                                                    | Converts the current content of the buffer to a `String`.                                                                                   |
+| trimToSize()                                                  | Trims the buffer capacity to match its current length to free unused memory.                                                                |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+1.Marker Interfaces
+===================
+Definition: Empty interfaces without methods or fields, used to mark classes with special properties.
+Examples: Serializable, Cloneable, Remote 
+Usage: Frameworks or JVM check for these via instanceof, e.g.:
+
+
+2.Functional / SAM Interfaces
+=============================
+Definition: Interfaces with exactly one abstract method (aside from those from Object). Known as Single 
+Abstract Method (SAM) interfaces.
+Introduced: Java 8, for lambdas and method references 
+Examples: Runnable, Comparator, custom.
+Key points:
+May include default or static methods.
+FunctionalInterface is optional but useful for compile-time checking 
+
+3.Normal Interfaces
+====================
+Definition: Contain multiple abstract methods; must be implemented by classes implementing them.
+Usage: Form the most basic interface type; before Java 8, only abstract methods and constants were allowed 
+Examples: List, Map, or custom
+
+4.Default Method Interfaces
+============================
+Introduced: Java 8
+Definition: Interfaces containing methods with a default implementation via default keyword 
+Purpose: Allow API evolution by adding methods without breaking existing implementations.
+
+5.Static Method Interfaces
+==========================
+Introduced: Java 8
+Definition: Interfaces can contain static methods with implementations 
+
+6.Nested Interfaces
+=====================
+Definition: Interfaces declared within a class or another interface—useful for structuring related functionality 
+
+7.Private Methods in Interfaces
+===============================
+Introduced: Java 9
+Definition: Interfaces can include private and private static methods to support default and static methods without 
+exposing helper logic.
+
+8.Service Provider Interfaces (SPI)
+====================================
+Definition: Interfaces designed for frameworks or libraries, implemented by third parties (e.g., JDBC, JNDI) 
+Usage: Enable extensibility and modularization through ServiceLoader.
+
+| Type                   | Abstract Methods | Default/Static | Purpose                                             |
+| ---------------------- | ---------------- | -------------- | --------------------------------------------------- |
+| Marker                 | 0                | –              | Tags classes (`Serializable`, `Cloneable`)          |
+| Functional / SAM       | 1                | yes            | For lambdas and functional programming              |
+| Normal                 | ≥1               | optional†      | Core interface with multiple behaviors              |
+| Default Method         | ≤many            | yes            | Evolve interfaces safely                            |
+| Static Method          | any              | yes            | Provide utility methods scoped to the interface     |
+| Nested                 | any              | any            | Organize related contracts within a class/interface |
+| Private Methods        | any              | yes (private)  | Encapsulate default-method logic                    |
+| Service Provider (SPI) | any              | –              | For pluggable implementations in frameworks         |
+
+
+Prior to Java 8, default/static were disallowed.

@@ -1,0 +1,172 @@
+1.Banking App Example
+=====================
+Protecting account balance data.
+Class : BankAccount 
+Fields : String accountHolderName,double balance
+methods : getAccountHolderName(),setAccountHolderName(String name),getBalance(),
+deposit(double amount)//amt>0,withdraw(double amount) 0-balance.
+
+public class BankAccount 
+{
+    // private data members
+    private String accountHolderName;
+    private double balance;
+
+    // public getter and setter methods
+    public String getAccountHolderName() 
+    {
+        return accountHolderName;
+    }
+
+    public void setAccountHolderName(String name) 
+    {
+        this.accountHolderName = name;
+    }
+
+    public double getBalance() 
+    {
+        return balance;
+    }
+
+    public void deposit(double amount) 
+    {
+        if(amount > 0) 
+        {
+            balance += amount;
+            System.out.println("Amount deposited: " + amount);
+        } 
+        else 
+        {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+
+    public void withdraw(double amount) 
+    {
+        if(amount > 0 && amount <= balance) 
+        {
+            balance -= amount;
+            System.out.println("Amount withdrawn: " + amount);
+        } 
+        else 
+        {
+            System.out.println("Invalid withdraw amount");
+        }
+    }
+}
+
+class BankApp 
+{
+    public static void main(String[] args) 
+    {
+        BankAccount account = new BankAccount();
+        account.setAccountHolderName("Rahul");
+
+        account.deposit(5000);
+        account.withdraw(2000);
+
+        System.out.println("Account Holder: " + account.getAccountHolderName());
+        System.out.println("Remaining Balance: " + account.getBalance());
+    }
+}
+
+Explanation:
+balance is private and cannot be accessed directly.
+Deposit and withdraw operations are done via public methods, ensuring controlled access.
+
+2. Student Management App Example
+====================================
+class : Student
+Fields : String name,int marks.
+methods : getName(), setName(String name), getMarks().
+
+
+Protecting student marks data with validation.
+public class Student 
+{
+    private String name;
+    private int marks;
+    
+    public Student(String name, int marks)
+    {
+        this.name = name;
+        this.marks = marks;
+    }
+    public String getName() 
+    {
+        return name;
+    }
+
+    public void setName(String name) 
+    {
+        this.name = name;
+    }
+
+    public int getMarks() 
+    {
+        return marks;
+    }
+}
+
+class StudentApp 
+{
+    public static void main(String[] args) 
+    {
+        Student s1 = new Student("Anjali",97);
+        System.out.println("Name: " + s1.getName());
+        System.out.println("Marks: " + s1.getMarks());
+    }
+}
+Explanation:Marks are validated inside the setter method, ensuring no invalid data entry.
+
+3. Food Delivery App Example
+==============================
+Protecting order status data.
+
+public class Order 
+{
+    private String orderId;
+    private String status;
+
+    public String getOrderId() 
+    {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) 
+    {
+        this.orderId = orderId;
+    }
+
+    public String getStatus() 
+    {
+        return status;
+    }
+
+    public void setStatus(String status) 
+    {
+        if(status.equals("Placed") || status.equals("Dispatched") || status.equals("Delivered")) 
+        {
+            this.status = status;
+        } 
+        else 
+        {
+            System.out.println("Invalid status");
+        }
+    }
+}
+
+class FoodDeliveryApp 
+{
+    public static void main(String[] args) 
+    {
+        Order order = new Order();
+        order.setOrderId("FD12345");
+        order.setStatus("Placed");
+
+        System.out.println("Order ID: " + order.getOrderId());
+        System.out.println("Status: " + order.getStatus());
+    }
+}
+Explanation: Order status is protected using private access.
+Setter method validates allowed statuses before updating.

@@ -1,0 +1,103 @@
+Print numbers Numbers 1 to 5 : 
+class SumOfNumbers 
+{
+	public static void numbers(int num)
+	{
+		if(num==6)
+		{
+			return;
+		}
+		System.out.println(num);
+		numbers(num+1);
+	}
+	public static void main(String[] args) 
+	{
+		numbers(1);
+	}
+}
+
+Sum of Numbers :
+----------------
+class SumOfNumbers 
+{
+	public static int sum(int n)
+	{
+		if(n==0)
+		{
+			return 0;
+		}
+		return n+sum(n-1);
+	}
+	public static void main(String[] args) 
+	{
+		System.out.println(sum(5));
+	}
+}
+
+Factorial : 
+-----------
+class SumOfNumbers 
+{
+	public static int factorial(int n)
+	{
+		if(n==1)
+		{
+			return 1;
+		}
+		return n*factorial(n-1);
+	}
+	public static void main(String[] args) 
+	{
+		System.out.println(factorial(5));
+	}
+}
+Sum of digits :
+class SumOfNumbers 
+{
+	public static int digitSum(int num,int sum)
+	{
+		if(num==0)
+		{
+			return sum;
+		}
+		sum = sum+num%10;
+		num = num/10;
+		return digitSum(num,sum);
+	}
+	public static void main(String[] args) 
+	{
+		System.out.println(digitSum(534,0));
+	}
+}
+
+PrimeNumber :
+class PrimeNumber
+{
+	public static boolean isPrime(int num,int count,int i)
+	{
+		if(i>num)
+		{
+			if(count==2)
+			return true;
+			else
+			return false;
+		}
+		if(num%i==0)
+		{
+			count++;
+		}
+		return isPrime(num,count,(i+1));
+	}
+	public static void main(String[] args) 
+	{
+		System.out.println(isPrime(6,0,1));
+	}
+}
+
+Fibonacci terms :
+-----------------
+public static int fibonacci(int n) {
+    if (n <= 1) return n;       // base case
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+

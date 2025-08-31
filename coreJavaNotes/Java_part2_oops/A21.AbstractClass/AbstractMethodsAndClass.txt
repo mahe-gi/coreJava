@@ -1,0 +1,219 @@
+1. What is an Abstract Method in Java?
+An abstract method is a method without a body (implementation) declared using 
+the abstract keyword in an abstract class or interface.
+
+Syntax:
+abstract returnType methodName(parameters);
+1.Ends with a semicolon (;) instead of a method body.
+2.Meant to be overridden by subclasses to provide specific implementation.
+
+Example:
+abstract class Shape 
+{
+    abstract void area(); // Abstract method
+}
+Here, area() is an abstract method. Its implementation is provided by subclasses like Circle, Rectangle, etc.
+
+
+2. Key Rules for Abstract Methods
+=================================
+1.Must be declared inside an abstract class or interface.
+2.No method body; only declaration.
+3.Subclass must override and provide implementation, else subclass also becomes abstract.
+4.abstract methods Cannot be private, static, or final because:
+	private methods cannot be overridden.
+	static methods belong to class, not object, so overriding is not applicable.
+	final methods cannot be overridden.
+	Abstract methods can have any access modifier except private (e.g. public, protected, default).
+
+Example with Implementation:
+abstract class Animal 
+{
+    abstract void sound(); // Abstract method
+}
+
+class Dog extends Animal 
+{
+    void sound() 
+    {
+        System.out.println("Barks");
+    }
+}
+
+class Cat extends Animal 
+{
+    void sound() 
+    {
+        System.out.println("Meows");
+    }
+}
+
+public class Test 
+{
+    public static void main(String[] args) 
+{
+        Animal a1 = new Dog();
+        a1.sound(); // Barks
+
+        Animal a2 = new Cat();
+        a2.sound(); // Meows
+    }
+}
+
+Here,sound() is an abstract method in Animal.
+Subclasses Dog and Cat provide their own implementation.
+
+3. Why Use Abstract Methods?
+Advantages:
+===========
+1.To achieve runtime polymorphism.
+2.To force subclasses to provide specific implementations.
+3.Helps in designing templates/frameworks with common structure but different implementations.
+
+4. Abstract Method vs Concrete Method
+| Abstract Method                      | Concrete Method                        |
+| ------------------------------------ | -------------------------------------- |
+| No implementation (only declaration) | Has implementation (method body)       |
+| Ends with semicolon                  | Ends with curly braces and method body |
+| Must be overridden in subclass       | Can be inherited or overridden         |
+
+
+5. Real-Time Example: Mobile  payment
+
+abstract class Payment 
+{
+    abstract void processPayment(double amount);
+}
+
+Subclasses:
+class CreditCardPayment extends Payment 
+{
+    void processPayment(double amount) 
+    {
+        System.out.println("Processing credit card payment of Rs." + amount);
+    }
+}
+
+class UpiPayment extends Payment 
+{
+    void processPayment(double amount) 
+    {
+        System.out.println("Processing UPI payment of Rs." + amount);
+    }
+}
+Here, processPayment() enforces each payment type to define its own payment processing logic.
+
+7. Important Interview Points
+Can an abstract method be final?
+No, because final methods cannot be overridden.
+
+Can abstract methods be static?
+No, static methods cannot be overridden.
+
+Can an abstract class have both abstract and non-abstract methods?
+Yes, it can.
+
+Can we create objects for Abstract Class?
+No, only subclass objects can be created.
+
+Can abstract class have constructors?
+Yes, used to initialize non-static variables. and also used in constructor chaining.
+
+can constructor be abstract?
+No, it breaks the rule of implicit constructor chaining.
+
+quick revision
+===============
+Declared with abstract keyword
+ No body; ends with semicolon
+ Must be overridden in subclass
+ Helps in runtime polymorphism and designing frameworks
+ Declared only in abstract class or interface
+==========================================================================================
+method has two parts
+===================
+1.method signature
+2.method implementation
+
+a method can be of two types 
+==============================
+1.complete method 
+2.incomplete method.
+
+Complete method
+===============
+Complete method will have method signature as well as method implementation.
+
+Incomplete method 
+================
+Incomplete method will have only method signature but no method implementation.
+
+
+1.Complete method is also known as concrete method 
+2.incomplete method is also known as abstract method
+3.abstract is a key word which represents incompleteness.
+
+Steps to create abstract method 
+================================
+Step 1 : create only method signature 
+step 2 : end with semocolen(;) 
+Step 3 : begin with abstract keyword to represent method is incomplete 
+Step 4 : if class contains any abstract method declare the class as abstract 
+
+
+Steps to use abstract method 
+=============================
+1.create a subclass in order to inherit incomplete method.
+2.complete the method by providing method implementation.
+
+
+**************Why do we need abstract methods when we already have method overriding in Java?**********************
+1. Method Overriding vs Abstract Methods
+Method Overriding:
+Happens when subclass provides its own implementation for a method already defined (concrete) in the superclass.
+Superclass method has a default implementation, and overriding is optional.
+
+Abstract Methods:
+Declared without any implementation in the superclass.
+Forces all subclasses to provide their own implementation.
+Used when superclass cannot define a default behavior, only define a contract.
+
+2. Analogy:
+complet Method is like: "Here is the default way to do it; you may change it if you want."
+Abstract Method is like:"I don't know how to do this in general. You must provide your own way to do it."
+
+3. Why Abstract Methods are Needed?
+1.To enforce mandatory implementation in subclasses.
+
+2.If you use only overriding with concrete methods, subclasses may choose not to override.
+If you use abstract methods, subclasses must override, else they become abstract themselves.
+
+3.when there is no meaningful default implementation in superclass.
+
+Example:
+In a superclass Shape, you don't know how to draw a shape generally, because each shape has a unique drawing logic.
+abstract class Shape {
+    abstract void draw(); // No default implementation possible here
+}
+
+Using a concrete method with empty or dummy implementation is bad design.
+Declaring it abstract enforces subclasses (Circle, Rectangle) to implement their specific logic.
+
+
+4. Practical Example: Payment System
+abstract class Payment 
+{
+    abstract void processPayment(double amount);
+}
+Each payment type (UPI, Credit Card) must implement processPayment() because the superclass cannot define generic payment processing logic.
+
+If processPayment() was a concrete method in superclass:
+
+Subclasses may skip overriding, leading to incorrect or default behavior being executed.
+
+5. Conclusion:
+Method overriding provides flexibility.
+Abstract methods enforce a compulsory contract for subclasses.
+
+Both are core to polymorphism and abstraction, serving different design needs.
+

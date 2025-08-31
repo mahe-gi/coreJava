@@ -1,0 +1,241 @@
+Inheritance
+=============
+Inheritance in Java is a core principle of Object-Oriented Programming (OOP) that allows a class to 
+inherit properties and behaviors (fields and methods) from another class. This mechanism promotes 
+code reusability and establishes a hierarchical "IS-A" relationship between classes, such as a 
+"Car IS-A Vehicle." 
+class Animal
+{
+
+}
+class Tiger extends Animal
+{
+
+}
+class Lion extends Animal
+{
+
+}
+Key Terminologies Used in Java Inheritance
+===========================================
+1.Class: Class is a set of objects that share common characteristics/ behavior and common properties/ 
+attributes. Class is not a real-world entity. It is just a template or blueprint or prototype from which 
+objects are created.
+
+
+2.Super Class/Parent Class: The class whose features are inherited is known as a superclass(or a base 
+class or a parent class).
+
+
+3.Sub Class/Child Class: The class that inherits the other class is known as a subclass(or a derived 
+class, extended class, or child class). The subclass can add its own fields and methods in addition 
+to the superclass fields and methods.
+
+
+4.Extends Keyword: This keyword is used to inherit properties from a superclass.
+
+
+5.Method Overriding: Redefining a superclass method in a subclass.
+
+6.Reusability: Inheritance supports the concept of “reusability”, i.e. when we want to create a new 
+class and there is already a class that includes some of the code that we want, we can derive our 
+new class from the existing class. 
+
+7.By doing this, we are reusing the fields and methods of the existing class.
+
+
+Key points:
+1.Superclass (Parent Class / Base Class): The class whose members (variables and methods) are inherited.
+
+2.Subclass (Child Class / Derived Class / Extended Class): The class that inherits members from the 
+superclass.
+
+
+
+example code :
+Without Inheritance 
+-------------------
+Triangle--> rotate clock-wise
+Rectangle--> rotate clock-wise
+Rhombus--> rotate clock-wise
+
+with inheritance
+----------------
+		|-> Triangle--> rotate clock-wise
+Shape(SC)-------|-> Rectangle--> rotate clock-wise
+		|-> Rhombus--> rotate clock-wise
+
+Example : 
+SplenerPlus	O1|            	  |
+hero honda shineO2|---->class Bike|
+yamaha RX 100	O3|               |
+                                  |
+Tata altroz O4|            	  |
+Hyundai i20 O5|---->class Car	  |-----------------> Class Vehicle(super class)
+polo	    O6|                   |
+                                  |
+Bharath benze O7|                 |
+Ashok layland O8|---->class Truck |
+Volvo         O9|         
+
+Without Inheritance
+-------------------
+empId, empName, empSal.
+
+              /Raghu(o1)
+	     /
+Developer(sc)------------------> language(progrmming language)
+            \
+             \ravi(o2)
+       	  
+  
+          /bhavya(o1)
+         /
+Tester(sc)---------------------> Testing role(manual/automation)
+	 \
+          \Geetha(o2)
+
+
+
+With Inheritance
+----------------
+
+                         /Raghu(o1)
+	                /
+              /Developer(sc)------------------> language(progrmming language)
+             /          \
+Employee(Sc)/            \ravi(o2)
+       	    \
+             \            /bhavya(o1)
+	      \          /
+               \Tester(sc)---------------------> Testing role(manual/automation)
+	                 \
+                          \Geetha(o2)
+
+How it Works:
+================
+1.A subclass uses the extends keyword to inherit from a superclass.
+2.The subclass gains access to the public and protected members of its superclass. If in the same package,
+it also inherits package-private members. 
+3.Subclasses can introduce new fields(variables) and methods, or they can override inherited methods to provide
+specialized implementations.
+
+4.only non-static methods are over-ridden and static methods are hidden not overridden.
+If the subclass defines a static method with the same signature, it simply hides the superclass’s method.
+
+
+class A {
+  public static void stat() { System.out.println("A.stat"); }
+  public void inst() { System.out.println("A.inst"); }
+}
+
+class B extends A {
+  public static void stat() { System.out.println("B.stat"); } // hides A.stat
+  @Override
+  public void inst() { System.out.println("B.inst"); }       // overrides A.inst
+}
+
+public class Test {
+  public static void main(String[] args) {
+    A x = new B();
+    x.stat(); // prints "A.stat" (static method called via reference type)
+    B x = new B();
+    x.stat(); // prints "B.stat" (static method called via reference type)
+    x.inst(); // prints "B.inst" (instance method via actual object)
+  }
+}
+
+What Is Inherited?
+===================
+1.Fields (instance and static), and methods (public/protected/package) are inherited.
+
+2.Constructors are not inherited, though the subclass may call the superclass constructor using super() .
+
+3.Private members are not inherited (though accessible via super in the same class).
+
+Types of Inheritance
+=====================
+1.Single-level: One subclass extends one superclass.
+Flower(Super-class)--> rose(sub-class)
+
+2.Multilevel: A → B → C chain of inheritance.
+Vehicle(Super-Class)-->Bike(Super-class)-->Hero(sub-class)
+refuel()	       number of people
+servicing()
+Animal-->cornivorous-->lion
+3.Hierarchical: Multiple subclasses extend the same superclass.
+			    Animal(Super-class)
+			   /	  |	    \
+                          /	  |          \
+                         /	  |           \
+                        /	  |            \
+                       / 	  |             \
+
+	Lion(sub-class)	     Tiger(sub-class)	Cat(sub-class)	
+	
+
+4.Multiple inheritance of classes: Not allowed in Java—but possible with interfaces.
+
+4.1)Diamond Problem (Ambiguity)
+	4.1.1)Ambiguity in constructor chaining(super())
+	4.1.2)Ambiguity in executing method implementation
+
+When a subclass inherits from two classes that have a shared ancestor, which implementation should it take?
+    A
+   / \
+  B   C
+   \ /
+    D
+If both B and C override foo() from A, then D—which extends both—faces ambiguity: does D.foo() call B’s 
+version or C’s version? Java prohibits this scenario altogether.
+
+4.2)Complexity & Poor Design
+
+5. Hybrid Inheritance
+It is a mix of two or more of the above types of inheritance. Since Java doesn’t support multiple inheritances
+with classes, hybrid inheritance involving multiple inheritance is also not possible with classes.
+
+
+
+Accessing Superclass Constructors
+==================================
+1.Use super(...) to invoke a superclass constructor.
+
+2.If omitted, Java auto-inserts a default super(), provided a no-argument constructor exists in the 
+superclass.
+
+
+Method Overriding vs Hiding
+============================
+
+Overriding (Instance Methods)
+------------------------------
+1.Allows a subclass to provide its own version of an inherited method.
+
+2.Must match signature and return type.
+
+3.Runtime polymorphism: which method runs depends on actual runtime object.
+
+Hiding (Static Methods/Fields)
+-------------------------------
+1.Static members are inherited, but when redefined in subclass, they hide, not override.
+
+2.Resolution is based on reference type at compile time, not runtime.
+
+
+
+
+
+
+Benefits of Inheritance:
+=========================
+1.Code Reusability:
+Avoids redundant code by allowing subclasses to reuse existing functionality from superclasses.
+
+2.Method Overriding (Polymorphism):
+Enables runtime polymorphism, where a method call is resolved to the appropriate implementation based 
+on the object's actual type at runtime.
+
+3.Abstraction: The concept of abstraction where we do not have to provide all details, is achieved through 
+inheritance. Abstraction only shows the functionality to the user.
+

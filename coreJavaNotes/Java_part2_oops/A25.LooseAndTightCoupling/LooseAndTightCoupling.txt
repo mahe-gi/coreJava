@@ -1,0 +1,222 @@
+Coupling in Java refers to the degree to which different classes or modules in a system are 
+dependent on each other. 
+
+There are two main types of coupling: 
+1.tight coupling 
+2.loose coupling.
+Example - 1
+
+tight coupling
+==============
+package coupling;
+
+class Email
+{
+	public void text(String msg)
+	{
+		System.out.println("Email message : "+msg);
+	}
+}
+class LinkedIn
+{
+	public void text(String msg)
+	{
+		System.out.println("LinkedIn message : "+msg);
+	}
+}
+class WhatsApp
+{
+	public void text(String msg)
+	{
+		System.out.println("WhatsApp message : "+msg);
+	}
+}
+class MessageService
+{
+	//private Email email = new Email();
+	//private LinkedIn ldn = new LinkedIn();
+	private WhatsApp wa = new WhatsApp();
+	public void send(String msg)
+	{
+		wa.text(msg);
+	}
+}
+public class TightCoupling 
+{
+	public static void main(String[] args) 
+	{
+		MessageService msg1 = new MessageService();
+		msg1.send("Interview call letter");
+	}
+}
+
+loose coupling
+==============
+package coupling;
+interface Notification
+{
+	void text(String msg);
+}
+class Email implements Notification
+{
+	public void text(String msg)
+	{
+		System.out.println("Email message : "+msg);
+	}
+}
+class LinkedIn implements Notification
+{
+	public void text(String msg)
+	{
+		System.out.println("LinkedIn message : "+msg);
+	}
+}
+class WhatsApp implements Notification
+{
+	public void text(String msg)
+	{
+		System.out.println("WhatsApp message : "+msg);
+	}
+}
+class MessageService
+{
+	private Notification app;
+	public MessageService(Notification app)
+	{
+		this.app = app;
+	}
+	public void send(String msg)
+	{
+		app.text(msg);
+	}
+}
+public class TightCoupling 
+{
+	public static void main(String[] args) 
+	{
+		LinkedIn app = new LinkedIn();
+		MessageService msg1 = new MessageService(app);
+		msg1.send("Interview call letter");
+	}
+}
+
+
+
+Tight Coupling
+===============
+Tight coupling occurs when classes are highly dependent on each other. A change in one class
+often necessitates changes in other classes that are tightly coupled to it. This can lead to 
+less flexible and harder-to-maintain code.
+
+Example of Tight Coupling:
+class Engine 
+{
+    public void start() 
+    {
+        System.out.println("Engine started.");
+    }
+}
+
+class Car 
+{
+    private Engine engine;
+
+    public Car() 
+    {
+        // Car directly creates an instance of Engine
+        this.engine = new Engine(); 
+    }
+
+    public void drive() 
+    {
+        engine.start();
+        System.out.println("Car is driving.");
+    }
+}
+
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        Car myCar = new Car();
+        myCar.drive();
+    }
+}
+
+In this example, the Car class directly creates an instance of Engine. If the Engine class's 
+constructor or start() method signature changes, the Car class would need to be modified, 
+demonstrating tight coupling. 
+that means if you change or modify any changes in super class constructor or methods that will
+lead us to change sub class methods also.
+this display tight coupling
+
+Loose Coupling
+===============
+Loose coupling occurs when classes are relatively independent of each other. They interact 
+through well-defined interfaces or abstractions, making the system more flexible, 
+maintainable, and testable.
+Changes in one class are less likely to impact others. 
+
+Example of Loose Coupling : //(using Dependency Injection)
+
+interface VehicleEngine 
+{
+    void start();
+}
+
+class PetrolEngine implements VehicleEngine 
+{
+    public void start() 
+    {
+        System.out.println("Petrol engine started.");
+    }
+}
+
+class ElectricEngine implements VehicleEngine 
+{
+    public void start() 
+    {
+        System.out.println("Electric engine started.");
+    }
+}
+
+class Car 
+{
+    private VehicleEngine engine;
+
+    // Engine is injected through the constructor
+    public Car(VehicleEngine engine) 
+    { 
+        this.engine = engine;
+    }
+
+    public void drive() 
+    {
+        engine.start();
+        System.out.println("Car is driving.");
+    }
+}
+
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        Car petrolCar = new Car(new PetrolEngine());
+        petrolCar.drive();
+
+        Car electricCar = new Car(new ElectricEngine());
+        electricCar.drive();
+    }
+}
+
+In this example, the Car class depends on the VehicleEngine interface, not a concrete 
+implementation. The specific Engine type (PetrolEngine or ElectricEngine) is "injected" 
+into the Car object, typically through its constructor. This allows for easy swapping of 
+engine types without modifying the Car class, illustrating loose coupling.
+
+
+
+
+
+
+

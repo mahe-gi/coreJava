@@ -1,0 +1,90 @@
+1. Single Inheritance
+Definition: One subclass inherits from one superclass.
+
+Example (Swiggy app):
+=====================
+Superclass: User
+
+Fields/properties/variables/states: name, email, mobileNumber
+
+Methods/behaviours/operations: login(), logout()
+
+Subclass: DeliveryBoy (extends User)
+
+Additional Fields: vehicleNumber, deliveryArea
+
+Additional Methods: pickOrder(), deliverOrder()
+
+2. Multilevel Inheritance
+==============================
+Definition: A class inherits from a subclass (chain of inheritance).
+
+Example (PhonePe app):
+
+Superclass: Account
+Fields: accountNumber, balance
+Methods: checkBalance(), withdraw(), deposit()
+
+Subclass: BankAccount (extends Account)
+Additional Fields: bankName, IFSC
+
+Subclass of BankAccount: SavingsAccount (extends BankAccount)
+Additional Fields: interestRate
+Additional Methods: calculateInterest()
+
+3. Hierarchical Inheritance
+=============================
+Definition: Multiple subclasses inherit from the same superclass.
+
+Example (Amazon app):
+
+Superclass: Product
+Fields: productID, name, price
+Methods: displayDetails()
+
+Subclass 1: Electronics (extends Product)
+Additional Fields: warrantyPeriod
+
+Subclass 2: Clothing (extends Product)
+Additional Fields: size, fabricType
+
+4. Multiple Inheritance (Not supported with classes in Java)
+==============================================================
+Note: Java does not support multiple inheritance using classes but achieves it via interfaces.
+
+Example (Paytm app using interfaces):
+Interface: UPIPayments
+Method: payUsingUPI()
+
+Interface: WalletPayments
+Method: payUsingWallet()
+
+Class: PaytmPayment implements both UPIPayments, WalletPayments
+Implements payUsingUPI() and payUsingWallet()
+
+
+5. Hybrid Inheritance
+=======================
+Definition: Combination of two or more types of inheritance.
+Note: In Java, hybrid inheritance is managed using interfaces to avoid ambiguity (diamond problem).
+
+Example (Google Pay app):
+
+Interface: UPIPayment
+Method: transferMoney()
+
+Superclass: UserAccount
+Fields: accountID, balance
+
+Subclass: GPayUser extends UserAccount and implements UPIPayment
+Implements transferMoney()
+
+| **Type**     | **Mobile App Example**                           | **Explanation**                           |
+| ------------ | ------------------------------------------------ | ----------------------------------------- |
+| Single       | Swiggy – User & DeliveryBoy                      | One subclass inherits from one superclass |
+| Multilevel   | PhonePe – Account > BankAccount > SavingsAccount | Chain of inheritance                      |
+| Hierarchical | Amazon – Product > Electronics & Clothing        | Multiple subclasses from same superclass  |
+| Multiple     | Paytm – Using interfaces                         | Class implements multiple interfaces      |
+| Hybrid       | Google Pay – Class + Interface                   | Mix of single & multiple inheritance      |
+
+

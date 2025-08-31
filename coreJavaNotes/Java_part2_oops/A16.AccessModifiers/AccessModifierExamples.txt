@@ -1,0 +1,128 @@
+Example - 1: Calculator App
+==============================
+1. public
+usage: Methods used by any part of the app.
+---------------------------------------------------
+public class Calculator 
+{
+    public int add(int a, int b) 
+    {
+        return a + b;
+    }
+}
+----------------------------------------------------
+Explanation: add() method is public so any class (like UI or history tracker) can call it to perform addition.
+
+
+2. private
+Usage: Internal logic hidden from other classes.
+----------------------------------------------------
+public class Calculator 
+{
+    private void logCalculation(String result) 
+    {
+        System.out.println("Logged: " + result);
+    }
+}
+-----------------------------------------------------
+Explanation: logCalculation() is used only within Calculator class to log operations. No other class should use it.
+
+
+3. protected
+Usage: Methods reused in subclasses.
+---------------------------------------------------------------------
+public class Calculator 
+{
+    protected double calculatePercentage(double total, double value) 
+    {
+        return (value / total) * 100;
+    }
+}
+
+public class AdvancedCalculator extends Calculator 
+{
+    public void showPercentage(double total, double value) 
+    {
+        System.out.println("Percentage: " + calculatePercentage(total, value));
+    }
+}
+-----------------------------------------------------------------------
+Explanation: calculatePercentage() is protected because it's used by AdvancedCalculator, a subclass.
+
+
+4. default (no modifier)
+Usage: Classes or methods used only within the package.
+-----------------------------------------------------------
+class CalculatorHelper 
+{
+    void formatResult(double result) 
+    {
+        System.out.println("Formatted Result: " + result);
+    }
+}
+------------------------------------------------------------
+Explanation: CalculatorHelper is a utility class only for use within the calculator package.
+
+
+
+Example 2: Weather App
+========================
+1.public
+-------------------------------------------------------
+public class WeatherReport 
+{
+    public void displayWeather() 
+    {
+        System.out.println("Today's weather: Sunny");
+    }
+}
+--------------------------------------------------------
+Explanation: Used by any module (home screen, widgets).
+
+2.private
+-------------------------------------------------------
+public class WeatherReport 
+{
+    private String apiKey = "abc123"; // sensitive
+
+    private void connectToApi() 
+    {
+        // logic to connect
+    }
+}
+-----------------------------------------------------
+Explanation: apiKey and connectToApi() are hidden for security.
+
+
+3.protected
+--------------------------------------------------------
+public class WeatherReport 
+{
+    protected void parseData(String json) 
+    {
+        System.out.println("Parsing weather data...");
+    }
+}
+
+public class HourlyWeather extends WeatherReport 
+{
+    public void showHourly() 
+    {
+        parseData("hourly_json");
+    }
+}
+--------------------------------------------------------
+Explanation: parseData() is reused by child classes to process different data formats.
+
+
+4.default
+----------------------------------------------------------
+class WeatherHelper 
+{
+    void formatTemperature(int temp) 
+    {
+        System.out.println(temp + "°C");
+    }
+}
+----------------------------------------------------------
+Explanation: Only used within weather package.

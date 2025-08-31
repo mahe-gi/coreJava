@@ -1,0 +1,38 @@
+Access Modifiers in Java
+=========================
+1.What are Access Modifiers?
+Ans : Access modifiers are keywords used to define the visibility or accessibility of classes, 
+methods, constructors, and variables.
+
+				Same	Same		
+| Modifier                    | Class | Package | Subclass (other package)  | World (everywhere) |
+| --------------------------- | ----- | ------- | ------------------------- | ------------------ |
+| **public**                  | ✔️    | ✔️      | ✔️                       |  ✔️                 |
+| **protected**               | ✔️    | ✔️      | ✔️                       | ❌                  |
+| **default** *(no modifier)* | ✔️    | ✔️      | ❌                       | ❌                  |
+| **private**                 | ✔️    | ❌      | ❌                       | ❌                  |
+
+
+Important Points
+=================
+1.top-level Classes can only be declared public or default (not private or protected).
+
+2.private members are highly secure for data hiding and encapsulation.
+
+3.protected modifier is mainly used in inheritance scenarios.
+
+4.If no access modifier is specified, it is default by nature.
+
+Access modifiers implement encapsulation, security, and modularity in apps. They define what should be visible where, aligning 
+with clean architecture principles.
+
+Why top-level class cannot be private?
+1)private: If a top-level class were private, no other class could access it, not even sub-classe in the same 
+package. Then it becomes useless since Java compiles each class separately, and no external class can 
+create its objects or extend it.
+
+2)Problem with top-level class being protected(instead of default)
+For a top-level class, subclassing it in another package would require accessing it first to extend it.
+But:
+1.Protected visibility only works if the class is already visible.
+2.You cannot access something to extend it if you can’t see it first.

@@ -1,0 +1,268 @@
+1. Example in a Food Delivery App
+=================================
+Scenario:In Swiggy or Zomato, different types of payment methods exist (UPI, Credit Card, Wallet). 
+You can define an abstract class for payment processing.
+Superclas : Payment
+methods : abstract processPayment(double amount), paymentSuccess() 
+
+subclass : UpiPayment
+implement method 
+
+subclass :CreditCardPayment 
+implement method 
+
+
+abstract class Payment 
+{
+    abstract void processPayment(double amount);
+
+    void paymentSuccess() 
+    {
+        System.out.println("Payment successful. Generating receipt.");
+    }
+}
+
+class UpiPayment extends Payment 
+{
+    void processPayment(double amount) 
+    {
+        System.out.println("Processing UPI payment of Rs." + amount);
+    }
+}
+
+class CreditCardPayment extends Payment 
+{
+    void processPayment(double amount) 
+    {
+        System.out.println("Processing Credit Card payment of Rs." + amount);
+    }
+}
+
+class Test 
+{
+    public static void main(String[] args) 
+    {
+        Payment p1 = new UpiPayment();
+        p1.processPayment(250.0);
+        p1.paymentSuccess();
+
+        Payment p2 = new CreditCardPayment();
+        p2.processPayment(500.0);
+        p2.paymentSuccess();
+    }
+}
+
+Why abstract class here?
+Payment defines common behaviour (paymentSuccess) and enforces implementation of processPayment() for each payment type.
+
+2. Example in an E-Commerce App (Amazon)
+========================================
+Scenario: Displaying different types of products.
+
+Superclass : Product 
+fields :String name;
+        double price;
+methods : abstract displayDetails()
+
+subclass : Electronics 
+fields : double warrentyMonths;
+implement method 
+
+subclass Clothing 
+implement method 
+
+abstract class Product 
+{
+    String name;
+    double price;
+
+    Product(String name, double price) 
+    {
+        this.name = name;
+        this.price = price;
+    }
+
+    abstract void displayDetails();
+}
+
+class Electronics extends Product 
+{
+    String brand;
+
+    Electronics(String name, double price, String brand) 
+    {
+        super(name, price);
+        this.brand = brand;
+    }
+
+    void displayDetails() {
+        System.out.println(name + " | " + brand + " | Rs." + price);
+    }
+}
+
+class Clothing extends Product 
+{
+    String size;
+
+    Clothing(String name, double price, String size) 
+    {
+        super(name, price);
+        this.size = size;
+    }
+
+    void displayDetails() {
+        System.out.println(name + " | Size: " + size + " | Rs." + price);
+    }
+}
+
+class Test 
+{
+    public static void main(String[] args) 
+    {
+        Product e = new Electronics("Headphones", 1500, "Sony");
+        e.displayDetails();
+
+        Product c = new Clothing("T-shirt", 500, "M");
+        c.displayDetails();
+    }
+}
+Why abstract class here?
+Product defines common properties and enforces all products to implement displayDetails() method differently.
+
+Superclas : Ride 
+fields :double distance
+methods : abstract calculateFare()
+
+subclass : Auto 
+implement method 
+
+subclass mini
+implement method 
+
+subclass prime
+implement method 
+
+
+3. Example in Ola or Uber App
+=============================
+Scenario: Different vehicle types: Auto, Mini, Prime with different fare calculation logic.
+
+abstract class Ride 
+{
+    double distance;
+
+    Ride(double distance) 
+    {
+        this.distance = distance;
+    }
+
+    abstract double calculateFare();
+}
+
+class Auto extends Ride 
+{
+    Auto(double distance) 
+    {
+        super(distance);
+    }
+
+    double calculateFare() 
+    {
+        return distance * 10;
+    }
+}
+
+class Mini extends Ride 
+{
+    Mini(double distance) 
+    {
+        super(distance);
+    }
+
+    double calculateFare() 
+    {
+        return distance * 15;
+    }
+}
+
+class Prime extends Ride 
+{
+    Prime(double distance) 
+    {
+        super(distance);
+    }
+
+    double calculateFare() {
+        return distance * 20;
+    }
+}
+
+class Test 
+{
+    public static void main(String[] args) 
+    {
+        Ride r1 = new Auto(5);
+        System.out.println("Auto Fare: Rs." + r1.calculateFare());
+
+        Ride r2 = new Prime(5);
+        System.out.println("Prime Fare: Rs." + r2.calculateFare());
+    }
+}
+
+Why abstract class here?
+Ride enforces every vehicle type to define its own fare calculation logic while allowing common distance property.
+
+4. Example in Banking App
+==================================================
+Scenario:Different types of bank accounts with their own interest calculation logic.
+
+abstract class BankAccount 
+{
+    double balance;
+
+    BankAccount(double balance) 
+    {
+        this.balance = balance;
+    }
+
+    abstract double calculateInterest();
+}
+
+class SavingsAccount extends BankAccount 
+{
+    SavingsAccount(double balance) 
+    {
+        super(balance);
+    }
+
+    double calculateInterest() {
+        return balance * 0.04;
+    }
+}
+
+class FixedDeposit extends BankAccount 
+{
+    FixedDeposit(double balance) 
+    {
+        super(balance);
+    }
+
+    double calculateInterest() 
+    {
+        return balance * 0.07;
+    }
+}
+
+class Test 
+{
+    public static void main(String[] args) 
+    {
+        BankAccount sa = new SavingsAccount(10000);
+        System.out.println("Savings Account Interest: Rs." + sa.calculateInterest());
+
+        BankAccount fd = new FixedDeposit(10000);
+        System.out.println("Fixed Deposit Interest: Rs." + fd.calculateInterest());
+    }
+}
+Why abstract class here?
+BankAccount enforces calculation of interest in all account types.

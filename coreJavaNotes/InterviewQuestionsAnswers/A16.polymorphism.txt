@@ -1,0 +1,78 @@
+1.What is polymorphism in Java?
+Polymorphism in Java is the concept that allows objects to take multiple forms—one interface can 
+represent different underlying types. It enables a single entity to exhibit multiple behaviors. 
+
+2.What are the two main types of polymorphism in Java?
+The two primary types are compile-time (static) polymorphism and runtime (dynamic) polymorphism. 
+
+3.How is compile-time polymorphism implemented in Java?
+It is implemented through method overloading, where the compiler determines which overloaded method to 
+call based on the method signature during compilation. 
+
+4.How is runtime polymorphism implemented in Java?
+It is implemented using method overriding. The JVM determines which overridden method to call based on 
+the actual object type at runtime. 
+
+5.Why don’t static methods participate in runtime polymorphism?
+Static methods are resolved at compile time based on the reference type, not at runtime based on the 
+object type. This is known as method hiding, not overriding. 
+
+6.Can final methods be overridden? What does that mean for polymorphism?
+No, final methods cannot be overridden, which prevents them from being involved in runtime polymorphism. 
+
+7.Explain how Java decides which method to call in Parent p = new Child(); p.method();
+Java uses dynamic method dispatch. It resolves the method call at runtime and invokes the subclass’s 
+version if it overrides the parent method. 
+
+8.How does method overloading differ from method overriding in terms of binding?
+Method overloading is bound at compile time (static), while method overriding is bound at runtime (dynamic). 
+
+9.Give an example using interfaces or abstract classes to demonstrate polymorphism.
+You can define an interface or abstract class (Animal) and have multiple implementations (Dog, Cat) 
+each providing its own makeSound() method. Calling makeSound() on an Animal reference invokes the 
+correct implementation based on the actual class at runtime. 
+
+10.What are the advantages of using polymorphism?
+It provides code flexibility, reusability, and enables abstraction by letting clients interact through 
+generalized types rather than concrete implementations. 
+
+11.How are polymorphism and inheritance related—and how do they differ?
+Inheritance establishes an “is-a” relationship between classes, and polymorphism uses that relationship 
+to allow objects of different subclasses to be treated uniformly and behave differently. 
+
+12.What are covariant return types and how are they relevant to polymorphism?
+Covariant return types allow an overridden method in the subclass to return a more specific type than 
+the method in the superclass, enhancing flexibility in polymorphic designs. 
+
+13.What is the difference between static binding and dynamic binding, and when does each occur?
+Static binding (early binding) happens at compile time during method overloading or for static/final 
+methods. Dynamic binding (late binding) occurs at runtime during method overriding. 
+
+14.Why don’t data members support runtime polymorphism?
+Data members are bound statically and accessed based on reference type, not object type. Only methods 
+support runtime polymorphism. 
+
+15.From a theoretical perspective, what’s the difference between ad hoc polymorphism and subtype 
+polymorphism?
+Ad hoc polymorphism (e.g., overloading) allows similar operations on different types; subtype (inclusion) 
+polymorphism is based on inheritance/interfaces where a superclass reference points to subclass objects. 
+
+16.Describe how polymorphism supports design patterns like Strategy or Factory.
+These patterns rely on polymorphism to switch behavior dynamically—e.g., a Strategy interface with multiple 
+implementations, where the selected strategy determines behavior at runtime.
+
+17.Can you overload the main() method? What happens?
+Yes, you can overload main() by defining other versions with different parameter types. However, the JVM 
+only executes the standard main(String[]); others behave like normal static methods. 
+
+18.Does polymorphism introduce noticeable performance overhead? Explain.
+There is a small runtime overhead due to dynamic dispatch, but it is typically negligible in most 
+real-world applications.
+
+19.Have you encountered or debugged an issue due to polymorphic behavior? How did you resolve it?
+Open-ended question to explore candidate’s debugging skills—look for examples involving incorrect method
+invocation due to object type mismatches.
+
+20.Why might composition sometimes be preferred over inheritance in polymorphic design?
+Composition (has-a) allows you to change behavior at runtime by delegating to different components, 
+reducing tight coupling and avoiding pitfalls of deep inheritance hierarchies.

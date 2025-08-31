@@ -1,0 +1,70 @@
+Abstract method/ incomplete method
+----------------------------------
+if a method is having only method signature but no implementation.
+public void pay();
+
+Concrete method / complete method
+---------------------------------
+if a method is having both method signature and method implementation.
+public void pay()
+{
+
+}
+
+
+if any class is containing abstract methods, then class also becomes
+abstract class.
+
+these incomplete methods/abstract methods will be implemented in
+sub classes.
+
+if sub-class does not complete the incomplete method
+in other words
+if sub-class does not implement the abstract method
+in other words
+if subclass does not over-ride the abstract method
+then sub-class also will become abstract.
+
+to force every sub class to over-ride a specific method, we
+declare that method as abstract.
+
+
+Complete method says : " i have given default implementation, if you dont like it, please over-ride the method"
+incomplete method says : "i dont know anything about opeatation/implementation, compulsory you have to over-ride the method"
+
+abstract class can have both complete as well as incomplete emthods.
+
+if a class is abstract, we cannot create objects.why?
+there is a possiblity that user may call incomplete method from oject reference.
+to avoid this, oracle restricted ocject creation for abstract class.
+
+can abstract methods be final? why?
+No, because we must over-ride the abstract method.but if you make any abstract emthod final
+sub-classes cant over-ride the method.
+
+can abstract method be static?why?
+No,because we cannot over-ride static methods.
+
+can abstract method be private?Why?
+No,cannot be accessed from other classes to override.
+
+
+Can abstract class have constructor?why?
+Yes, abstract class will have constructors
+1.to intialise non-static global varials which are present in the abstract class.
+2.constructor chaining.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

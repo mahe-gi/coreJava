@@ -1,0 +1,51 @@
+Exceptions in java
+==================
+the problem that occures during execution of a program(run-time) due to abnormal statement 
+or instructions is known as exception.
+
+int[] a = new int[3];
+a[1] = 10;-->normal statement
+a[4] = 20;-->abnormal statement
+here, exception occurs during the execution.
+
+When exception occures and not handled, the execution of the program stops abroptly.
+						Normal execution
+							|
+							|
+							|		
+			------------<<=false------abnormal statements-------true=>>------
+			|								|
+			|								|
+		normal execution						exceptin occur
+			|								|
+			|								|
+			|								|
+			|								|	
+		execution ends--------------------------------------<=true-----if exception handled---false-=>---
+ 														|
+														|
+													incomplete execution
+When exception occures, Throwable type object is created.
+(java.lang.Throwable is the superclass of all things you can throw or catch (exceptions and errors) in Java)
+
+
+types of exception :
+in java,exceptions are classified into two types (w.r.t. compiler it is divided)
+1.un-checked exceptions
+2.checked exceptions
+
+un-checked exceptions
+=====================
+the compiler un-aware exceptions are known as un-checked exceptions.it is not mandatory to handle or declare 
+un-checked exceptions.
+
+checked exceptions
+==================
+the compiler aware exceptions are checked exceptions.it is mandatory for programmer to either handle or declare 
+checked exceptions, else we get CTE(un-reported exception CTE)
+
+
+
+
+
+

@@ -1,0 +1,407 @@
+MCQs on Access Modifiers
+==========================
+1) Which are access modifiers below in Java?
+A) public
+B) private
+C) protected
+D) All the above
+Answer:D
+
+
+2) What is an access modifier in Java?
+A) An access modifier controls the visibility of variables, constants and methods of a class
+B) An access modifier can hide or show a variable or method to outside classes.
+C) Access modifiers help in implementing the Encapsulation feature of Object-Oriented Programming (OOPs).
+D) All the above
+Answer:D
+
+3) Which is the keyword used to specify the DEFAULT access modifier in java?
+A) default
+B) bydefault
+C) normal
+D) There is no keyword
+Answer:D
+
+4) Which is the less restrictive access modifier in Java?
+A) public
+B) private
+C) protected
+D) default
+Answer:A
+
+
+5) Which is the most restrictive access modifier in Java?
+A) public
+B) private
+C) protected
+D) default
+Answer:B
+
+6) Is it possible to combine more than one access modifier in Java?
+A) No
+B) Yes
+C) -
+D) -
+Answer:A
+
+7) Choose the correct Java code snippet with access modifiers below?
+A) 
+class ABC
+{
+
+}
+
+B) 
+private protected class ABC
+{
+
+}
+
+C) 
+protected public class ABC
+{
+
+}
+
+D) 
+protected private class ABC
+{
+
+}
+Answer:A
+
+
+
+8) Can you access a default member of a class from a class of outside current package in Java?
+A) No
+B) Yes
+C) -
+D) -
+Answer:A
+
+9) Choose the correct statement about access modifiers in Java.
+A) public, protected and default variables and methods can be accessed outside the package somehow.
+B) public and protected variables and methods can be accessed outside the package somehow.
+C) Only public variables and methods can be accessed outside the package somehow.
+D) None of the above
+Answer:B
+
+10) To access a protected variable or method of a Class outside the package, you need to ____ in Java.
+A) Create an instance and call the protected variable or method
+B) Create a Subclass and call the protected variable or method
+C) A and B
+D) None of the above
+Answer:B
+
+
+11) What is the output of the Java program with access modifiers?
+
+package apartment1;
+
+public class Class101
+{
+  public String colour = "BLUE";
+}
+
+
+package apartment2;
+import apartment1;
+
+public class Apartment2Flat102
+{
+  public static void main(String[] args)
+  {
+    Class101 flat = new Class101();
+    System.out.println(flat.colour);
+  }
+}
+
+A) BLUE
+B) empty
+C) null
+D) Compiler error
+Answer:D
+
+12) What is the output of the below Java Code Snippet with access modifiers?
+
+package package1;
+
+public class Forest {
+int area = 10;//sq. km
+}
+
+
+package package1;
+
+public class SmallForest
+{
+  public static void main(String[] args)
+  {
+    Forest fr = new Forest();
+    System.out.println("Area = " + fr.area);
+  }
+}
+
+A) Area = 0
+B) Area =10
+C) No ouput
+D) Compiler error
+Answer:B
+
+13) What is the output of the Java code snippet with default access modifier?
+
+package package1;
+
+public class Bug {
+int legs = 4;
+}
+
+
+package package2;
+import package1.Bug;
+
+public class BugTest extends Bug
+{
+  public static void main(String[] args)
+  {
+    Bug bug = new Bug();
+    System.out.println("Bug Legs = " + bug.legs);
+  }
+}
+
+A) Bug Legs = 4
+B) Bug Legs = 0
+C) Bug Legs = 
+D) Compiler error
+Answer:D
+
+14) What is the output of the Java code snippet with PROTECTED access modifier?
+
+package package1;
+
+public class Parent
+{
+  protected void showProperty()
+  {
+    System.out.println("10 million");
+  }
+}
+
+
+package package2;
+import package1.*;
+
+public class Children extends Parent
+{
+  void show()
+  {
+    showProperty();
+  }
+  public static void main(String[] args)
+  {
+    Children chil = new Children();
+    chil.show();
+  }
+}
+
+A) No output
+B) 10 million
+C) Compiler error
+D) None of the above
+Answer:B
+
+
+15) What is the output of the Java code with PRIVATE access modifier?
+
+package package1;
+public class Factory
+{
+  private void run()
+  {
+    System.out.println("Running factory");
+  }
+}
+
+
+package package1;
+public class FactoryTest
+{
+  void callFactory()
+  {
+    Factory fac2 = new Factory();
+    fac2.run();
+  }
+  public static void main(String[] args)
+  {
+    Factory fac1 = new Factory();
+    fac.run();
+  }
+}
+a
+
+A) 
+Running factory
+Running factory
+
+B) 
+Running factory
+
+C) Compile error
+D) None of the above
+Answer:C
+
+16) In Java, a PROTECTED variable or method of a Super class can not be accessed from a STATIC method of Subclass of different PACKAGE. State TRUE or FALSE.
+A) TRUE
+B) FALSE
+C) -
+D) -
+Answer:A
+
+
+17) What is the output of the Java program with PROTECTED access modifer?
+
+package package1;
+
+public class Milk
+{
+  protected int volume = 1000; //Liters
+}
+
+package package2;
+import package1.Milk;
+public class RoseMilk extends Milk
+{
+  public static void main(String[] args)
+  {
+    Milk object = new Milk();
+    System.out.println(object.volume);
+  }
+}
+
+A) 0
+B) 1000
+C) null
+D) Compiler error
+Answer:D
+
+18) What is the output of the Java code with PROTECTED access modifier?
+package package1;
+public class Plant
+{
+  protected void showHeight()
+  {
+    System.out.println("50 meters");
+  }
+}
+
+
+package package2;
+import package1.Plant;
+
+public class Tree extends Plant
+{
+  public static void main(String[] args)
+  {
+    Tree tree = new Tree();
+    tree.showHeight();
+  }
+}
+
+A) No output
+B) 50 meters
+C) Compiler error
+D) No output
+Answer:B
+a few more questions
+=======================
+Q1. What is the default access modifier for a class member if no modifier is specified?
+a) public
+b) private
+c) default (package-private)
+d) protected
+
+Answer:c) default (package-private)
+
+Q2. Which access modifier allows members to be accessible only within the same class?
+a) public
+b) private
+c) default
+d) protected
+
+Answer:b) private
+
+Q3. Which access modifier allows a class member to be accessible within the same package and in subclasses of other packages?
+a) public
+b) private
+c) default
+d) protected
+
+Answer:d) protected
+
+Q4. Which modifier(s) can be applied to top-level classes?
+a) public only
+b) default only
+c) private and protected
+d) public and default
+
+Answer: d) public and default
+
+Q5. Which of the following is true about private access modifier?
+a) Private members are accessible within the same package.
+b) Private members are accessible in subclasses.
+c) Private members are accessible only within the same class.
+d) Private modifier can be used with top-level classes.
+
+Answer: c) Private members are accessible only within the same class.
+
+Q6. What will happen if you declare a top-level class as protected?
+a) It will compile successfully.
+b) It will compile but throw runtime error.
+c) Compilation error.
+d) It will work like default access.
+
+Answer: c) Compilation error.
+
+Q7. If a class is declared with no access modifier, where can it be accessed?
+a) Anywhere
+b) Only in its own class
+c) Within its own package
+d) Only in subclasses
+
+Answer: c) Within its own package
+
+Q8. Which of the following statements is correct about protected members?
+a) They are accessible only within the same class.
+b) They are accessible within the same package and in subclasses outside the package.
+c) They are accessible only within subclasses.
+d) They are accessible everywhere like public members.
+
+Answer: b) They are accessible within the same package and in subclasses outside the package.
+
+Q9. Which of these modifiers cannot be used for local variables?
+a) public
+b) private
+c) protected
+d) All of the above
+
+Answer: d) All of the above
+(Access modifiers are not applicable to local variables)
+
+Q10. What is the output of below code?
+class A {
+    private int x = 10;
+}
+
+class B {
+    public static void main(String[] args) {
+        A obj = new A();
+        System.out.println(obj.x);
+    }
+}
+a) 10
+b) Compilation error
+c) Runtime error
+d) 0
+
+Answer:b) Compilation error
+(private member x not accessible outside class A)

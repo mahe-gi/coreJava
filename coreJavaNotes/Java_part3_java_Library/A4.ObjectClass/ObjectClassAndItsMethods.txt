@@ -1,0 +1,759 @@
+Object Class
+==============
+Object class
+------------
+1.it it the super most class for all the classes that we create in java.
+(each and every class exends Object class implicitly)
+
+2.implicity every class that we create extends the Object class.
+
+3.directly or indirectly every class is the subclass of object class
+direct relations : a class doest not extend any other class externally.
+then it is direct sub-class of Object class
+
+class A
+{
+
+}
+here class A doesnt extend any other class, so it is direct sub class of ObjectClass.
+
+indirect relation : a class extends another class.then it is in-directly sub class
+of Object class
+Example : 
+class A(direct child of Object class)
+{
+
+}
+class B extends A//(here, B indirect child of Object class{ child of child class})
+{
+
+}
+
+
+Object class present in  :- java.lang.Object
+
+in java package--> in lang package--> Object class.
+
+
+We have 14 packages in java.(top-level)
+java folder contains 14 packages 
+1.applet
+2.awt
+3.beans
+4.io
+5.lang
+6.math
+7.net 
+8.nio
+9.rmi
+10.security
+11.sql
+12.text
+13.time
+14.util
+
+
+lang package is having most commonly used classes(example: System,String, etc)
+
+so, lang package is implicitly imported to every file that we create.
+
+if you want to import all the classes from a perticular package(out of 14)
+syntax : import java.packageName.*;
+
+
+Printing Statement
+------------------
+System-->it is a class present in java.lang package
+out--> it is a static object refence variable(it is an object)
+out is the object that is created for PrintStream class.
+println() is a overloaded non-static method present in PrintStream class.
+
+
+//import java.lang.System;
+//import java.lang.String;
+import java.lang.*;
+class Demo2 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello");
+		String s = new String("Happy");
+	}
+}
+
+
+import java.util.*;
+it imports all the classes from util package.
+
+
+
+
+
+
+
+
+
+
+1.In Java, the Object class present in the java.lang package.
+
+2.it is the supermost class of every class that we create in java(here, inheritance apllaied implicitly)
+
+2.If a class doesn't extend any other class, it's a direct child of Object; if it extends another class,
+it's indirectly derived.
+
+3.all Java classes inherit the methods of the Object class, making it the super most  class  of inheritance
+hierarchy in Java.
+
+Object Class Methods
+====================
+There are various methods of the Object class. They are inherited by other classes.
+The Object class provides multiple methods which are as follows:
+
+1.public String toString()
+Purpose: Returns a string representation of the object. 
+Default: returns PackageName.ClassName@hashCodeHex.
+Usage: Override to produce meaningful output.
+--------------------------------------------------------------------------------------------------
+2.public boolean equals(Object obj)
+Purpose: Compares this(current) object to another for equality.
+Usage: Override to compare meaningful fields.
+---------------------------------------------------------------------------------------------------
+3.public int hashCode()
+Purpose: Returns an integer hash code; default implementation based on object identity.
+Usage: Used in hash-based collections like HashMap, HashSet. Override when equals() is overridden
+---------------------------------------------------------------------------------------------------
+4.protected void finalize() throws Throwable
+Purpose: Called by garbage collector before object is reclaimed.
+Usage: Rarely used (deprecated since Java 9). Cleanup native resources if needed.
+----------------------------------------------------------------------------------------------------
+5.public final Class<?> getClass()
+Purpose: Returns the runtime class of the object.
+Usage: obj.getClass().getName();
+----------------------------------------------------------------------------------------------------
+6.protencted Object clone() throws cloneNotSupportedException
+Purpose: Creates and returns a (field-by-field shallow copy) copy of object.
+Usage: Only works if the class implements Cloneable; otherwise throws CloneNotSupportedException. 
+Usually overridden for custom cloning and covariant return types.
+-----------------------------------------------------------------------------------------------------
+7.public final void wait() throws InterruptedException
+  Purpose: Causes current thread to wait until notified (notify()/notifyAll()).
+  Usage: Used in synchronization.
+  ------------------------------------------------------------------------------
+  public final void wait(long timeout) throws InterruptedException
+  Purpose: Waits up to specified time in milliseconds.
+  ------------------------------------------------------------------------------
+  public final void wait(long timeout, int nanos) throws InterruptedException
+  Purpose: Waits for specified milliseconds plus nanoseconds.
+  Usage for precise timed waiting in synchronized block.
+--------------------------------------------------------------------------------
+8.public final void notify()
+  Purpose: Wakes a single thread waiting on this object.
+  Usage within synchronized context
+----------------------------------------------------------------------------------
+9.public final void notifyAll()
+Purpose: Wakes all threads waiting on this object.
+----------------------------------------------------------------------------------
+
+1. public String toString() Method
+=====================
+1.every object will have its own unique integer value that is calles hashcode.
+2.no two objects will have same hashcode.
+3.with the help of hashCode, hexaDecimalnumber is generated.
+4.Hexadecimal number is the collection of letters and digits.
+5.no two objects will have same hexadecimal numbers.
+6.whenever you try to print only object reference variable, then implicitly toString() will be called.
+
+7. ==  is used to compare object address. not the values inside the objects.
+
+
+1.The toString() method in Java returns a String representation of an object, converting it into a 
+human-readable format. 
+2.By default, the toString() method in the Object class generates a string 
+comprising the class name of the object, an '@' symbol, and the object's hexadecimal hash code.
+object's hexadecimal hash code is generated with the help of hashCode().
+syntax : fullyQualifiedClassName@HexadecimalHashCodeOfTheObject
+
+in java, everytime we try to print object reference, an implicit call will be sent to toString().
+
+example:-
+import java.util.*;
+
+public class Main 
+{ 
+    int car_no;
+    Main(int car_no)
+    {
+        this.car_no=car_no;
+    }
+
+    // Driver code
+    public static void main(String args[])
+    {
+        Main s = new Main(16);
+ 
+        // Below two statements are equivalent
+        
+        System.out.println(s.toString());//implicit call
+        System.out.println(s);
+    }
+}
+Main@d716361
+Main@d716361
+
+Explanation
+------------
+1.here ObjectAddress will be printed, not useful information.
+2.so, we can override toString method to provide useful information about the object.[Optional : Here 
+we can see that when we tried to print the string representation of car_no using toString() method 
+and print statement, it printed its hexadecimal representation. It was not the desired result. So, here 
+we have to override the toString() method so that we get the exact value as a string that the variable 
+has stored.]
+
+This is how we can do it.
+import java.util.*;
+
+public class Main 
+{ 
+    int car_no;
+    Main(int car_no)
+    {
+        this.car_no=car_no;
+    }
+
+    // Overriding the toString()
+   public String toString() 
+   { 
+        return car_no + " "; 
+    }
+    // Driver code
+    public static void main(String args[])
+    {
+        Main s = new Main(16);
+ 
+        // Below two statements are equivalent
+        
+        System.out.println(s.toString());
+        System.out.println(s);
+    }
+}
+
+16 
+16 
+
+package objectClass;
+
+class Student 
+{
+	public String name;
+	public int age;
+	public double percentage;
+	public Student(String name, int age, double percentage)
+	{
+		this.name = name;
+		this.age = age;
+		this.percentage = percentage;
+	}
+	public String toString()
+	{
+		return "Student name : "+name+", age : "+age+", percentage : "+percentage;
+	}
+}
+public class ObjectClassMethods 
+{
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student("Hardik",16,82.2);
+		System.out.println(s1);
+	}
+}
+
+
+
+2. public boolean equals(Object obj)
+=====================================
+1."==" operator compares only address of two objects, and not the state of two objects.
+
+2.object class equals method implementation is used to compare the reference(object address) of two objects. 
+it behaves similar to == operator.
+
+So, override the equals(): to compare the states of two objects, instead of comparing their references(object address).
+syntax : obj1.equals(obj2).
+
+Example:
+class A
+{
+	public int i;
+	public A(int i)
+	{
+		this.i = i;
+	}
+	public boolean equals(A obj)
+	{
+		return this.i==obj.i;
+	}
+}
+class MainClass
+{
+	public static void main(String [] args)
+	{
+		A ob1 = new A(10);
+		A ob2 = new A(10);
+		Syso(ob1==ob2);//false
+		syso(ob1.equals(ob2));//fasle
+	}
+}
+		
+
+Explanation
+The default implementation checks whether the two objects i.e., the object on which the method is called and 
+the obj object are equal or not. Here equal means whether they are referring to the same object. If they are 
+the same, it returns true, else it returns false.
+
+class :Phone
+fields : ramSize, internalStorage , battery, 
+
+override tostring() and equals() 
+toString()
+{Syso("RAM size : "+ramSize);
+Syso("internalStorage  : "+internalStorage );
+Syso("battery : "+battery);return;}
+
+boolean equals(Phone p)
+return this.ramSize==p.ramSize&&this.internalStorage==p.internalStorage&&this.battery==p.battery;
+
+class Student 
+{
+	public String name;
+	public int id;
+	public int age;
+	public double percentage;
+	public Student(String name, int age, double percentage,int id)
+	{
+		this.name = name;
+		this.age = age;
+		this.percentage = percentage;
+		this.id = id;
+	}
+	public String toString()
+	{
+		return "Student name : "+name+", age : "+age+", percentage : "+percentage;
+	}
+	public boolean equals(Student s2)
+	{
+		if(this.id==s2.id)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
+public class ObjectClassMethods 
+{
+	public static void main(String[] args) 
+	{
+		Student s1 = new Student("Hardik",16,82.2,304);
+		Student s2 = new Student("Hardik",16,82.2,304);
+		System.out.println(s1.equals(s2));
+	}
+}
+
+3. hashCode() Method
+====================
+1.hashCode() returns an integer.
+
+2.Object class implementation  of hashCode() returns an unique integer number generated for each object.
+
+
+Another point to be noted is that this method is a Native method. A native method allows us to use code
+from another language like C, or C++ in Java. In Java, we cannot find the memory address of objects, 
+so the hashCode() method is written in C or C++ or any other lanuage which fetches the object's address in Java.
+
+Syntax :
+public int hashCode()
+
+According to object class implementation,
+if equals() returns false for two object reference, then their hashCodes are diffrerent.
+if equals() returns true for two object reference, then their hashCodes are same.
+
+example :
+class A
+{
+	public int i;
+	public A(int i)
+	{
+		this.i = i;
+	}
+	public boolean equals(A obj)
+	{
+		return this.i==obj.i;
+	}
+}
+class MainClass
+{
+	public static void main(String [] args)
+	{
+		A ob1 = new A(10);
+		A ob2 = new A(10);
+		Syso(ob1.hashCode());//1234567890
+		syso(ob2.hashCode());//9087654321
+	}
+}
+
+example 2 : 
+
+public class Main { 
+    int car_no;
+    
+    Main(int car_no){
+        this.car_no=car_no;
+    }
+
+    // Driver code
+    public static void main(String args[])
+    {
+        Main s = new Main(16);
+        
+        System.out.println(s.hashCode());
+    }
+   }
+
+output : 225534817
+
+The above code shows the default behavior of the hashCode() method. Here we have not overridden the hashCode() method.
+
+It's essential to override the hashCode() method to ensure that each object produces a distinct number. Let us look at that implementation.
+
+example : 
+import java.util.*;
+
+public class Main { 
+    int car_no;
+    
+    Main(int car_no){
+        this.car_no=car_no;
+    }
+   
+  //Overriding the hashCode()
+    @Override 
+    public int hashCode() 
+    { 
+        return car_no; 
+    }
+    
+    // Driver code
+    public static void main(String args[])
+    {
+        Main s = new Main(16);
+        Main ss = new Main(17);
+        
+        System.out.println(s.hashCode());
+        System.out.println(ss.hashCode());
+    }
+   }
+
+output : 
+16
+17
+Explanation
+We can see that after we override, hashCode() method returns unique values.
+
+4.getClass() Method 
+===================
+returntype : Class object.
+It is used to return the Class object of a perticular object. Also, it fetches the actual runtime class of the object 
+on which the method is called. This is also a native method. It can be used to get the metadata of 
+the this class. 
+Metadata of a class includes the class name, fields name, methods, constructor, etc.
+
+Example
+class Animal
+{
+}
+class Demo6 
+{
+	public static void main(String[] args) 
+	{
+		//Animal ob1 = new Animal();
+		//Class ob2 = ob1.getClass();
+		System.out.println(System.out.getClass().getName());
+	}
+}
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        Object s = new String("Hi");
+        Object i= new Integer(19);
+        Class c = s.getClass();
+        Class d= i.getClass();
+        //for the String
+        System.out.println("Class of Object s is : " + c.getName());
+        //for the integer
+         System.out.println("Class of Object i is : " + d.getName());
+    }
+
+}
+
+Output
+
+Class of Object s is : java.lang.String
+Class of Object i is : java.lang.Integer
+
+Explanation
+In the above example, we fetched the runtime classes of a string and an integer. For the string, the class was 
+java.lang.String whereas, for the integer, the class was java.lang.Integer.
+
+5. finalize() method
+====================
+Just before Java's garbage collector removes an object, the finalize() method is invoked, ensuring a last chance 
+for any necessary cleanup tasks when no references to the object remain. It offers a chance to perform cleanup 
+tasks and release system resources, thereby reducing memory leaks. For instance, in web applications, 
+it's common practice to use finalize() to clean up session-related resources.
+or
+
+In Java, finalize() is a special method that's automatically called by the garbage collector just before an object 
+is removed from memory. Think of it like a cleanup crew that runs before the object disappears.
+
+What it does?
+You override finalize() to release resources (e.g., closing files or sockets) that the object was using
+
+class A
+{
+}
+class Demo6 
+{
+	public static void main(String[] args) 
+	{
+		A ob1 = new A();
+		A ob2 = new A();
+		A ob3 = new A();
+		A ob4 = new A();
+		A ob5 = new A();
+		A ob6 = new A();
+		A ob7 = new A();
+		A ob8 = new A();
+		A ob9 = new A();
+		A ob10 = new A();
+		/*my thought : since iam creating too many objects, there might be a problem
+		with memory usage of the local device. i suggest jvm to clear this data.
+		it is not oreder/ it is a suggestion.
+		
+		We can suggest JVM to clean-up un-used or not further used objects from heap
+		area.
+		how?
+		call the gc method.
+		System.gc();
+		here gc stands for garbage collector.....
+		*/
+		
+		System.gc();
+		
+		/* it is absolutely JVM wish, wether to delete these objects or not...
+		
+		if jvm decides to delete these objects, then implicitly finalize() will be called by jvm.
+		
+		here, finalize() will make sure that objects which are going to be deleted are
+		not attached with any other threads. it is life giving confirmation to jvm to delete a specific object.*/
+	}
+}
+
+public class Resource 
+{
+    private int resourceId;
+    
+    public Resource(int id) 
+    {
+        this.resourceId = id;
+    }
+    
+    // Method to simulate resource cleanup
+    public void cleanup() {
+        System.out.println("Cleaning up resource " + resourceId);
+    }
+    
+    @Override
+    protected void finalize() {
+        System.out.println("Finalizing resource " + resourceId);
+        cleanup();
+    }
+}
+
+public class Test 
+{
+    public static void main(String[] args) 
+    {
+        Resource resource1 = new Resource(1);
+        Resource resource2 = new Resource(2);
+        
+        // Nullifying references
+        resource1 = null;
+        resource2 = null;
+        
+        // Triggering garbage collection
+        System.gc();
+        
+        System.out.println("End of main");
+    }
+}
+System.gc() : It requests that the JVM perform garbage collection—it’s a suggestion, not a command. 
+The JVM may ignore it entirely or decide to act based on internal situations.
+
+System.gc() is a Java API that lets you request garbage collection, but whether it acts is entirely 
+up to JVM strategy and configuration. In most scenarios, it's best to rely on the JVM’s built-in 
+memory management and focus on writing efficient, clean code.
+
+Output:
+output may vary depending on device(internal memory)
+End of main
+Finalizing resource 2
+Cleaning up resource 2
+Finalizing resource 1
+Cleaning up resource 1
+
+6. clone() Method
+=================
+The clone() method is used to create an exact copy of this object. It makes a new object and copies 
+all the data of the this object to the new object.
+
+Example : 
+Note : A call to clone() is only permitted within the same class, subclass, or same package 
+context—not from arbitrary code.
+
+import java.util.*;
+
+class Main implements Cloneable 
+{
+
+  // declare variables
+  String name;
+  int age;
+  public static void main(String[] args) 
+  {
+
+    // create an object of Main class
+    Main obj1 = new Main();
+
+    // initialize name and age using obj1
+    obj1.name = "xyz";
+    obj1.age = 19;
+
+    // print variable
+    System.out.print(obj1.name);       // xyz
+    System.out.println(" "+ obj1.age);    // 19
+
+    try {
+
+      // create clone of obj1
+      Main obj2 = (Main)obj1.clone();
+
+      // print the variables using obj2
+      System.out.print(obj2.name);      // xyz
+      System.out.println(" "+ obj2.age);   // 19
+    }
+    catch (Exception e) 
+    {
+      System.out.println(e);
+    }
+
+  }
+}
+
+Output
+
+xyz 19
+xyz 19
+
+Explanation
+In the above code, we have cloned an object and then printed its value. We have made the Main class 
+implement the Cloneable interface as, if we don't do it it will throw an exception of CloneNotSupportedException. 
+We first created an object obj1 and then we cloned it using the clone() method. Then we printed both 
+the objects and hence it gets verified that both the objects are the same.
+
+7. wait() Method
+================
+The wait() method instructs the current thread to release its lock and enter sleeping state. It 
+happens until some different thread enters the same monitor and calls the methods like notify() or 
+notifyAll() method.
+
+t1.wait();//this thread will enter sleep mode until you notify
+t1.wait(5000);//this thread will enter sleep mode only for 5000 milliseconds
+t1.wait(5000,500);//this thread will enter sleep mode only for 5000 milliseconds and 300 nano seconds
+
+8. notify() Method
+==================
+The notify() method is used to wake up only one single thread that is waiting on the object, and that 
+thread starts the execution. If multiple threads are waiting on the current object (this), the notify()
+method will awaken one of them arbitrarily. This method does not return any value.
+
+
+9.notifyAll() Method
+====================
+The notifyAll() method awakens all threads currently waiting on the object instance where it's invoked.
+It will execute all the threads individually. All threads get the notification but only one thread gets 
+a lock. A lock serves as a mechanism to regulate access to a shared resource by multiple threads 
+simultaneously. So only one thread proceeds with the execution at a time after that next one will be 
+executed.
+
+
+Method								Description
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+public final Class getClass()				|Retrieves the Class object associated with the instance.
+public int hashCode()					|Computes and returns a unique hash code for this object.
+public boolean equals(Object obj)			|Determines whether this object is equal to another object.
+protected Object clone()				|Generates and provides copy of this object.
+public String toString()				|Offers a string representation of this object.
+public final void notify()				|Awakens a single thread waiting on this object.
+public final void notifyAll()				|Awakens all threads waiting on this object.
+public final void wait(long timeout) 			|throws InterruptedException	Directs the current thread to wait until another thread triggers the notify() or notifyAll() method for this object.
+public final void wait(long timeout, int nanos) 	|throws InterruptedException	Instructs the current thread to wait until another thread invokes the notify() or notifyAll() method for this object.
+public final void wait() 				|throws InterruptedException	Prompts the current thread to wait until another thread invokes the notify() or notifyAll() method for this object.
+protected void finalize() 				|throws Throwable	Executes when the garbage collector identifies no more references to the object, signaling its readiness for garbage collection.
+
+Conclusion
+===========
+The Object class in Java serves as the foundation for all classes, directly or indirectly.
+All Java classes inherit methods from the Object class, making it the root of the inheritance hierarchy.
+Key methods of the Object class include toString(), hashCode(), equals(), clone(), getClass(), finalize(), wait(), notify(), and notifyAll().
+Overriding methods like toString() and hashCode() allows customization of behavior for specific classes.
+The finalize() method provides an opportunity for cleanup tasks before an object is garbage collected.
+Understanding and utilizing Object class methods are essential for effective Java programming and memory management.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

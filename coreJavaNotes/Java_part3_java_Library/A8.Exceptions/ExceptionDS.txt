@@ -1,0 +1,1446 @@
+what is exception?
+an unwanted, un-excpected event that disturbs the normal-flow of a program is called 
+exception.
+
+example-1: like trying to drive when the highway suddenly closes. You "throw" an exception, 
+and you can handle it e.g. by taking an alternate route, or else the program crashes.
+"RoadBlockException"
+
+Example 2 :
+sudden online transcation denied exception, handling it by paying cash.
+"BankServerDownException"
+
+example-3:(technical exception)
+read data from the remote file, located at a perticular address.
+if file is not available, "FileNotFoundException"
+
+
+i sarted typing the story for a movie in a laptop, after typing for 3 hours, suddenly 
+my laptop got shut-down.... i loose all data.
+i need graceful termination. i need a proper termination for my work
+that is the reason we need to handle such exceptions
+
+
+breakfast stall
+movie theatre
+if not train, bus, if not bus, metro
+
+
+
+		open db connection		
+								
+	(SQL EXCEPTION)read data			
+						
+		close db connection		
+
+program gets terminated without closing the connection
+
+like this, if we have multiple unclosed connections, we wont get a new connection.
+so the whole app collapses here.						
+
+
+way-01
+Read file from D://Java.demo.txt file
+read data from file
+
+way-02
+Read file from D://Java.demo.txt file
+if file is not available
+Read file from local.desktop.demo.txt file
+use that data
+
+defaining alternative way to continue rest of the program normally  is nothing but 
+exception handling.
+
+try
+{
+	Read file from D://Java.demo.txt file
+}
+catch(FileNotFoundException e)
+{
+	Read file from local.desktop.demo.txt file normally
+}
+
+Example 1 of 3 :
+------------
+class MainClass
+{
+	public static void main(String [] args)
+	{
+		walk();
+	}
+	public static void walk()
+	{
+		run();
+	}
+	public static void run()
+	{
+		System.out.println(5/0);
+	}
+}
+
+here we are getting exception in run()
+so run() is responsible for creating Exception object with full information and return
+the object to JVM.(like we inform ambulance about accident on road).
+
+exception object will contain basic information about the object
+like, name of the exception :ArithmeticException
+      description : / by zero
+stact trace/ location : run()
+			walk()
+			main()
+
+JVM asks that perticular run(), do you hav handling code? run() says NO.
+immediatly JVM terminates the method abnormally without excecuting the remaining code.
+
+walk() dont have handling code, so walk method is terminated abnormally .
+
+main() dont have handling code, so main method is terminated abnormally .
+
+finally JVM should handle, so JVM handover the Exception object to
+"Default exception handler"
+this wont do anything. it just print exception information in the console and terminates
+the code abnormally.
+
+Exception in thread main:ArithmeticException:/ by zero
+				at MainClass.run()
+				at MainClass.walk()
+				at MainClass.main() 
+Example 2 :
+------------
+class MainClass
+{
+	public static void main(String [] args)//abnormal termination
+	{
+		walk();
+	}
+	public static void walk()//abnormal termination
+	{
+		run();
+		System.out.println(5/0);
+	}
+	public static void run()//normal termination
+	{
+		System.out.println("Hello");
+	}
+}	
+
+output : Hello
+Exception in thread main:ArithmeticException:/ by zero
+				at MainClass.walk()
+				at MainClass.main()
+
+Example 3 : 
+-----------
+class MainClass
+{
+	public static void main(String [] args)//abnormal termination
+	{
+		walk();
+		System.out.println(5/0);
+	}
+	public static void walk()//normal termination
+	{
+		run();
+		System.out.println("Hi");
+	}
+	public static void run()//normal termination
+	{
+		System.out.println("Hello");
+	}
+}	
+
+output : 
+Hello
+Hi
+Exception in thread main:ArithmeticException:/ by zero
+				at MainClass.main()
+
+
+Note : if any one method termination is abnormal, whole termination is abnormal termination.
+
+Exception v/s error
+-------------------
+Most of the times exceptions caused by our program only.
+Exceptions are recoverable.
+what is recoverable?
+defining alternative way to continue rest of the program normally  is nothing but 
+recovarable.
+
+try
+{
+	Read file from D://Java.demo.txt file
+}
+catch(FileNotFoundException e)
+{
+	Read file from local.desktop.demo.txt file and continue the execution normally
+}
+
+caused by our code, recovered by ourcode.
+
+Error
+-----
+Most of the times errors caused by lack of system resources only.
+Represent serious issues that are outside the program’s control
+errors are not recoverable.
+
+example :
+OutOfMemoryError, 
+StackOverflowError,
+NoClassDefFoundError etc...
+(developer cant do anything).
+
+2.system crash(virus attack). 
+
+3.hardware problem.(like no scanner machine to scan)
+
+| Feature    | Error                                    | Exception                                                 |
+| ---------- | ---------------------------------------- | --------------------------------------------------------- |
+| Belongs to | `java.lang.Error`                        | `java.lang.Exception`                                     |
+| Severity   | Very serious; usually unrecoverable      | Often recoverable or manageable                           |
+| Handling   | Should **not** be caught by your code    | Can (and should) be handled with `try`–`catch`            |
+| Examples   | `OutOfMemoryError`, `StackOverflowError` | Checked: `IOException`; Unchecked: `NullPointerException` |
+
+
+basic and Very importent Exceptions and errors.
+Throwable(Class)	
+    -->Excepltion
+	  ==>RuntimeException
+		-->ArithmeticException
+		-->NullPointerException
+		-->ClassCastException
+		-->IndexOutOfBoundsException
+			-->ArrayIndexOutOfBoundsException
+			-->StringIndexOutOfBoundsException
+		-->IllegalArgumentException
+			-->NumberFormatEception
+
+	  ==>IOException
+		-->EndOfFileException
+		-->FileNotFoundException
+	  ==>InteruptedException
+	  ==>ServletException
+          ==>SQLException....etc
+
+    -->Error
+	-->VirtualMachineError
+		-->StackOverFlowError
+		-->OutOfMemoryError
+	-->LinkageError
+		-->VerifyError
+	-->AssertionError
+	-->ExceptionInInitializerError
+
+Checked v/s un-checked exception
+--------------------------------
+Father asking you to check :
+1.ResumeException for an interview
+2.InterviewCallLetterException
+3.HandCashException
+
+Getting ready for your friends marriage : tailer met with accident
+
+
+1.All exceptions occur at run-time only, there is no compile time exceptions.(it may be syntatical error).
+
+
+Checked exception
+-----------------
+the exceptions which are checked by compiler for smooth excecution of the program at run time, these exceptions
+are called checked exceptions.
+
+compiler will check wether the programmer is handling these exceptions or not for smooth execution of the program.
+
+So checked exceptions should be handled by programmer.
+
+Metro travel
+petroliumProductsException
+
+
+
+example : 
+class ThreadMainClass
+{
+	p s v main(String []args)
+	{
+		System.out.println("Main thread going sleep mode for 5 seconds");
+		Thread.sleep(5000);
+	}
+}
+
+there is a possiblity that other threads may inturupt this sleeping thread, so there is a possibility of
+InturrptedException. so compiler warns us to handle it :
+
+Warning : unreported exception InterruptedException
+	must be caught or declared to be thrown
+
+exception not occured, but there is a possiblity of this exception. so we should handle it.
+compiler wont allow you to continue excecution bcz you are not handling InterruptedException.
+
+un-checked exception
+--------------------
+There are some exceptions which are not checked by compiler, such type of exceptions are called Unchecked Exception
+ 
+Class MainClass
+{
+	p s v main(String [] args)
+	{
+		System.out.println(2/0);
+	}
+}
+
+Compilation success.
+excecution time : java.lang.ArithmeticException: / by zero
+
+
+
+***All Errors are unchecked
+		+
+Runtime exception and its child classes are unchecked Exceptions
+
+except these two groups all the exceptions in Exception hierarchy are checked exceptions only.
+
+Fully checked exception and partially checked exception
+=======================================================
+If both parent classes and child classes are checked then it is fully checked exception. otherwise partially checked
+exception.
+
+
+Exception has its child classes... some child classes are un-checked(RuntimeExceptions) and some are checked.
+so here Exception is partially checked.
+throwable-->some child classes are un-checked(RuntimeExceptions) and some are checked.
+so here Exception is partially checked.
+
+So, only two partially checked exceptions in java are Throwable and Exception.
+
+
+handling the exception.
+=======================
+Imagine you dont know try-catch block
+-------------------------------------
+class MainClass
+{
+	p s v main(String [] args)
+	{
+		System.out.println("Hello");
+		System.out.println(4/0);
+		System.out.println("everyone");
+	}
+}
+
+excecution time : java.lang.ArithmeticException: / by zero
+here it is abnormal termination of the code and it is not recommended.
+
+Now using try catch block
+-------------------------
+the code which may rise exception is called risky code.
+risky code should be enclosed with try block.
+
+try
+{
+	risky code;
+}
+catch(Exception e)
+{
+	handling code;
+}
+
+
+example :
+class MainClass
+{
+	p s v main(String [] args)
+	{
+		System.out.println("Hello");
+		try
+		{
+			System.out.println(4/0);
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println(e);
+		}
+		
+		System.out.println("everyone");
+	}
+}
+
+it is a normal termination, or graceful termination.
+
+control flow in try catch.
+==========================
+try
+{
+	Statement-1
+	Statement-2
+	Statement-3
+}
+catch(Exception e)
+{
+	Statement-4
+}
+Statement-5
+
+Case-1 : no Exception raised : 1, 2, 3, and 5, Normal termination.
+
+Case-2 : Exception raised at statement-2 : 1, 4, 5, Normal termination.
+
+Case-3 : exception raised in statement-2 but corresponding catch block doesn't matched.
+	1, then abnormal termination.
+
+Case-4: exception raised at statement-2, statement-4 :1, Abnormal termination(you can again write try catch block in catch)
+
+Case-5: exception raised at statement-5 : 1,2,3 and Abnormal termination
+
+methods to print exception information
+=======================================
+three methods available to print exception information
+1) e.printStackTrace() : if you want complete information
+2)e.toString() or just e ://Output: Something like: java.lang.ArithmeticException: / by zero
+3)e.getMessage().
+What it does: Returns the detail message (a String) provided when the exception was created.
+Output: Only the message text.
+Example: / by zero
+
+all are present inside Throwable class
+
+calss Test
+{
+	p s v main()
+	{
+		try
+		{
+			System.out.println(4/0);
+		}
+		catch(ArithemeticException e)
+		{
+			e.printStackTrace();//internally contains printing statement
+			System.out.println(e);
+			System.out.println(e.getMessage());
+		}
+
+	}
+}
+Name of the exception : description
+	stack trace
+
+
+if you want only Name of the exception and description
+go for toString().
+
+
+if you want only information, 
+go for getMessage()
+
+try with multiple catch blocks
+==============================
+calss Test
+{
+	p s v main()
+	{
+		try
+		{
+			Statement-1//ArithmeticException
+			Statement-2//FileNotFoundException
+			Statement-3//SQLException
+		}
+		catch(ArithemeticException e)//catch(Exception e)//it is not recomanded
+		{	
+			//perform alternative statements or
+			System.out.println(e.getMessage());
+		}
+		catch(FileNotFoundException e)//catch(Exception e)//it is not recomanded
+		{
+			//use alternative file or
+			System.out.println(e.getMessage());
+		}
+		catch(SQLException e)//catch(Exception e)//it is not recomanded
+		{
+			//use oracle DataBase instead of mySql DataBase or
+			System.out.println(e.getMessage());
+		}
+
+	}
+}
+
+
+order of catch blocks
+---------------------
+example 1 : 
+calss Test
+{
+	p s v main()
+	{
+		try
+		{
+			Statement-1//ArithmeticException
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(ArithemeticException e)
+		{	
+			//perform alternative statements or
+			System.out.println(e.getMessage());
+		}
+	}
+}
+warning given by compiler : 
+java.lang.ArithmeticException has already been caught.
+
+example 2 : 
+calss Test
+{
+	p s v main()
+	{
+		try
+		{
+			Statement-1//ArithmeticException
+		}
+		catch(ArithemeticException e)
+		{	
+			//perform alternative statements or
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+}
+output : get executed.
+it is always child to parent not parent to child.
+
+example 3 : 
+calss Test
+{
+	p s v main()
+	{
+		try
+		{
+			Statement-1//ArithmeticException
+		}
+		catch(ArithemeticException e)
+		{	
+			//perform alternative statements or
+			System.out.println(e.getMessage());
+		}
+		catch(ArithemeticException e)
+		{	
+			//perform alternative statements or
+			System.out.println(e.getMessage());
+		}
+	}
+}
+warning given by compiler : 
+java.lang.ArithmeticException has already been caught.
+
+
+finally block
+=============
+open db connection.
+read data.
+close db connection.
+closing the db connection or closing the file, these type of things considered as resource cleanup code/ 
+de-allocation code.
+
+try
+{
+	open db connection
+	read data//if exception occures
+	close db connection
+}
+catch(Exception e)
+{
+	handling code
+}
+
+if exception occures in data reading, db connection will not get closed.
+
+
+So, the best practice is : 
+try
+{
+	open db connection
+	read data
+}
+catch(Exception e)
+{
+	handling code
+}
+finally
+{
+	close db connection
+}
+
+wether, exception raised or not raised, even in abnormal termination also, finally block will compulsory gets executed.
+it is used for clean up code.(like closing all the links with resources)
+try
+{
+	risky code
+}
+catch(Exception e)
+{
+	handling code
+}
+finally
+{
+	cleanup code
+}
+
+Example 1:No exception
+try
+{
+	print("Hello");
+}
+catch(Exception e)
+{
+	print("Handled");
+}
+finally
+{
+	print("finally");
+}
+
+output : 
+Hello
+finally
+
+Example 2:exception raised and handled
+try
+{
+	print("Hello");
+	print(4/0);
+}
+catch(ArithmeticException e)
+{
+	print("Handled");
+}
+finally
+{
+	print("finally");
+}
+
+output : 
+Hello
+handled
+finally
+
+
+Example 3:exception raised and not handled
+try
+{
+	print("Hello");
+	print(4/0);
+}
+catch(FileNotFoundException e)
+{
+	print("Handled");
+}
+finally
+{
+	print("finally");
+}
+
+output : 
+Hello
+finally(compulsory finally block will be executed)
+
+if you shutdown JVM explicitly, in that case, finally block wont get executed.
+System.exit(0);-->normal termination'
+//System.exit(-3);-->(non-zero)-->abnormal termination
+
+control-flow in try catch finally.
+==================================
+try
+{
+	Statement-1
+	Statement-2
+	Statement-3
+}
+catch(Exception e)
+{
+	Statement-4
+}
+finally
+{
+	Statement-5
+}
+Statement-6
+
+Case 1 : no exception : 
+Execution : 1,2,3,5,6 normal termination.
+
+Case 2 : if exception is raised in statement-2 and corrosponding catch block matched
+Execution : 1,4,5,6 normal termination.
+
+Case 3 : if exception is raised in statement-2 and corrosponding catch block is not matched
+Execution : 1,5 abnormal termination.
+
+Case 4 : if exception is raised in statement-4
+Execution : 1,5,abnormal termination.
+
+Case 5 : if exception is raised in statement-5 or statement-6
+Execution : abnormal termination.
+
+
+control flow in nested try-catch-finally
+========================================
+try
+{
+Statement-01
+Statement-02
+	try
+	{
+		Statement-03
+	}
+	catch(Exception e)
+	{
+		Statement-100
+	}
+Statement-04
+Statement-05
+Statement-06
+Statement-07
+Statement-08
+Statement-09
+Statement-10
+Statement-11
+Statement-12
+}
+catch(Exception e)
+{
+Statement-13	
+}
+finally
+{
+Statement-14
+}
+
+Example : 
+
+try
+{
+	System.out.println("Outer try block-01");
+	try
+	{
+		System.out.println("inner try block");
+		System.out.println(3/0);
+	}
+	catch(ArithmeticException e)
+	{
+		System.out.println("Inner catch block");
+	}
+	System.out.println("Outer try block-02");
+}
+catch(Exception e)
+{
+	System.out.println("Outer catch block");
+}
+finally
+{
+	System.out.println("Outer finally block");
+}
+
+output : 
+Outer try block-01
+inner try block
+Inner catch block
+Outer try block-02
+Outer finally block
+
+if inner catch block didnt handle the exception, immediately control goes to outer catch block.
+output : 
+Outer try block-01
+inner try block
+Outer catch block
+Outer finally block
+
+various possible combinations of try-catch-finally
+==================================================
+try-catch(ArithmeticEception e)----------> correct
+try-catch(ArithmeticEception e)-catch(ArithmeticEception e)--->worng, we cannot have two catch blocks for same exception.
+try-catch-finally--------->correct
+try-catch try-catch---------> correct
+***try-finally---------> correct(you know you get exception, but dont know how to handle, then before abnormal termination, close connections)
+try-------------> wrong try without catch or finally.
+catch------------> wrong, catch without try
+finally---------->wrong, without try
+try-finally-catch-----------> wrong(its always try-catch-finally) catch without try error
+try-try-catch-finally-------> wrong(try without catch or finally)
+try-catch-catch-finally----> valid
+try-catch-finally-finally----->wrong
+try-statement-catch-----------> wrong(no between statements try and catch block)
+try
+{
+	try
+	{
+		
+	}
+	catch(ArithmeticException e)
+	{
+		
+	}
+}
+catch(ArithmeticException e)
+{
+	
+}
+valid or invalid? : valid
+
+can i use try catch inside catch? yes, valid
+
+can i use try catch inside finally? yes, valid
+
+even though there is only one statement, for try, catch and finally block curly-braces mandatory.
+
+
+throw keyword
+=============
+withdraw(double amout)
+{
+	if(amount> balance)
+	{
+		throw InsuffucuentBalanceException();
+	}
+}
+
+if something goes wrong, sometimes we have to create our own exception and handover(throw) that object to JVM.
+here, it is not java inbuilt exception. it our own customized exception.
+throw is used for customized exception.
+
+main()
+{
+	System.out.println(4/0);
+}
+
+here, main method is responsible for creating Exception object and hand it over to JVM.
+
+With throw key-word.
+
+main()
+{
+	throw new ArithmeticException("/ by zero");
+}
+
+here,
+new ArithmeticException("/ by zero"); ---> we are creating Exception object manually
+throw----> hand over this object to jvm manually.
+
+Important cases related to throw keyword
+========================================
+case-1:
+class Main
+{
+	static ArithmeticException e = new ArithmeticException();
+	main()
+	{
+		throw e;
+	}
+}
+output: ArithmeticException
+
+case-2
+class Main
+{
+	static NullPointerException e = new NullPointerException();
+	main()
+	{
+		throw e;
+	}
+}
+output: NullPointerException
+
+case - 3
+class MainClass
+{
+	main()
+	{
+		System.out.println(4/0);
+		System.out.println("Hello");
+	}
+}
+
+Output : ArithmeticException
+
+case - 4
+class MainClass
+{
+	main()
+	{
+		throw new ArithmeticException();
+		System.out.println("Hello");
+	}
+}
+
+Compiletime error: compiler knows there will be ArithmeticException.
+
+
+case - 5
+class MainClass
+{
+	main()
+	{
+		throw new MainClass();
+	}
+}
+
+compiletimeError : you can only throw throwable types.
+
+
+case - 6
+class MainClass extends RuntimeException
+{
+	main()
+	{
+		throw new MainClass();
+	}
+}
+
+output :Exception in thread "main" MainClass
+
+need of throws keyword
+======================
+in our program if there is a checked exception, compulsory we need to handle it in order to execute the
+program.
+class MainClass
+{
+	p s v main()
+	{
+		Thread.sleep(5000);
+		System.out.println("Hello");
+	}
+}
+error: unreported exception InterruptedException; must be caught or declared to be thrown
+
+There are two ways you can handle this.
+1.try-catch block
+2. throws
+
+class MainClass
+{
+	p s v main()
+	{
+		try
+		{
+			Thread.sleep(5000);
+		}
+		catch(InterruptedException e)
+		{
+			System.out.println("Hello");
+		}
+	}
+}
+here, compiler relly dont worry what you have written in catch block, it just check catch block is there 
+or not.
+here, we have only one thread, so interruptedException wont occur, we get output after 5 seconds.
+
+throws key word
+----------------
+suppose you saw a cat fell in a well. you saw it, but you cannot handle the problem, so you transfered the responsibility
+to Forest Department or Wildlife Rescue Teams. they handle the problem.
+public class Test 
+{
+    static void run() throws ArithmeticException 
+    {
+        int x = 10 / 0;  // triggers ArithmeticException
+    }
+
+    public static void main(String[] args) 
+    {
+        try 
+        {
+            run();  // call the method that might throw
+        } 
+        catch (ArithmeticException e) 
+        {
+            System.out.println("Caught in main(): " + e.getMessage());
+        }
+    }
+}
+
+class MainClass
+{
+	p s v main() throws InterruptedException
+	{
+		Thread.sleep(5000);
+		System.out.println("Hello");
+	}
+}
+output : we get output after 5 seconds.
+here, main method says i want to give this Responsibility to my caller.(handling the Exception Responsibility).
+What is the meaning of throws?
+to give Responsibility of Exception handling to caller.
+
+it is not reccomanded to use throws approch to handle exception.
+
+here throws keyword convince compiler, if caller dont handle the Exception we get abnormal termination.
+Use of throws keyword does not prevent abnormal termination.
+throws keyword is used for only checked exceptions.
+
+Summer points :
+1.we can use throws keyword to give the responsibility of handling Exception to caller.
+	here, caller can be JVM or any other method.
+2.throws keyword is used for only checked exceptions.
+3.throws keyword convince compiler, if caller dont handle the Exception we get abnormal termination.
+Use of throws keyword does not prevent abnormal termination.
+
+
+control-flow with throws keyword
+--------------------------------
+class MainClass
+{
+	public static void main(String [] args)
+	{
+		walk();
+	}
+	public static void walk()
+	{
+		run();
+	}
+	public static void run()
+	{
+		Thread.sleep(5000);
+	}
+}	
+
+output : CompileTimeError : InterruptedException
+
+class MainClass
+{
+	public static void main(String [] args)  throws InterruptedException
+	{
+		walk();
+	}
+	public static void walk() throws InterruptedException
+	{
+		run();
+	}
+	public static void run() throws InterruptedException
+	{
+		Thread.sleep(5000);
+	}
+}	
+
+code will compiled. but abnormal exception.
+class MainClass
+{
+	public static void main(String [] args)  throws InterruptedException
+	{
+		walk();
+	}
+	public static void walk()
+	{
+		run();
+	}
+	public static void run()
+	{
+		Thread.sleep(5000);
+	}
+}	
+Compile time error.
+
+Importent cases related to throws keyword.
+=========================================
+
+class MainClass throws Exception//error : not meaningful, nobody calls class
+{
+	MainClass() throws Exception// meaningful, caller is there, we can call a constructor during Object creation
+	{
+
+	}
+	public void run() throws Exception// meaningful, caller is there, we can call a method
+	{
+
+	}
+}
+we get ERROR
+so, only for methods and constructors use throws keyword.
+
+EXAMPLE : 
+class MainClass
+{
+	main()
+	{
+		throw new ArithmeticException();
+	}
+}
+CompileTime siccessful(IT IS UN-CHECKED exception) : output : ArithmeticException
+
+class MainClass
+{
+	main()
+	{
+		throw new Exception();
+	}
+}
+CompileTime error(IT IS CHECKED exception)
+
+writting catch blocks in different ways :
+========================================= 
+case-01
+--------
+try
+{
+	System.out.println("Hello");
+}
+catch(ArithmeticException e)
+{
+	
+}
+if there no chance of raising any exception,you cant write catch block for that exception.
+compileTime : Successful(no error)reason: it is un-checked exception.
+
+case-02
+--------
+try
+{
+	System.out.println("Hello");
+}
+catch(Exception e)
+{
+	
+}
+if there no chance of raising any exception,you cant write catch block for that exception.
+compileTime : Successful(no error)reason: it is partially checked exception.
+
+case-03
+--------
+try
+{
+	System.out.println("Hello");
+}
+catch(IOException e)
+{
+	
+}
+if there no chance of raising any exception,you cant write catch block for that exception.
+***here you are writting un-necessary catch block. this is applicable only for fully-checked exception***
+compileTime : error reason: it is fully-checked exception.
+
+case-04
+--------
+try
+{
+	System.out.println("Hello");
+}
+catch(InterruptedException e)
+{
+	
+}
+if there no chance of raising any exception,you cant write catch block for that exception.
+compileTime : error reason: it is fully-checked exception.
+
+case-05
+--------
+try
+{
+	System.out.println("Hello");
+}
+catch(InterruptedException e)
+{
+	
+}
+if there no chance of raising any exception,you cant write catch block for that exception.
+compileTime : Successful reason: it is un-checked exception.
+
+
+Difference between, final, finally and finalize().
+
+final
+-----
+it is modifier,
+it is applicable for class, method and variable, 
+if class is final : can not extend. no inheritence
+if method is final : no overriding..
+if variable is final : no re-initialization... its a final value..
+
+finally 
+-------
+finally is a block assocoated with try- catch block
+inside finally block :  clean-up code.
+finally block is excecuted always wether exception is raised or not raised.
+
+finalize() 
+----------
+finalize() is a method
+it is associated with garbage collector.
+when garbage collector about to destroy an object, it calls finalize() for clean up activities
+like any links and connections attached to the object or not.
+
+
+customized or ued defined exceptions
+-------------------------------------
+Exceptions which are defined by developer expicitly (not pre-defained) then these exceptions
+are called customized exceptions.
+
+withdraw(int amount)
+{
+	if(amount>balance)
+	{
+		throw InsufficientFundsException;
+	}	
+}
+InsufficientException is created by us. it is customized exception.
+Voter Id application
+below 18 years, InvalidAgeException
+
+
+All exceptions are classes.
+declare your own class extend RuntimeException
+in the constructor you can pass information(Example : "invalid age").
+class AgeInvalidException extends RuntimeException
+{
+	AgeInvalidException(String msg)
+	{
+		super(msg);//we are providing description Throwable for printStackTrace().
+	}
+}
+
+class Mainclass
+{
+	main()
+	{
+		int age = 14;
+		if(age<18)
+		{
+			throw new AgeInvalidException("you are too young toa apply");
+		}
+		else
+		{
+			System.out.println("Application received");
+		}	
+	}
+
+use of throw keyword is suggested for customized exceptions not for pre-defined Exceptions
+jvm already know to create an object of pre-defined exceptions. so you dont do it externally.
+
+Why extends RuntimeException?
+our exception becomes UncheckedException... so compiler will stop compiling without handling code.
+otherwise we get unreported Exception
+
+Top-10 Exceptions
+=================
+1.ArrayIndexOutOfBoundsException
+--------------------------------
+it is un-checked exception
+when we try to access index out of range of the array, we get this exception.
+
+2.NullPointerException
+----------------------
+it is un-checked exception
+String s = null;
+System.out.println(s.length());
+we get NullPointerException.
+on the null if you try to perform any operation, we get NullPointerException.
+
+3.StackOverflowError
+--------------------
+it is un-checked exception
+during recurrsion.
+
+4.ClassCastException
+--------------------
+it is un-checked exception
+while performing class type casting, we get ClassCastException.
+you can cast subclass to super class==>upcasting-->No problem.
+String object to Object type-->no problem
+
+String s = new String("Hello");
+Object o = (Object)s;
+System.out.println(o);
+output : Hello
+
+Object o = new Object();
+String s = (String)o;
+System.out.println(s); // we get ClassCastException.
+
+5.NoClassDefFoundError
+--------------------
+it is child class of LinkageError-->Error
+it is un-checked exception
+if JVM cannot able to find the class file, then we get this error.
+
+6.ExceptionInInitializerError
+-----------------------------
+linkageError-->Error
+it is un-checked exception
+While performing static variable initialization and static block excecution, if jvm gets any
+exception, we get Exception.
+
+class A
+{
+	public static double pi = 100/0;
+	main()
+	{
+
+	}
+}
+we get this error.
+
+class A
+{
+	static
+	{
+		String s = null;
+		System.out.println(s.length());
+	}
+}
+we get this error.
+
+7.IllegalArgumetException.
+--------------------------
+RuntimeException--> Exception
+it is un-checked exception
+when we pass invalid argument to a method, we get this exception.
+
+example : Thread.sleep(-1);
+
+
+8.NumberFormatException
+-----------------------
+IllegalArgumetException-->RuntimeException--> Exception
+it is un-checked exception
+example : 
+int k = Integer.parseInt("AB"); //NumberFormatException
+
+
+9.IllegalStateException
+-----------------------
+IllegalStateException-->RuntimeException--> Exception
+it is un-checked exception
+calling a method at wrong time.
+Thread t = new Thread(); t.start(); t.start();  // IllegalStateException: thread already started
+
+
+10.AssertionError
+-----------------
+AssertionError-->Error
+it is un-checked exception
+
+class ErrorExample 
+{
+	public static void main(String[] args) 
+	{
+		assert 1 + 1 == 3 : "Math is broken!";
+	}
+}
+by default, assert statements are not enabled, you should enable it during execution.
+execute in terminal : 
+javac ErrorExample.java
+java -ea ErrorExample
+Exception in thread "main" java.lang.AssertionError: Math is broken!
+        at ErrorExample.main(ErrorExample.java:5)
+
+in eclipse : 
+In Eclipse, go to Run → Run Configurations…
+In the left panel, select your Java Application run configuration (or create one if it doesn’t exist).
+Switch to the Arguments tab on the right.
+In the VM arguments field, add -ea to enable assertions for this run.
+Click Apply, then Run.
+| Feature           | Explanation                                                                                  |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| **What it is**    | A language keyword that checks a boolean condition and throws `AssertionError` if false.     |
+| **Purpose**       | Used during development/testing to verify internal assumptions and catch logic errors early. |
+| **Default state** | Disabled at runtime; must be explicitly enabled.                                             |
+| **Performance**   | No cost when disabled; minimal overhead when enabled.                                        |
+
+
+1.7 version enhancements
+=========================	
+1.try with resources
+2.multi-catch block
+
+try-with resources
+------------------
+BufferedReader br;
+try
+{
+	br = new BufferedReader(FileReader("abc.txt"));
+	//use br to read data
+}
+catch(IOException)
+{
+	handling code;
+}
+finally
+{
+
+	br.close();
+}
+
+resurces must be closed, compulsory finally block.
+now i will use try with resource
+
+try(BufferedReader br = new BufferedReader(FileReader("abc.txt")))
+{
+	//use br to read data
+}
+catch(IOException)
+{
+	handling code;
+}
+here, once control reaches end of try block, br will be closed automatically.
+
+
+Multi catch block with OR operator
+==================================
+
+try
+{
+
+}
+catch(AE | NullPointerException)
+{
+	handling code.
+}
+
+catch(ArithmeticException | Exception)
+{
+
+}
+
+this is wrong, Exception can handle AE also, so it unnecessary,
+there should be no relation between two Exceptions when you use or operator.
+
+Exception-propegation
+re-throwing exception.
+if you want to convert one exception to another exception.
+try
+{
+	System.out.println(4/0);
+}
+catch(ArithmeticException e)
+{
+
+	throw NullPointerException;
+}
+
+1.try(resource r1, resource r2...)
+2.you can use resources only which are autoclosable..(must inmplements java.lang.AutoClosable interface(1.7 version, which has only one method i.e close())
+3.you cannot re-initialise resource variables in try block.(by default. All resource variables are final)
+4.try with ony resource is valid.(abnormal termination) from 1.7 version
+
+1.Introduction
+2.Default exception handling in java.
+3.exception hirarchy
+4.customised exception handling by using try catch
+5.control flow in try catch.
+6.methods to print exception information
+7.try with multiple catch blocks
+8.finally block
+control-flow in try catch finally.
+9.difference between final, finally and finalize
+10.various possible combinations of try-catch-finally
+11.
+12.control flow in nested try-catch-finally
+13.throw keyword
+14.throws keyword
+15.exception handling keywords summery
+16.various possible compiletime errors in exception handling
+17.customized or user defined exceptions
+18.top 10 exceptions
+19.1.7 version enhancements	1.try with resources
+	2.multi-catch block
+
